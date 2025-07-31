@@ -35,8 +35,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Experience */}
-              <div>
+              {/* Temporarily hidden - Experience section */}
+              {/* <div>
                 <h3 className="mb-4 text-xl font-semibold">Experience</h3>
                 <div className="space-y-4">
                   <div className="border-l-4 border-primary pl-4">
@@ -54,10 +54,10 @@ export default function AboutPage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              {/* CTA */}
-              <div className="flex flex-col gap-4 sm:flex-row">
+              {/* Temporarily hidden - Action buttons */}
+              {/* <div className="flex flex-col gap-4 sm:flex-row">
                 <Button asChild>
                   <Link href="/case-studies">
                     View My Work
@@ -68,7 +68,7 @@ export default function AboutPage() {
                     Get in Touch
                   </Link>
                 </Button>
-              </div>
+              </div> */}
             </div>
 
             {/* Right Column - Additional Info */}
