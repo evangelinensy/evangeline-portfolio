@@ -153,7 +153,7 @@ export const PhotoGallery = ({
 
   return (
     <div className="mt-20 md:mt-40 relative">
-      <h3 className="z-20 mx-auto max-w-2xl justify-center py-3 text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium text-slate-600 dark:text-slate-400">
+      <h3 className="z-20 mx-auto max-w-2xl justify-center py-3 text-center font-medium" style={{ fontSize: '40px', color: '#000' }}>
         My Work
       </h3>
       <div className="relative mb-8 h-[300px] md:h-[525px] w-full items-center justify-center flex">
