@@ -29,11 +29,11 @@ export const Component = () => {
                         />
                         <ImageZoom>
                             <Image
-                                src="/images/evangelineprofile.png"
-                                alt="Evangeline Ng - Product Designer"
-                                height={700}
-                                width={700}
-                                className="h-[300px] object-cover md:h-[404px]"
+                                src="/images/evangelinepic.png"
+                                alt="Evangeline Ng Profile"
+                                width={500}
+                                height={500}
+                                className="rounded-lg object-cover"
                             />
                             <div className="relative -mt-14 bg-gradient-to-b from-black/0 to-black text-white md:-mt-24">
                                 <h1 className="z-20 items-center text-center text-[40px] font-black tracking-tighter md:text-[70px]">Evangeline Ng</h1>{' '}
