@@ -73,27 +73,6 @@ export default function AboutPage() {
 
             {/* Right Column - Additional Info */}
             <div className="flex flex-col justify-center space-y-8">
-              <div>
-                <h3 className="mb-4 text-xl font-semibold">Tools I Use</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
-                  <div>
-                    <h4 className="font-semibold text-foreground">Design</h4>
-                    <p>Figma, Sketch, Adobe Creative Suite</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Prototyping</h4>
-                    <p>Framer, Principle, InVision</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Research</h4>
-                    <p>UserTesting, Hotjar, Google Analytics</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Collaboration</h4>
-                    <p>Notion, Slack, Miro</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
