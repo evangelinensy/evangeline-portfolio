@@ -8,6 +8,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import GalleryPopover from "@/components/ui/gallery-popover";
+import GalleryHoverCard from "@/components/ui/gallery-hover-card";
+import { useScreenSize } from "@/hooks/use-screen-size";
 
 export const PhotoGallery = ({
   animationDelay = 0.5,
@@ -16,6 +18,8 @@ export const PhotoGallery = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const screenSize = useScreenSize();
+  const isMobile = screenSize.lessThan('md');
 
   useEffect(() => {
     // First make the container visible with a fade-in
@@ -179,34 +183,65 @@ export const PhotoGallery = ({
                     order: photo.order,
                   }}
                 >
-                  <GalleryPopover 
-                    title={photo.popoverTitle || photo.title}
-                    description={photo.popoverDescription || ""}
-                  >
-                    {photo.external ? (
-                      <a href={photo.href} target="_blank" rel="noopener noreferrer">
-                        <Photo
-                          width={180}
-                          height={180}
-                          src={photo.src}
-                          alt={`${photo.title} case study`}
-                          direction={photo.direction}
-                          title={photo.title}
-                        />
-                      </a>
-                    ) : (
-                      <Link href={photo.href}>
-                        <Photo
-                          width={180}
-                          height={180}
-                          src={photo.src}
-                          alt={`${photo.title} case study`}
-                          direction={photo.direction}
-                          title={photo.title}
-                        />
-                      </Link>
-                    )}
-                  </GalleryPopover>
+                  {isMobile ? (
+                    <GalleryPopover 
+                      title={photo.popoverTitle || photo.title}
+                      description={photo.popoverDescription || ""}
+                    >
+                      {photo.external ? (
+                        <a href={photo.href} target="_blank" rel="noopener noreferrer">
+                          <Photo
+                            width={180}
+                            height={180}
+                            src={photo.src}
+                            alt={`${photo.title} case study`}
+                            direction={photo.direction}
+                            title={photo.title}
+                          />
+                        </a>
+                      ) : (
+                        <Link href={photo.href}>
+                          <Photo
+                            width={180}
+                            height={180}
+                            src={photo.src}
+                            alt={`${photo.title} case study`}
+                            direction={photo.direction}
+                            title={photo.title}
+                          />
+                        </Link>
+                      )}
+                    </GalleryPopover>
+                  ) : (
+                    <GalleryHoverCard 
+                      title={photo.popoverTitle || photo.title}
+                      description={photo.popoverDescription || ""}
+                    >
+                      {photo.external ? (
+                        <a href={photo.href} target="_blank" rel="noopener noreferrer">
+                          <Photo
+                            width={180}
+                            height={180}
+                            src={photo.src}
+                            alt={`${photo.title} case study`}
+                            direction={photo.direction}
+                            title={photo.title}
+                          />
+                        </a>
+                      ) : (
+                        <Link href={photo.href}>
+                          <Photo
+                            width={180}
+                            height={180}
+                            src={photo.src}
+                            alt={`${photo.title} case study`}
+                            direction={photo.direction}
+                            title={photo.title}
+                          />
+                        </Link>
+                      )}
+                    </GalleryHoverCard>
+                  )}
                 </motion.div>
               ))}
             </div>
