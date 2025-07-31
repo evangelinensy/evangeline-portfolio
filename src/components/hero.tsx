@@ -126,8 +126,8 @@ export function Hero() {
         }}
       >
         <span 
-          className="font-bold text-white"
-          style={{ fontSize: `${getTextSize(48)}px` }}
+          className="font-medium text-white"
+          style={{ fontSize: `${getTextSize(45)}px` }}
         >
           Let&apos;s build
         </span>
