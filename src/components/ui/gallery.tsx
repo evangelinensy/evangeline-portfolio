@@ -104,9 +104,9 @@ export const PhotoGallery = ({
       y: { desktop: "12px", mobile: "8px" },
       zIndex: 30,
       direction: "right" as Direction,
-      src: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: "/images/chefclaude.png",
       href: "/case-studies/project-3",
-      title: "Healthcare Dashboard",
+      title: "Learn LLM with a game",
     },
     {
       id: 4,
