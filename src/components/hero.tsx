@@ -129,7 +129,7 @@ export function Hero() {
           className="font-bold text-white"
           style={{ fontSize: `${getTextSize(48)}px` }}
         >
-          Let's build
+          Let&apos;s build
         </span>
       </div>
     </div>
