@@ -100,7 +100,7 @@ export const PhotoGallery = ({
       y: { desktop: "48px", mobile: "30px" },
       zIndex: 40,
       direction: "left" as Direction,
-      src: "/images/welldanpic.png",
+      src: "/images/welldan.png",
       href: "https://www.figma.com/proto/FQbwPIgMjIrwa6GPgudNxF/-Jan--Evangeline-Ng?page-id=0%3A1&node-id=1-4112&p=f&viewport=-2344%2C270%2C0.21&t=JCNf3dWZ5XbdwlaZ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A4112&show-proto-sidebar=1",
       title: "Web3 Campaigns",
       external: true,
