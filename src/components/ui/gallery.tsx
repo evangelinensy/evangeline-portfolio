@@ -142,7 +142,7 @@ export const PhotoGallery = ({
       y: { desktop: "33px", mobile: "22px" },
       zIndex: 20,
       direction: "right" as Direction,
-      src: "/images/lockerimg.png",
+      src: "/images/lockerthumbnail.png",
       href: "https://evangeline.typedream.app/__preview__?path=/locker-mobile-app&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiI2NzEzZjhiZS1iNmU3LTRiMDMtYTI5My0wYzA5ZjdkM2FiZmEiLCJlbWFpbCI6ImVnZ3N2YW5zQGdtYWlsLmNvbSIsImlkZW50aWZpZXIiOiJlZ2dzdmFuc0BnbWFpbC5jb20iLCJ0eXBlIjoiYWNjb3VudF9hY2Nlc3NfdG9rZW4iLCJleHAiOjE3NTY1Mjc2MzZ9.90Hyoiw4_4oTg2oGGr-a4MqaqNUuN3gJ2BXXj8n0GCY&theme=light",
       title: "Locker Mobile App",
       external: true,
