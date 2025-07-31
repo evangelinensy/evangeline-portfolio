@@ -62,8 +62,8 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-bold text-white leading-none"
-          style={{ fontSize: '64px' }}
+          className="block font-black text-white leading-none"
+          style={{ fontSize: '72px' }}
         >
           Evangeline Ng
         </span>
@@ -78,8 +78,8 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-bold text-white leading-none"
-          style={{ fontSize: '56px' }}
+          className="block font-black text-white leading-none"
+          style={{ fontSize: '64px' }}
         >
           Product Designer
         </span>
@@ -94,8 +94,8 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-bold text-white leading-none"
-          style={{ fontSize: '56px' }}
+          className="block font-black text-white leading-none"
+          style={{ fontSize: '64px' }}
         >
           0 → 1
         </span>
