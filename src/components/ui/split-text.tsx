@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface SplitTextProps {
   text: string;
@@ -23,7 +23,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   className = "",
   delay = 100,
   duration = 0.6,
-  ease = "power3.out",
+  ease = "easeOut",
   splitType = "chars",
   from = { opacity: 0, y: 40 },
   to = { opacity: 1, y: 0 },
@@ -34,7 +34,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 }) => {
   const splitText = splitType === "chars" ? text.split("") : text.split(" ");
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -45,13 +45,13 @@ const SplitText: React.FC<SplitTextProps> = ({
     },
   };
 
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: from,
     visible: {
       ...to,
       transition: {
         duration,
-        ease: ease === "power3.out" ? [0.25, 0.46, 0.45, 0.94] : "easeOut",
+        ease: "easeOut",
       },
     },
   };
@@ -68,7 +68,11 @@ const SplitText: React.FC<SplitTextProps> = ({
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ threshold, rootMargin }}
+      viewport={{ 
+        once: true,
+        amount: threshold,
+        margin: rootMargin 
+      }}
       onAnimationComplete={handleAnimationComplete}
     >
       {splitText.map((char, index) => (

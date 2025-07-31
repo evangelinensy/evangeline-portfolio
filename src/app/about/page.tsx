@@ -35,9 +35,6 @@ export default function AboutPage() {
                   threshold={0.1}
                   rootMargin="-100px"
                   textAlign="left"
-                  onLetterAnimationComplete={() => {
-                    console.log('All letters have animated!');
-                  }}
                 />
                 <p className="mb-6 text-base text-muted-foreground md:text-lg">
                   I&apos;m a Singaporean-born product designer, based in San Francisco. Currently, a Staff UX Designer at Palo Alto Networks.<br /><br />

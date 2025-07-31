@@ -8,28 +8,12 @@ import { GooeyFilter } from "@/components/ui/gooey-filter"
 export function Hero() {
   const screenSize = useScreenSize()
 
-  // Responsive text sizes based on screen size
-  const getTextSize = (baseSize: number) => {
-    if (screenSize.lessThan('sm')) return baseSize * 0.6
-    if (screenSize.lessThan('md')) return baseSize * 0.8
-    if (screenSize.lessThan('lg')) return baseSize * 0.9
-    return baseSize
-  }
-
-  // Responsive positioning based on screen size
-  const getPosition = (basePosition: number) => {
-    if (screenSize.lessThan('sm')) return basePosition * 0.5
-    if (screenSize.lessThan('md')) return basePosition * 0.7
-    if (screenSize.lessThan('lg')) return basePosition * 0.85
-    return basePosition
-  }
-
   // Responsive hero height
   const getHeroHeight = () => {
     if (screenSize.lessThan('sm')) return 'h-[400px]'
-    if (screenSize.lessThan('md')) return 'h-[500px]'
-    if (screenSize.lessThan('lg')) return 'h-[600px]'
-    return 'h-[700px]'
+    if (screenSize.lessThan('md')) return 'h-[450px]'
+    if (screenSize.lessThan('lg')) return 'h-[500px]'
+    return 'h-[500px]'
   }
 
   // Responsive max width
