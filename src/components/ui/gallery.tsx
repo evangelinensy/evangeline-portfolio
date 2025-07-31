@@ -105,7 +105,7 @@ export const PhotoGallery = ({
       title: "Web3 Campaigns",
       external: true,
       popoverTitle: "Web3 Campaigns",
-      popoverDescription: "Redesigned mobile banking experience with improved user flows and accessibility.",
+      popoverDescription: "3M users engaged with activities. Clients include Sanrio and Asahi. Increased Startup's Revenue from 15K→450K.",
     },
     {
       id: 3,
