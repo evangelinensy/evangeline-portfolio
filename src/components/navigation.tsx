@@ -26,12 +26,13 @@ const navigationItems = [
     href: '/about',
     external: false,
   },
-  {
-    title: 'Case Studies',
-    icon: <FileText className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
-    href: '/case-studies',
-    external: false,
-  },
+  // Temporarily hidden - Case Studies navigation item
+  // {
+  //   title: 'Case Studies',
+  //   icon: <FileText className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+  //   href: '/case-studies',
+  //   external: false,
+  // },
   // Temporarily hidden - Play navigation item
   // {
   //   title: 'Play',
