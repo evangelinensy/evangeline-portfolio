@@ -16,45 +16,45 @@ import ContactPopover from '@/components/ui/contact-popover';
 const navigationItems = [
   {
     title: 'Home',
-    icon: <Home className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    icon: <Home className='h-full w-full text-neutral-300' />,
     href: '/',
     external: false,
   },
   {
     title: 'About',
-    icon: <User className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    icon: <User className='h-full w-full text-neutral-300' />,
     href: '/about',
     external: false,
   },
   // Temporarily hidden - Case Studies navigation item
   // {
   //   title: 'Case Studies',
-  //   icon: <FileText className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+  //   icon: <FileText className='h-full w-full text-neutral-300' />,
   //   href: '/case-studies',
   //   external: false,
   // },
   // Temporarily hidden - Play navigation item
   // {
   //   title: 'Play',
-  //   icon: <Play className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+  //   icon: <Play className='h-full w-full text-neutral-300' />,
   //   href: '/play',
   //   external: false,
   // },
   {
     title: 'Medium',
-    icon: <BookOpen className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    icon: <BookOpen className='h-full w-full text-neutral-300' />,
     href: 'https://medium.com/@yournocodefriend',
     external: true,
   },
   {
     title: 'GitHub',
-    icon: <Github className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    icon: <Github className='h-full w-full text-neutral-300' />,
     href: 'https://github.com/evangelinensy',
     external: true,
   },
   {
     title: 'LinkedIn',
-    icon: <Linkedin className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    icon: <Linkedin className='h-full w-full text-neutral-300' />,
     href: 'https://www.linkedin.com/in/evangeline-ng/',
     external: true,
   },
@@ -67,7 +67,7 @@ export function Navigation() {
         {navigationItems.map((item, idx) => (
           <DockItem
             key={idx}
-            className='aspect-square cursor-pointer rounded-full bg-gray-200 transition-colors hover:bg-gray-300 dark:bg-neutral-800 dark:hover:bg-neutral-700'
+            className='aspect-square cursor-pointer rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700'
           >
             <DockLabel>{item.title}</DockLabel>
             <DockIcon>
@@ -89,7 +89,7 @@ export function Navigation() {
           </DockItem>
         ))}
         {/* Contact Popover */}
-        <DockItem className='aspect-square cursor-pointer rounded-full bg-gray-200 transition-colors hover:bg-gray-300 dark:bg-neutral-800 dark:hover:bg-neutral-700'>
+        <DockItem className='aspect-square cursor-pointer rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700'>
           <DockLabel>Contact</DockLabel>
           <DockIcon>
             <ContactPopover />
