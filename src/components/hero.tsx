@@ -70,48 +70,40 @@ export function Hero() {
       </div>
 
       {/* Text Elements - Top Left */}
-      <div 
-        className="absolute z-20 text-left"
+      <div
+        className="absolute z-20"
         style={{
-          top: `${getPosition(80)}px`,
-          left: `${getPosition(80)}px`
+          top: `${getPosition(40)}px`,
+          left: `${getPosition(40)}px`
         }}
       >
-        <h1 
-          className="font-medium leading-tight text-white"
-          style={{ fontSize: `${getTextSize(45)}px` }}
-        >
-          Evangeline<br />Ng
-        </h1>
-      </div>
-
-      {/* Text Elements - Bottom Left */}
-      <div 
-        className="absolute z-20 text-left"
-        style={{
-          bottom: `${getPosition(80)}px`,
-          left: `${getPosition(80)}px`
-        }}
-      >
-        <h2 
-          className="font-medium leading-tight text-white"
-          style={{ fontSize: `${getTextSize(45)}px` }}
-        >
-          Product<br />Designer
-        </h2>
+        <div className="space-y-1 md:space-y-2">
+          <span
+            className="font-medium text-white block"
+            style={{ fontSize: `${getTextSize(32)}px` }} // Reduced from 45px for mobile
+          >
+            Evangeline Ng
+          </span>
+          <span
+            className="font-medium text-white block"
+            style={{ fontSize: `${getTextSize(28)}px` }} // Reduced from 45px for mobile
+          >
+            Product Designer
+          </span>
+        </div>
       </div>
 
       {/* Text Elements - Top Right */}
-      <div 
+      <div
         className="absolute z-20"
         style={{
-          top: `${getPosition(80)}px`,
-          right: `${getPosition(80)}px`
+          top: `${getPosition(40)}px`,
+          right: `${getPosition(40)}px`
         }}
       >
-        <span 
-          className="font-bold text-white"
-          style={{ fontSize: `${getTextSize(32)}px` }}
+        <span
+          className="font-medium text-white"
+          style={{ fontSize: `${getTextSize(32)}px` }} // Reduced from 45px for mobile
         >
           0 → 1
         </span>
