@@ -15,33 +15,17 @@ export default function ContactPopover() {
               <ArrowSvg />
             </Popover.Arrow>
             <Popover.Title className="text-base font-medium">
-              Get in Touch
+              Let&apos;s get in touch!
             </Popover.Title>
             <Popover.Description className="text-base text-gray-600 dark:text-gray-400 mb-4">
-              Let&apos;s work together on your next project!
+              eggsvans@gmail.com
             </Popover.Description>
             <div className="space-y-2">
               <a 
-                href="mailto:hello@eggsvans.com" 
+                href="mailto:eggsvans@gmail.com" 
                 className="block text-sm text-blue-600 dark:text-blue-400 hover:underline"
               >
-                📧 hello@eggsvans.com
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/evangeline-ng/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-sm text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                💼 LinkedIn
-              </a>
-              <a 
-                href="https://github.com/evangelinensy" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-sm text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                🐙 GitHub
+                📧 eggsvans@gmail.com
               </a>
             </div>
           </Popover.Popup>
