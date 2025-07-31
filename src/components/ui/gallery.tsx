@@ -147,7 +147,7 @@ export const PhotoGallery = ({
       title: "Locker Mobile App",
       external: true,
       popoverTitle: "Locker Mobile App",
-      popoverDescription: "Mobile app for parcel returns with intuitive user experience.",
+      popoverDescription: "Mobile app for parcel returns.",
     },
     {
       id: 5,
