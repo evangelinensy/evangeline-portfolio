@@ -74,13 +74,6 @@ export default function AboutPage() {
             {/* Right Column - Additional Info */}
             <div className="flex flex-col justify-center space-y-8">
               <div>
-                <h3 className="mb-4 text-xl font-semibold">Design Philosophy</h3>
-                <p className="text-base text-muted-foreground md:text-lg">
-                  I believe that great design is invisible. It should feel intuitive, solve real problems, and create meaningful connections between users and products.
-                </p>
-              </div>
-
-              <div>
                 <h3 className="mb-4 text-xl font-semibold">Tools I Use</h3>
                 <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
                   <div>
