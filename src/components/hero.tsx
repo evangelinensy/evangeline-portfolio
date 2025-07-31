@@ -73,20 +73,20 @@ export function Hero() {
       <div
         className="absolute z-20"
         style={{
-          top: `${getPosition(40)}px`,
-          left: `${getPosition(40)}px`
+          top: `${getPosition(80)}px`,
+          left: `${getPosition(80)}px`
         }}
       >
-        <div className="space-y-1 md:space-y-2">
+        <div className="space-y-2 md:space-y-3">
           <span
             className="font-medium text-white block"
-            style={{ fontSize: `${getTextSize(32)}px` }} // Reduced from 45px for mobile
+            style={{ fontSize: `${getTextSize(45)}px` }}
           >
             Evangeline Ng
           </span>
           <span
             className="font-medium text-white block"
-            style={{ fontSize: `${getTextSize(28)}px` }} // Reduced from 45px for mobile
+            style={{ fontSize: `${getTextSize(40)}px` }}
           >
             Product Designer
           </span>
@@ -97,13 +97,13 @@ export function Hero() {
       <div
         className="absolute z-20"
         style={{
-          top: `${getPosition(40)}px`,
-          right: `${getPosition(40)}px`
+          top: `${getPosition(80)}px`,
+          right: `${getPosition(80)}px`
         }}
       >
         <span
           className="font-medium text-white"
-          style={{ fontSize: `${getTextSize(32)}px` }} // Reduced from 45px for mobile
+          style={{ fontSize: `${getTextSize(40)}px` }}
         >
           0 → 1
         </span>
