@@ -4,12 +4,12 @@ import {
   Home,
   User,
   FileText,
-  Mail,
   Github,
   Linkedin,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
+import ContactPopover from '@/components/ui/contact-popover';
 
 const navigationItems = [
   {
@@ -29,12 +29,6 @@ const navigationItems = [
     icon: <FileText className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
     href: '/case-studies',
     external: false,
-  },
-  {
-    title: 'Contact',
-    icon: <Mail className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
-    href: 'mailto:hello@eggsvans.com',
-    external: true,
   },
   {
     title: 'GitHub',
@@ -78,6 +72,13 @@ export function Navigation() {
             </DockIcon>
           </DockItem>
         ))}
+        {/* Contact Popover */}
+        <DockItem className='aspect-square cursor-pointer rounded-full bg-gray-200 transition-colors hover:bg-gray-300 dark:bg-neutral-800 dark:hover:bg-neutral-700'>
+          <DockLabel>Contact</DockLabel>
+          <DockIcon>
+            <ContactPopover />
+          </DockIcon>
+        </DockItem>
       </Dock>
     </div>
   );
