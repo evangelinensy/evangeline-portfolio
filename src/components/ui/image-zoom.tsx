@@ -33,7 +33,8 @@ export const Component = () => {
                                 alt="Evangeline Ng Profile"
                                 width={500}
                                 height={500}
-                                className="rounded-lg object-cover"
+                                className="rounded-lg object-cover w-full h-full"
+                                style={{ objectPosition: 'center top' }}
                             />
                             <div className="relative -mt-14 bg-gradient-to-b from-black/0 to-black text-white md:-mt-24">
                                 <h1 className="z-20 items-center text-center text-[40px] font-black tracking-tighter md:text-[70px]">Evangeline Ng</h1>{' '}
