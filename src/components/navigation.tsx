@@ -32,12 +32,13 @@ const navigationItems = [
     href: '/case-studies',
     external: false,
   },
-  {
-    title: 'Play',
-    icon: <Play className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
-    href: '/play',
-    external: false,
-  },
+  // Temporarily hidden - Play navigation item
+  // {
+  //   title: 'Play',
+  //   icon: <Play className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+  //   href: '/play',
+  //   external: false,
+  // },
   {
     title: 'Medium',
     icon: <BookOpen className='h-full w-full text-neutral-600 dark:text-neutral-300' />,

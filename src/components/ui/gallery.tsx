@@ -262,13 +262,14 @@ export const PhotoGallery = ({
           </motion.div>
         </motion.div>
       </div>
-      <div className="flex w-full justify-center">
+      {/* Temporarily hidden - View All Stories button */}
+      {/* <div className="flex w-full justify-center">
         <Button asChild>
           <Link href="/case-studies">
             View All Stories
           </Link>
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
