@@ -24,13 +24,13 @@ const PixelTrail: React.FC<PixelTrailProps> = ({
   const dimensions = useDimensions(containerRef)
   const trailId = useRef(uuidv4())
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleInteraction = useCallback(
+    (clientX: number, clientY: number) => {
       if (!containerRef.current) return
 
       const rect = containerRef.current.getBoundingClientRect()
-      const x = Math.floor((e.clientX - rect.left) / pixelSize)
-      const y = Math.floor((e.clientY - rect.top) / pixelSize)
+      const x = Math.floor((clientX - rect.left) / pixelSize)
+      const y = Math.floor((clientY - rect.top) / pixelSize)
 
       const pixelElement = document.getElementById(
         `${trailId.current}-pixel-${x}-${y}`
@@ -41,6 +41,34 @@ const PixelTrail: React.FC<PixelTrailProps> = ({
       }
     },
     [pixelSize]
+  )
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      handleInteraction(e.clientX, e.clientY)
+    },
+    [handleInteraction]
+  )
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      e.preventDefault()
+      const touch = e.touches[0]
+      if (touch) {
+        handleInteraction(touch.clientX, touch.clientY)
+      }
+    },
+    [handleInteraction]
+  )
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLDivElement>) => {
+      const touch = e.touches[0]
+      if (touch) {
+        handleInteraction(touch.clientX, touch.clientY)
+      }
+    },
+    [handleInteraction]
   )
 
   const columns = useMemo(
@@ -60,6 +88,8 @@ const PixelTrail: React.FC<PixelTrailProps> = ({
         className
       )}
       onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
+      onTouchStart={handleTouchStart}
     >
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <div key={rowIndex} className="flex">
