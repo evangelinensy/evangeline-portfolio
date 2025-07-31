@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import GalleryPopover from "@/components/ui/gallery-popover";
 
 export const PhotoGallery = ({
   animationDelay = 0.5,
@@ -85,6 +86,8 @@ export const PhotoGallery = ({
       href: "https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1",
       title: "Pomelo Case Study",
       external: true,
+      popoverTitle: "Pomelo Onboarding",
+      popoverDescription: "Onboarded 1.5x more users and x3 user activation by providing transparency and clarity.",
     },
     {
       id: 2,
@@ -96,6 +99,8 @@ export const PhotoGallery = ({
       src: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       href: "/case-studies/project-2",
       title: "Mobile Banking App Design",
+      popoverTitle: "Mobile Banking App",
+      popoverDescription: "Redesigned mobile banking experience with improved user flows and accessibility.",
     },
     {
       id: 3,
@@ -107,6 +112,8 @@ export const PhotoGallery = ({
       src: "/images/chefclaude.png",
       href: "/case-studies/project-3",
       title: "Learn LLM with a game",
+      popoverTitle: "Learn LLM with a game",
+      popoverDescription: "Interactive learning experience for Prompt Engineering and AI evaluation.",
     },
     {
       id: 4,
@@ -119,6 +126,8 @@ export const PhotoGallery = ({
       href: "https://evangeline.typedream.app/__preview__?path=/locker-mobile-app&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOiI2NzEzZjhiZS1iNmU3LTRiMDMtYTI5My0wYzA5ZjdkM2FiZmEiLCJlbWFpbCI6ImVnZ3N2YW5zQGdtYWlsLmNvbSIsImlkZW50aWZpZXIiOiJlZ2dzdmFuc0BnbWFpbC5jb20iLCJ0eXBlIjoiYWNjb3VudF9hY2Nlc3NfdG9rZW4iLCJleHAiOjE3NTY1Mjc2MzZ9.90Hyoiw4_4oTg2oGGr-a4MqaqNUuN3gJ2BXXj8n0GCY&theme=light",
       title: "Locker Mobile App",
       external: true,
+      popoverTitle: "Locker Mobile App",
+      popoverDescription: "Mobile app for parcel returns with intuitive user experience.",
     },
     {
       id: 5,
@@ -131,6 +140,8 @@ export const PhotoGallery = ({
       href: "https://loveletter.lovable.app/",
       title: "Love Letter App",
       external: true,
+      popoverTitle: "Love Letter App",
+      popoverDescription: "Interactive app for creating and sharing digital love letters.",
     },
   ];
 
@@ -166,29 +177,34 @@ export const PhotoGallery = ({
                     order: photo.order,
                   }}
                 >
-                  {photo.external ? (
-                    <a href={photo.href} target="_blank" rel="noopener noreferrer">
-                      <Photo
-                        width={180}
-                        height={180}
-                        src={photo.src}
-                        alt={`${photo.title} case study`}
-                        direction={photo.direction}
-                        title={photo.title}
-                      />
-                    </a>
-                  ) : (
-                    <Link href={photo.href}>
-                      <Photo
-                        width={180}
-                        height={180}
-                        src={photo.src}
-                        alt={`${photo.title} case study`}
-                        direction={photo.direction}
-                        title={photo.title}
-                      />
-                    </Link>
-                  )}
+                  <GalleryPopover 
+                    title={photo.popoverTitle || photo.title}
+                    description={photo.popoverDescription || ""}
+                  >
+                    {photo.external ? (
+                      <a href={photo.href} target="_blank" rel="noopener noreferrer">
+                        <Photo
+                          width={180}
+                          height={180}
+                          src={photo.src}
+                          alt={`${photo.title} case study`}
+                          direction={photo.direction}
+                          title={photo.title}
+                        />
+                      </a>
+                    ) : (
+                      <Link href={photo.href}>
+                        <Photo
+                          width={180}
+                          height={180}
+                          src={photo.src}
+                          alt={`${photo.title} case study`}
+                          direction={photo.direction}
+                          title={photo.title}
+                        />
+                      </Link>
+                    )}
+                  </GalleryPopover>
                 </motion.div>
               ))}
             </div>
