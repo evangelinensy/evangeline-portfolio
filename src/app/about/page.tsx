@@ -10,12 +10,6 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-16 text-center">
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-6xl">
-              About Me
-            </h1>
-            <p className="text-lg text-muted-foreground md:text-xl">
-              Product designer passionate about creating meaningful digital experiences
-            </p>
           </div>
 
           {/* Image Zoom Component */}
