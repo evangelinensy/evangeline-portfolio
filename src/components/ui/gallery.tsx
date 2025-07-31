@@ -96,10 +96,10 @@ export const PhotoGallery = ({
       y: { desktop: "48px", mobile: "30px" },
       zIndex: 40,
       direction: "left" as Direction,
-      src: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: "/images/welldanpic.png",
       href: "/case-studies/project-2",
-      title: "Mobile Banking App Design",
-      popoverTitle: "Mobile Banking App",
+      title: "Web3 Campaigns",
+      popoverTitle: "Web3 Campaigns",
       popoverDescription: "Redesigned mobile banking experience with improved user flows and accessibility.",
     },
     {
@@ -136,7 +136,7 @@ export const PhotoGallery = ({
       y: { desktop: "66px", mobile: "38px" },
       zIndex: 10, // Lowest z-index (at bottom)
       direction: "left" as Direction,
-      src: "/images/pomelo card.png", // TODO: Replace with love-letter.gif when available
+      src: "/images/loveletter.png",
       href: "https://loveletter.lovable.app/",
       title: "Love Letter App",
       external: true,

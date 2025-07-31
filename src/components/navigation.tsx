@@ -6,6 +6,8 @@ import {
   FileText,
   Github,
   Linkedin,
+  Play,
+  BookOpen,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
@@ -29,6 +31,18 @@ const navigationItems = [
     icon: <FileText className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
     href: '/case-studies',
     external: false,
+  },
+  {
+    title: 'Play',
+    icon: <Play className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    href: '/play',
+    external: false,
+  },
+  {
+    title: 'Medium',
+    icon: <BookOpen className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    href: 'https://medium.com/@yournocodefriend',
+    external: true,
   },
   {
     title: 'GitHub',
