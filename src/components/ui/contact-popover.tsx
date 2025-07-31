@@ -20,14 +20,6 @@ export default function ContactPopover() {
             <Popover.Description className="text-base text-gray-600 dark:text-gray-400 mb-4">
               eggsvans@gmail.com
             </Popover.Description>
-            <div className="space-y-2">
-              <a 
-                href="mailto:eggsvans@gmail.com" 
-                className="block text-sm text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                📧 eggsvans@gmail.com
-              </a>
-            </div>
           </Popover.Popup>
         </Popover.Positioner>
       </Popover.Portal>
