@@ -63,7 +63,7 @@ export function Hero() {
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: '72px' }}
+          style={{ fontSize: screenSize.lessThan('lg') ? '64px' : '55px' }}
         >
           Evangeline Ng
         </span>
@@ -79,7 +79,7 @@ export function Hero() {
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: '64px' }}
+          style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '55px' }}
         >
           Product Designer
         </span>
@@ -95,7 +95,7 @@ export function Hero() {
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: '64px' }}
+          style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '55px' }}
         >
           0 → 1
         </span>
@@ -111,7 +111,7 @@ export function Hero() {
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: '64px' }}
+          style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '55px' }}
         >
           Co-create
         </span>
