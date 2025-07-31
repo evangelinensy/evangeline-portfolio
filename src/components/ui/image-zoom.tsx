@@ -10,7 +10,7 @@ import "react-medium-image-zoom/dist/styles.css";
 export const Component = () => {  
   return (
     <div >
-       <div className="border-brand/10 relative mx-auto my-6 flex h-[336px] max-w-[250px] flex-col items-start border p-4 md:h-[28rem] md:max-w-sm">
+       <div className="border-brand/10 relative mx-auto my-6 flex flex-col items-start border p-4 w-full max-w-[250px] aspect-square md:max-w-sm md:aspect-square">
                         <Plus
                             strokeWidth={0.5}
                             className="text-[#fff200] absolute -left-4 -top-4 h-8 w-8"
@@ -28,14 +28,17 @@ export const Component = () => {
                             className="text-[#fff200] absolute -bottom-4 -right-4 h-8 w-8"
                         />
                         <ImageZoom>
-                            <Image
-                                src="/images/profilepic.png"
-                                alt="Evangeline Ng Profile"
-                                width={500}
-                                height={500}
-                                className="rounded-lg object-cover w-full h-full"
-                                style={{ objectPosition: 'center top' }}
-                            />
+                            <div className="relative w-full h-full aspect-square">
+                                <Image
+                                    src="/images/profilepic.png"
+                                    alt="Evangeline Ng Profile"
+                                    fill
+                                    className="rounded-lg object-cover w-full h-full"
+                                    style={{ objectPosition: 'center top' }}
+                                    sizes="(max-width: 640px) 100vw, 250px"
+                                    priority
+                                />
+                            </div>
                             <div className="relative -mt-14 bg-gradient-to-b from-black/0 to-black text-white md:-mt-24">
                                 <h1 className="z-20 items-center text-center text-[40px] font-black tracking-tighter md:text-[70px]">Evangeline Ng</h1>{' '}
                             </div>
