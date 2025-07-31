@@ -29,7 +29,7 @@ export const Component = () => {
                         />
                         <ImageZoom>
                             <Image
-                                src="/images/evangelinepic.png"
+                                src="/images/profilepic.png"
                                 alt="Evangeline Ng Profile"
                                 width={500}
                                 height={500}
