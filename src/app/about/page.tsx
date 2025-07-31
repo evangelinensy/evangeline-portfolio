@@ -26,10 +26,12 @@ export default function AboutPage() {
                   Hello, I&apos;m Evangeline Ng
                 </h2>
                 <p className="mb-6 text-base text-muted-foreground md:text-lg">
-                  I&apos;m a product designer who loves taking products from 0 to 1. With a passion for user experience and a keen eye for detail, I specialize in creating intuitive, accessible, and beautiful digital experiences that solve real problems.
-                </p>
-                <p className="text-base text-muted-foreground md:text-lg">
-                  My approach combines user research, strategic thinking, and creative design to deliver solutions that not only look great but also provide genuine value to users.
+                  I’m a Singaporean-born product designer, based in San Francisco.<br /><br />
+                  Over the years, I’ve been delivering impact to early-stage startups by leading the product and improving the businesses through design.<br /><br />
+                  Previously at DeForm I helped brands reward their community and go onchain at DeForm as their Founding Product Designer.<br /><br />
+                  At Pomelo, I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.<br /><br />
+                  I helped clinicians work efficiently at a Medtech Startup called See-mode. I was their first design hire and built the design foundations of their ultrasound web application.<br /><br />
+                  I occasionally write and illustrate. Outside of work, going for my daily jogs and painting keeps me grounded.
                 </p>
               </div>
 
