@@ -71,39 +71,47 @@ export function Hero() {
 
       {/* Text Elements - Top Left */}
       <div
-        className="absolute z-20"
+        className="absolute z-20 text-left"
         style={{
-          top: `${getPosition(80)}px`,
-          left: `${getPosition(80)}px`
+          top: '60px',
+          left: '60px',
         }}
       >
-        <div className="space-y-2 md:space-y-3">
-          <span
-            className="font-medium text-white block"
-            style={{ fontSize: `${getTextSize(45)}px` }}
-          >
-            Evangeline Ng
-          </span>
-          <span
-            className="font-medium text-white block"
-            style={{ fontSize: `${getTextSize(40)}px` }}
-          >
-            Product Designer
-          </span>
-        </div>
+        <span
+          className="block font-bold text-white leading-none"
+          style={{ fontSize: '64px' }}
+        >
+          Evangeline Ng
+        </span>
+      </div>
+
+      {/* Text Elements - Bottom Left */}
+      <div
+        className="absolute z-20 text-left"
+        style={{
+          bottom: '60px',
+          left: '60px',
+        }}
+      >
+        <span
+          className="block font-bold text-white leading-none"
+          style={{ fontSize: '56px' }}
+        >
+          Product Designer
+        </span>
       </div>
 
       {/* Text Elements - Top Right */}
       <div
-        className="absolute z-20"
+        className="absolute z-20 text-right"
         style={{
-          top: `${getPosition(80)}px`,
-          right: `${getPosition(80)}px`
+          top: '60px',
+          right: '60px',
         }}
       >
         <span
-          className="font-medium text-white"
-          style={{ fontSize: `${getTextSize(40)}px` }}
+          className="block font-bold text-white leading-none"
+          style={{ fontSize: '56px' }}
         >
           0 → 1
         </span>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Component as ImageZoomComponent } from "@/components/ui/image-zoom";
+import SplitText from "@/components/ui/split-text";
 
 export default function AboutPage() {
   return (
@@ -22,9 +23,22 @@ export default function AboutPage() {
             {/* Left Column - Content */}
             <div className="flex flex-col justify-center space-y-8">
               <div>
-                <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-                  Hello, I&apos;m Evangeline Ng
-                </h2>
+                <SplitText
+                  text="Hello, I'm Evangeline Ng"
+                  className="mb-4 text-2xl font-bold md:text-3xl"
+                  delay={100}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  textAlign="left"
+                  onLetterAnimationComplete={() => {
+                    console.log('All letters have animated!');
+                  }}
+                />
                 <p className="mb-6 text-base text-muted-foreground md:text-lg">
                   I&apos;m a Singaporean-born product designer, based in San Francisco. Currently, a Staff UX Designer at Palo Alto Networks.<br /><br />
                   Over the years, I&apos;ve been delivering impact to early-stage startups by leading the product and improving the businesses through design.<br /><br />
