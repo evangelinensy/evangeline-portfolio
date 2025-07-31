@@ -116,22 +116,6 @@ export function Hero() {
           0 → 1
         </span>
       </div>
-
-      {/* Text Elements - Bottom Right */}
-      <div 
-        className="absolute z-20"
-        style={{
-          bottom: `${getPosition(80)}px`,
-          right: `${getPosition(80)}px`
-        }}
-      >
-        <span 
-          className="font-medium text-white"
-          style={{ fontSize: `${getTextSize(45)}px` }}
-        >
-          Let&apos;s build
-        </span>
-      </div>
     </div>
   )
 } 
