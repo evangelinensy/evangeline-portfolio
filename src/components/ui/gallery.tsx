@@ -90,8 +90,8 @@ export const PhotoGallery = ({
       href: "https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1",
       title: "Pomelo Case Study",
       external: true,
-      popoverTitle: "Pomelo Onboarding",
-      popoverDescription: "Onboarded 1.5x more users and x3 user activation by providing transparency and clarity.",
+      popoverTitle: "Pomelo Onboarding Redesign",
+      popoverDescription: "Onboarded 1.5x more users and x3 user activation.",
     },
     {
       id: 2,
