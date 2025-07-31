@@ -133,7 +133,7 @@ export const PhotoGallery = ({
       title: "TechBio Enterprise",
       external: true,
       popoverTitle: "TechBio Enterprise",
-      popoverDescription: "As the first hire, I led the product and design for Biotechs to source for research organizations and track progress.",
+      popoverDescription: "As the first hire, I led the product and design for Biotechs to source for research organizations and track progress.\n\nContact me for password",
     },
     {
       id: 4,
