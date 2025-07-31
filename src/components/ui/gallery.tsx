@@ -122,6 +122,20 @@ export const PhotoGallery = ({
       popoverDescription: "Interactive learning experience for Prompt Engineering and AI evaluation.",
     },
     {
+      id: 3.5,
+      order: 2.5,
+      x: { desktop: "60px", mobile: "30px" },
+      y: { desktop: "25px", mobile: "16px" },
+      zIndex: 25,
+      direction: "right" as Direction,
+      src: "/images/enterprise.png",
+      href: "https://evangeline.typedream.app/tech-bio-product",
+      title: "TechBio Enterprise",
+      external: true,
+      popoverTitle: "TechBio Enterprise",
+      popoverDescription: "As the first hire, I led the product and design for Biotechs to source for research organizations and track progress.",
+    },
+    {
       id: 4,
       order: 3,
       x: { desktop: "120px", mobile: "45px" },
@@ -138,7 +152,7 @@ export const PhotoGallery = ({
     {
       id: 5,
       order: 4,
-      x: { desktop: "240px", mobile: "90px" },
+      x: { desktop: "180px", mobile: "60px" },
       y: { desktop: "66px", mobile: "38px" },
       zIndex: 10, // Lowest z-index (at bottom)
       direction: "left" as Direction,
