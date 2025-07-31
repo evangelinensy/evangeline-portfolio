@@ -35,21 +35,6 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Skills */}
-              <div>
-                <h3 className="mb-4 text-xl font-semibold">Skills & Expertise</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">User Research</Badge>
-                  <Badge variant="secondary">UI/UX Design</Badge>
-                  <Badge variant="secondary">Prototyping</Badge>
-                  <Badge variant="secondary">Design Systems</Badge>
-                  <Badge variant="secondary">Figma</Badge>
-                  <Badge variant="secondary">Sketch</Badge>
-                  <Badge variant="secondary">Adobe Creative Suite</Badge>
-                  <Badge variant="secondary">User Testing</Badge>
-                </div>
-              </div>
-
               {/* Experience */}
               <div>
                 <h3 className="mb-4 text-xl font-semibold">Experience</h3>
@@ -93,18 +78,6 @@ export default function AboutPage() {
                 <p className="text-base text-muted-foreground md:text-lg">
                   I believe that great design is invisible. It should feel intuitive, solve real problems, and create meaningful connections between users and products.
                 </p>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-xl font-semibold">What I Do</h3>
-                <ul className="space-y-2 text-base text-muted-foreground md:text-lg">
-                  <li>• User research and usability testing</li>
-                  <li>• Wireframing and prototyping</li>
-                  <li>• UI/UX design and visual design</li>
-                  <li>• Design system creation</li>
-                  <li>• User journey mapping</li>
-                  <li>• Stakeholder collaboration</li>
-                </ul>
               </div>
 
               <div>
