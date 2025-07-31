@@ -100,6 +100,22 @@ export function Hero() {
           0 → 1
         </span>
       </div>
+
+      {/* Text Elements - Bottom Right */}
+      <div
+        className="absolute z-20 text-right"
+        style={{
+          bottom: '60px',
+          right: '60px',
+        }}
+      >
+        <span
+          className="block font-black text-white leading-none"
+          style={{ fontSize: '64px' }}
+        >
+          Co-create
+        </span>
+      </div>
     </div>
   )
 } 
