@@ -82,7 +82,7 @@ export const PhotoGallery = ({
     {
       id: 1,
       order: 0,
-      x: { desktop: "-180px", mobile: "-90px" },
+      x: { desktop: "-240px", mobile: "-90px" },
       y: { desktop: "22px", mobile: "15px" },
       zIndex: 50, // Highest z-index (on top)
       direction: "left" as Direction,
@@ -96,7 +96,7 @@ export const PhotoGallery = ({
     {
       id: 2,
       order: 1,
-      x: { desktop: "-90px", mobile: "-45px" },
+      x: { desktop: "-120px", mobile: "-45px" },
       y: { desktop: "48px", mobile: "30px" },
       zIndex: 40,
       direction: "left" as Direction,
@@ -124,7 +124,7 @@ export const PhotoGallery = ({
     {
       id: 4,
       order: 3,
-      x: { desktop: "90px", mobile: "45px" },
+      x: { desktop: "120px", mobile: "45px" },
       y: { desktop: "33px", mobile: "22px" },
       zIndex: 20,
       direction: "right" as Direction,
@@ -138,7 +138,7 @@ export const PhotoGallery = ({
     {
       id: 5,
       order: 4,
-      x: { desktop: "180px", mobile: "90px" },
+      x: { desktop: "240px", mobile: "90px" },
       y: { desktop: "66px", mobile: "38px" },
       zIndex: 10, // Lowest z-index (at bottom)
       direction: "left" as Direction,
