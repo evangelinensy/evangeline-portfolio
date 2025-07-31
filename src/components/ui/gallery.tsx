@@ -86,7 +86,7 @@ export const PhotoGallery = ({
       y: { desktop: "22px", mobile: "15px" },
       zIndex: 50, // Highest z-index (on top)
       direction: "left" as Direction,
-      src: "/images/pomelo card.png",
+      src: "/images/pomelothumbnail.png",
       href: "https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1",
       title: "Pomelo Case Study",
       external: true,
