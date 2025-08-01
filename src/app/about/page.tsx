@@ -20,8 +20,8 @@ export default function AboutPage() {
 
           {/* Main Content */}
           <div className="flex flex-col items-center">
-            {/* Centered Content */}
-            <div className="max-w-3xl text-center">
+            {/* Centered Content with 500px max width */}
+            <div className="max-w-[500px] text-left">
               <div>
                 <SplitText
                   text="Hello, I'm Evangeline Ng"
@@ -34,9 +34,9 @@ export default function AboutPage() {
                   to={{ opacity: 1, y: 0 }}
                   threshold={0.1}
                   rootMargin="-100px"
-                  textAlign="center"
+                  textAlign="left"
                 />
-                <p className="mb-6 text-base text-muted-foreground md:text-lg text-center">
+                <p className="mb-6 text-base text-muted-foreground md:text-lg text-left">
                   I&apos;m a Singaporean-born product designer, based in San Francisco. Currently, a Staff UX Designer at{' '}
                   <a 
                     href="https://www.paloaltonetworks.com/network-security/strata-cloud-manager" 
