@@ -3,18 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PixelImage } from "@/components/ui/pixel-image";
 import SplitText from "@/components/ui/split-text";
-import { PixelatedCanvas } from "@/components/ui/pixel-cursor";
 import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background py-32 relative">
-      {/* Pixel Cursor Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <PixelatedCanvas />
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <div className="min-h-screen bg-background py-32">
+      <div className="container mx-auto px-4">
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-16 text-center">
