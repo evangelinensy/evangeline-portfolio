@@ -58,7 +58,7 @@ export function Hero() {
         className="absolute z-20 text-left"
         style={{
           top: '60px',
-          left: '60px',
+          left: '140px',
         }}
       >
         <span
@@ -74,7 +74,7 @@ export function Hero() {
         className="absolute z-20 text-left"
         style={{
           bottom: '60px',
-          left: '60px',
+          left: '140px',
         }}
       >
         <span
@@ -90,7 +90,7 @@ export function Hero() {
         className="absolute z-20 text-right"
         style={{
           top: '60px',
-          right: '60px',
+          right: '140px',
         }}
       >
         <span
@@ -98,22 +98,6 @@ export function Hero() {
           style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '50px' }}
         >
           0 → 1
-        </span>
-      </div>
-
-      {/* Text Elements - Bottom Right */}
-      <div
-        className="absolute z-20 text-right"
-        style={{
-          bottom: '60px',
-          right: '60px',
-        }}
-      >
-        <span
-          className="block font-black text-white leading-none"
-          style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '50px' }}
-        >
-          Co-create
         </span>
       </div>
     </div>
