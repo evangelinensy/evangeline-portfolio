@@ -24,6 +24,10 @@ export function Hero() {
     return 'max-w-[1280px]'
   }
 
+  // Mobile-specific positioning and sizing
+  const isMobile = screenSize.lessThan('md')
+  const isDesktop = screenSize.greaterThanOrEqual('lg')
+
   return (
     <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-white text-center text-pretty overflow-hidden`}>
       {/* Hero Image Container - Responsive sizing */}
@@ -57,13 +61,15 @@ export function Hero() {
       <div
         className="absolute z-20 text-left"
         style={{
-          top: '60px',
-          left: '140px',
+          top: isMobile ? '40px' : '60px',
+          left: isMobile ? '40px' : '140px',
         }}
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: screenSize.lessThan('lg') ? '64px' : '50px' }}
+          style={{ 
+            fontSize: isMobile ? '32px' : isDesktop ? '50px' : '64px'
+          }}
         >
           Evangeline Ng
         </span>
@@ -73,13 +79,15 @@ export function Hero() {
       <div
         className="absolute z-20 text-left"
         style={{
-          bottom: '60px',
-          left: '140px',
+          bottom: isMobile ? '40px' : '60px',
+          left: isMobile ? '40px' : '140px',
         }}
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '50px' }}
+          style={{ 
+            fontSize: isMobile ? '28px' : isDesktop ? '50px' : '56px'
+          }}
         >
           Product Designer
         </span>
@@ -89,13 +97,15 @@ export function Hero() {
       <div
         className="absolute z-20 text-right"
         style={{
-          top: '60px',
-          right: '140px',
+          top: isMobile ? '40px' : '60px',
+          right: isMobile ? '40px' : '140px',
         }}
       >
         <span
           className="block font-black text-white leading-none"
-          style={{ fontSize: screenSize.lessThan('lg') ? '56px' : '50px' }}
+          style={{ 
+            fontSize: isMobile ? '32px' : isDesktop ? '50px' : '56px'
+          }}
         >
           0 → 1
         </span>
