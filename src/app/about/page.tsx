@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Component as ImageZoomComponent } from "@/components/ui/image-zoom";
+import { PixelImage } from "@/components/ui/pixel-image";
 import SplitText from "@/components/ui/split-text";
 import { PixelatedCanvas } from "@/components/ui/pixel-cursor";
 
@@ -19,9 +19,13 @@ export default function AboutPage() {
           <div className="mb-16 text-center">
           </div>
 
-          {/* Image Zoom Component */}
+          {/* Pixel Image Component */}
           <div className="mb-16 flex justify-center">
-            <ImageZoomComponent />
+            <PixelImage
+              src="/images/profilepic.png"
+              grid="6x4"
+              grayscaleAnimation={true}
+            />
           </div>
 
           {/* Main Content */}
