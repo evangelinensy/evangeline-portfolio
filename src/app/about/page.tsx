@@ -19,9 +19,9 @@ export default function AboutPage() {
           </div>
 
           {/* Main Content */}
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-            {/* Left Column - Content */}
-            <div className="flex flex-col justify-center space-y-8">
+          <div className="flex flex-col items-center">
+            {/* Centered Content */}
+            <div className="max-w-3xl text-center">
               <div>
                 <SplitText
                   text="Hello, I'm Evangeline Ng"
@@ -34,9 +34,9 @@ export default function AboutPage() {
                   to={{ opacity: 1, y: 0 }}
                   threshold={0.1}
                   rootMargin="-100px"
-                  textAlign="left"
+                  textAlign="center"
                 />
-                <p className="mb-6 text-base text-muted-foreground md:text-lg">
+                <p className="mb-6 text-base text-muted-foreground md:text-lg text-center">
                   I&apos;m a Singaporean-born product designer, based in San Francisco. Currently, a Staff UX Designer at Palo Alto Networks.<br /><br />
                   Over the years, I&apos;ve been delivering impact to early-stage startups by leading the product and improving the businesses through design.<br /><br />
                   Previously at DeForm I helped brands reward their community and go onchain at DeForm as their Founding Product Designer.<br /><br />
@@ -80,10 +80,6 @@ export default function AboutPage() {
                   </Link>
                 </Button>
               </div> */}
-            </div>
-
-            {/* Right Column - Additional Info */}
-            <div className="flex flex-col justify-center space-y-8">
             </div>
           </div>
         </div>
