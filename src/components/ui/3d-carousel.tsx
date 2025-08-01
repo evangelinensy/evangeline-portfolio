@@ -59,12 +59,12 @@ export function useMediaQuery(
 }
 
 const localImages = [
-  "/images/img1.png",
-  "/images/img2.png",
-  "/images/img3.png",
-  "/images/img4.png",
-  "/images/img5.png",
-  "/images/img6.png",
+  "/images/newimg1.png",
+  "/images/newimg2.png",
+  "/images/newimg3.png",
+  "/images/newimg4.png",
+  "/images/newimg5.png",
+  "/images/newimg6.png",
 ]
 
 const duration = 0.15

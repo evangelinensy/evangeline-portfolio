@@ -21,10 +21,10 @@ import {
 } from 'react';
 import { cn } from '@/lib/utils';
 
-const DOCK_HEIGHT = 128;
-const DEFAULT_MAGNIFICATION = 60; // Reduced for better mobile experience
-const DEFAULT_DISTANCE = 150;
-const DEFAULT_PANEL_HEIGHT = 64;
+const DOCK_HEIGHT = 96; // Reduced from 128
+const DEFAULT_MAGNIFICATION = 40; // Reduced from 60
+const DEFAULT_DISTANCE = 120; // Reduced from 150
+const DEFAULT_PANEL_HEIGHT = 48; // Reduced from 64
 
 type DockProps = {
   children: React.ReactNode;
@@ -139,7 +139,7 @@ function DockItem({ children, className, onClick }: DockItemProps) {
   const widthTransform = useTransform(
     mouseDistance,
     [-distance, 0, distance],
-    [40, magnification, 40]
+    [32, magnification, 32] // Reduced minimum size from 40 to 32
   );
 
   const width = useSpring(widthTransform, spring);
