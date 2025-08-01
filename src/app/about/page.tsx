@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { PixelImage } from "@/components/ui/pixel-image";
 import SplitText from "@/components/ui/split-text";
 import { PixelatedCanvas } from "@/components/ui/pixel-cursor";
+import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
 
 export default function AboutPage() {
   return (
@@ -125,6 +126,11 @@ export default function AboutPage() {
                 </Button>
               </div> */}
             </div>
+          </div>
+
+          {/* 3D Carousel Component with spacing */}
+          <div className="mt-32 mb-16">
+            <ThreeDPhotoCarousel />
           </div>
         </div>
       </div>
