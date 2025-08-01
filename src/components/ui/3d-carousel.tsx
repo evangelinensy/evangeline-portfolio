@@ -58,21 +58,13 @@ export function useMediaQuery(
   return matches
 }
 
-const keywords = [
-  "night",
-  "city",
-  "sky",
-  "sunset",
-  "sunrise",
-  "winter",
-  "skyscraper",
-  "building",
-  "cityscape",
-  "architecture",
-  "street",
-  "lights",
-  "downtown",
-  "bridge",
+const localImages = [
+  "/images/img1.png",
+  "/images/img2.png",
+  "/images/img3.png",
+  "/images/img4.png",
+  "/images/img5.png",
+  "/images/img6.png",
 ]
 
 const duration = 0.15
@@ -152,7 +144,7 @@ const Carousel = memo(
             >
               <motion.img
                 src={imgUrl}
-                alt={`keyword_${i} ${imgUrl}`}
+                alt={`Image ${i + 1}`}
                 layoutId={`img-${imgUrl}`}
                 className="pointer-events-none  w-full rounded-xl object-cover aspect-square"
                 initial={{ filter: "blur(4px)" }}
@@ -174,10 +166,7 @@ function ThreeDPhotoCarousel() {
   const [activeImg, setActiveImg] = useState<string | null>(null)
   const [isCarouselActive, setIsCarouselActive] = useState(true)
   const controls = useAnimation()
-  const cards = useMemo(
-    () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
-    []
-  )
+  const cards = useMemo(() => localImages, [])
 
   useEffect(() => {
     console.log("Cards loaded:", cards)
