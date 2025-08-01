@@ -210,7 +210,6 @@ export const PhotoGallery = ({
                             src={photo.src}
                             alt={`${photo.title} case study`}
                             direction={photo.direction}
-                            title={photo.title}
                           />
                         </a>
                       ) : (
@@ -221,7 +220,6 @@ export const PhotoGallery = ({
                             src={photo.src}
                             alt={`${photo.title} case study`}
                             direction={photo.direction}
-                            title={photo.title}
                           />
                         </Link>
                       )}
@@ -239,7 +237,6 @@ export const PhotoGallery = ({
                             src={photo.src}
                             alt={`${photo.title} case study`}
                             direction={photo.direction}
-                            title={photo.title}
                           />
                         </a>
                       ) : (
@@ -250,7 +247,6 @@ export const PhotoGallery = ({
                             src={photo.src}
                             alt={`${photo.title} case study`}
                             direction={photo.direction}
-                            title={photo.title}
                           />
                         </Link>
                       )}
@@ -299,7 +295,6 @@ export const Photo = ({
   direction,
   width,
   height,
-  title,
   ...props
 }: {
   src: string;
@@ -308,7 +303,6 @@ export const Photo = ({
   direction?: Direction;
   width: number;
   height: number;
-  title?: string;
 }) => {
   const [rotation, setRotation] = useState<number>(0);
   const x = useMotionValue(200);
@@ -380,13 +374,6 @@ export const Photo = ({
           {...props}
           draggable={false}
         />
-        {title && (
-          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl md:rounded-3xl flex items-center justify-center">
-            <p className="text-white text-xs md:text-sm font-medium text-center px-2 md:px-4">
-              {title}
-            </p>
-          </div>
-        )}
       </div>
     </motion.div>
   );
