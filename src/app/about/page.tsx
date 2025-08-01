@@ -47,7 +47,16 @@ export default function AboutPage() {
                     Palo Alto Networks
                   </a>.<br /><br />
                   Over the years, I&apos;ve been delivering impact to early-stage startups by leading the product and improving the businesses through design.<br /><br />
-                  Previously at DeForm I helped brands reward their community and go onchain at DeForm as their Founding Product Designer.<br /><br />
+                  Previously at{' '}
+                  <a 
+                    href="https://www.megaphone.xyz/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-700 hover:text-gray-900 underline"
+                  >
+                    Megaphone
+                  </a>{' '}
+                  I helped brands reward their community and go onchain at Megaphone as their Founding Product Designer.<br /><br />
                   At Pomelo, I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.<br /><br />
                   I helped clinicians work efficiently at a Medtech Startup called See-mode. I was their first design hire and built the design foundations of their ultrasound web application.<br /><br />
                   I occasionally write and illustrate. Outside of work, going for my daily jogs and painting keeps me grounded.
