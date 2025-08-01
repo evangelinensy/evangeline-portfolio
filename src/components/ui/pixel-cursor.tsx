@@ -72,7 +72,7 @@ const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({ className = '' }) => 
 
     // Draw circle - black on light theme, white on dark theme
     ctx.beginPath();
-    ctx.arc(mouse.current.x, mouse.current.y, 100 / W, Math.PI * 2, false);
+    ctx.arc(mouse.current.x, mouse.current.y, 100 / W, Math.PI * 2, 0);
     ctx.fillStyle = isDark ? "#ffffff" : "#000000";
     ctx.fill();
 
