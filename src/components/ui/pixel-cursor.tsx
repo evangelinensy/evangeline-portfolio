@@ -17,7 +17,7 @@ const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({ className = '' }) => 
     target: { x: -100, y: -100 },
     current: { x: -100, y: -100 }
   });
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
   const timeRef = useRef<number>(0);
   const WRef = useRef<number>(32);
   const HRef = useRef<number>(32);
