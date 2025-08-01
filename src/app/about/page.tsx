@@ -37,7 +37,15 @@ export default function AboutPage() {
                   textAlign="center"
                 />
                 <p className="mb-6 text-base text-muted-foreground md:text-lg text-center">
-                  I&apos;m a Singaporean-born product designer, based in San Francisco. Currently, a Staff UX Designer at Palo Alto Networks.<br /><br />
+                  I&apos;m a Singaporean-born product designer, based in San Francisco. Currently, a Staff UX Designer at{' '}
+                  <a 
+                    href="https://www.paloaltonetworks.com/network-security/strata-cloud-manager" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-700 hover:text-gray-900 underline"
+                  >
+                    Palo Alto Networks
+                  </a>.<br /><br />
                   Over the years, I&apos;ve been delivering impact to early-stage startups by leading the product and improving the businesses through design.<br /><br />
                   Previously at DeForm I helped brands reward their community and go onchain at DeForm as their Founding Product Designer.<br /><br />
                   At Pomelo, I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.<br /><br />
