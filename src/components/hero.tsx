@@ -93,9 +93,9 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Text Elements - Top Right */}
+      {/* Text Elements - Top Right - Hidden on mobile */}
       <div
-        className="absolute z-20 text-right"
+        className="absolute z-20 text-right hidden md:block"
         style={{
           top: isMobile ? '40px' : '60px',
           right: isMobile ? '40px' : '140px',
