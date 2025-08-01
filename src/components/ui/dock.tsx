@@ -109,7 +109,7 @@ function Dock({
           mouseX.set(Infinity);
         }}
         className={cn(
-          'mx-auto flex w-fit gap-2 md:gap-4 rounded-2xl bg-gray-50 px-2 md:px-4 dark:bg-neutral-900',
+          'mx-auto flex w-fit gap-2 md:gap-4 rounded-2xl bg-neutral-800 px-2 md:px-4',
           className
         )}
         style={{ height: panelHeight }}
@@ -178,26 +178,24 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
 
   useEffect(() => {
     const unsubscribe = isHovered.on('change', (latest) => {
-      setIsVisible(latest === 1);
+      setIsVisible(latest > 0);
     });
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, [isHovered]);
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: 0 }}
-          animate={{ opacity: 1, y: -10 }}
-          exit={{ opacity: 0, y: 0 }}
+          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 10 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white',
+            'absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-800 px-2 py-1 text-xs text-neutral-300',
             className
           )}
-          role='tooltip'
-          style={{ x: '-50%' }}
         >
           {children}
         </motion.div>
@@ -209,17 +207,22 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
 function DockIcon({ children, className, ...rest }: DockIconProps) {
   const restProps = rest as Record<string, unknown>;
   const width = restProps['width'] as MotionValue<number>;
+  const isHovered = restProps['isHovered'] as MotionValue<number>;
 
-  const widthTransform = useTransform(width, (val) => val / 2);
+  const height = useTransform(width, (val) => val * 0.8);
+  const scale = useTransform(isHovered, [0, 1], [1, 1.1]);
 
   return (
     <motion.div
-      style={{ width: widthTransform }}
-      className={cn('flex items-center justify-center', className)}
+      style={{ width, height, scale }}
+      className={cn(
+        'flex items-center justify-center rounded-full bg-neutral-800 transition-colors hover:bg-neutral-700',
+        className
+      )}
     >
       {children}
     </motion.div>
   );
 }
 
-export { Dock, DockIcon, DockItem, DockLabel }; 
+export { Dock, DockItem, DockLabel, DockIcon }; 
