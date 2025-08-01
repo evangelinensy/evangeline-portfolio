@@ -57,7 +57,16 @@ export default function AboutPage() {
                     Megaphone
                   </a>{' '}
                   I helped brands reward their community and go onchain at Megaphone as their Founding Product Designer.<br /><br />
-                  At Pomelo, I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.<br /><br />
+                  At{' '}
+                  <a 
+                    href="https://pomelo.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-700 hover:text-gray-900 underline"
+                  >
+                    Pomelo
+                  </a>{' '}
+                  I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.<br /><br />
                   I helped clinicians work efficiently at a Medtech Startup called See-mode. I was their first design hire and built the design foundations of their ultrasound web application.<br /><br />
                   I occasionally write and illustrate. Outside of work, going for my daily jogs and painting keeps me grounded.
                 </p>
