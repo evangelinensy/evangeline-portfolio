@@ -9,7 +9,7 @@ import "react-medium-image-zoom/dist/styles.css";
 
 export const Component = () => {  
   return (
-    <div >
+    <div>
        <div className="border-brand/10 relative mx-auto my-6 flex flex-col items-start border p-4 w-full max-w-[250px] aspect-square md:max-w-sm md:aspect-square">
                         <Plus
                             strokeWidth={0.5}
@@ -31,16 +31,13 @@ export const Component = () => {
                             <div className="relative w-full h-full aspect-square">
                                 <Image
                                     src="/images/profilepic.png"
-                                    alt="Evangeline Ng Profile"
+                                    alt="Evangeline Profile"
                                     fill
-                                    className="rounded-lg object-cover w-full h-full"
+                                    className="rounded-lg object-cover"
                                     style={{ objectPosition: 'center top' }}
                                     sizes="(max-width: 640px) 100vw, 250px"
                                     priority
                                 />
-                            </div>
-                            <div className="relative -mt-14 bg-gradient-to-b from-black/0 to-black text-white md:-mt-24">
-                                <h1 className="z-20 items-center text-center text-[40px] font-black tracking-tighter md:text-[70px]">Evangeline Ng</h1>{' '}
                             </div>
                         </ImageZoom>
                     </div>
