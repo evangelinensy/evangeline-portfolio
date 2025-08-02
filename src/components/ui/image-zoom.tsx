@@ -10,7 +10,7 @@ import "react-medium-image-zoom/dist/styles.css";
 export const Component = () => {  
   return (
     <div className="flex justify-center">
-       <div className="border-brand/10 relative mx-auto my-3 flex flex-col items-start border p-4 w-full max-w-[250px] aspect-square md:max-w-sm md:aspect-square bg-white rounded-lg shadow-sm">
+       <div className="relative max-w-xs aspect-square md:max-w-sm md:aspect-square bg-[#ECF1F3] rounded-lg shadow-sm">
                         <Plus
                             strokeWidth={0.5}
                             className="text-[#fff200] absolute -left-4 -top-4 h-8 w-8"

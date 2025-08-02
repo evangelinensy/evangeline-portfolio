@@ -15,7 +15,7 @@ export default function GalleryPopover({ children, title, description }: Gallery
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner sideOffset={8}>
-          <Popover.Popup className="origin-[var(--transform-origin)] rounded-lg bg-white dark:bg-neutral-800 px-6 py-4 text-gray-900 dark:text-gray-100 shadow-lg shadow-gray-200 outline outline-1 outline-gray-200 transition-[transform,scale,opacity] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0 dark:shadow-none dark:-outline-offset-1 dark:outline-gray-300 max-w-[600px] w-full">
+          <Popover.Popup className="origin-[var(--transform-origin)] rounded-lg bg-[#ECF1F3] dark:bg-neutral-800 px-6 py-4 text-gray-900 dark:text-gray-100 shadow-lg shadow-gray-200 outline outline-1 outline-gray-200 transition-[transform,scale,opacity] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0 dark:shadow-none dark:-outline-offset-1 dark:outline-gray-300 z-50 max-w-[600px] w-full">
             <Popover.Arrow className="data-[side=bottom]:top-[-8px] data-[side=left]:right-[-13px] data-[side=left]:rotate-90 data-[side=right]:left-[-13px] data-[side=right]:-rotate-90 data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180">
               <ArrowSvg />
             </Popover.Arrow>
@@ -38,7 +38,7 @@ const ArrowSvg = () => (
     height="5"
     viewBox="0 0 30 10"
     preserveAspectRatio="none"
-    className="fill-white dark:fill-neutral-800"
+    className="fill-[#ECF1F3] dark:fill-neutral-800"
   >
     <polygon points="0,0 30,0 15,10" />
   </svg>

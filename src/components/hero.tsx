@@ -29,7 +29,7 @@ export function Hero() {
   const isDesktop = screenSize.greaterThanOrEqual('lg')
 
   return (
-    <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-white text-center text-pretty overflow-hidden`}>
+    <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-[#ECF1F3] text-center text-pretty overflow-hidden`}>
       {/* Hero Image Container - Responsive sizing */}
       <div className={`relative w-full ${getMaxWidth()} ${getHeroHeight()} mx-auto`}>
         <Image
@@ -66,7 +66,7 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-black text-white leading-none"
+          className="block font-black text-[#ECF1F3] leading-none"
           style={{ 
             fontSize: isMobile ? '32px' : isDesktop ? '50px' : '64px'
           }}
@@ -84,7 +84,7 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-black text-white leading-none"
+          className="block font-black text-[#ECF1F3] leading-none"
           style={{ 
             fontSize: isMobile ? '28px' : isDesktop ? '50px' : '56px'
           }}
@@ -102,7 +102,7 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-black text-white leading-none"
+          className="block font-black text-[#ECF1F3] leading-none"
           style={{ 
             fontSize: isMobile ? '32px' : isDesktop ? '50px' : '56px'
           }}
