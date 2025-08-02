@@ -70,10 +70,10 @@ const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({ className = '' }) => 
     mouse.current.x = lerp(mouse.current.x, mouse.target.x, 0.12);
     mouse.current.y = lerp(mouse.current.y, mouse.target.y, 0.12);
 
-    // Draw circle - black on light theme, #ECF1F3 on dark theme
+    // Draw circle - black on light theme, white on dark theme
     ctx.beginPath();
     ctx.arc(mouse.current.x, mouse.current.y, 100 / W, Math.PI * 2, 0);
-    ctx.fillStyle = isDark ? "#ECF1F3" : "#000000";
+    ctx.fillStyle = isDark ? "#ffffff" : "#000000";
     ctx.fill();
 
     timeRef.current += 0.01;
@@ -103,7 +103,7 @@ const PixelatedCanvas: React.FC<PixelatedCanvasProps> = ({ className = '' }) => 
     // Set CSS custom property for background color based on theme
     const updateCanvasBackground = () => {
       const isDark = document.documentElement.classList.contains('dark');
-      canvas.style.setProperty('--canvas-bg', isDark ? 'black' : '#ECF1F3');
+      canvas.style.setProperty('--canvas-bg', isDark ? 'black' : 'white');
     };
 
     // Initial setup - match the original setup() function

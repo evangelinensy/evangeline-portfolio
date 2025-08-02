@@ -66,7 +66,7 @@ export default function DemoPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-neutral-900 dark:text-[#ECF1F3] mb-8">
+        <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-8">
           Dock Navigation Demo
         </h1>
         <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-12">
