@@ -28,16 +28,6 @@ export function Hero() {
     <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-white text-center text-pretty overflow-hidden`}>
       {/* Hero Image Container - Responsive sizing */}
       <div className={`relative w-full ${getMaxWidth()} ${getHeroHeight()} mx-auto bg-white`}>
-        {/* Background Image */}
-        <div className="absolute inset-0 z-10">
-          <img
-            src="/images/hero-bg.jpg"
-            alt="Hero Background"
-            className="w-full h-full object-cover"
-            sizes="(max-width: 768px) 100vw, 1200px"
-          />
-        </div>
-
         {/* Pixel Trail Effect */}
         <div className="absolute inset-0 z-15">
           <PixelTrail
