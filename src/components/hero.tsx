@@ -37,7 +37,7 @@ export function Hero() {
   return (
     <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-white text-center text-pretty overflow-hidden`}>
       {/* Hero Image Container - Responsive sizing */}
-      <div className={`relative w-full ${getMaxWidth()} ${getHeroHeight()} mx-auto`}>
+      <div className={`relative w-full ${getMaxWidth()} ${getHeroHeight()} mx-auto bg-white`}>
         {/* Background Image */}
         <div className="absolute inset-0 z-10">
           <img
