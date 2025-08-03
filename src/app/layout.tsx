@@ -4,6 +4,7 @@ import { Jersey_10 } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,9 +46,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} antialiased font-sans`}
       >
-        {children}
-        <Navigation />
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <Navigation />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
