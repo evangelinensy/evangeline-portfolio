@@ -3,19 +3,9 @@
 import { useScreenSize } from "@/hooks/use-screen-size";
 import { PixelTrail } from "@/components/ui/pixel-trail";
 import { TextPressure } from "@/components/ui/interactive-text-pressure";
-import { useTheme } from "next-themes";
-
-function getTextColor(theme: string | undefined) {
-  return theme === "dark" ? "#ffffff" : "#111111"
-}
-
-function getStrokeColor(theme: string | undefined) {
-  return theme === "dark" ? "#ff0000" : "#0066ff"
-}
 
 export function Hero() {
   const screenSize = useScreenSize();
-  const { theme } = useTheme();
 
   // Utility functions for responsive sizing
   const getTextSize = (mobile: string, desktop: string) => {
@@ -66,8 +56,8 @@ export function Hero() {
             width={true}
             weight={true}
             italic={true}
-            textColor={getTextColor(theme)}
-            strokeColor={getStrokeColor(theme)}
+            textColor="#111111"
+            strokeColor="#0066ff"
             minFontSize={36}
             className="cursor-default"
           />
