@@ -166,7 +166,7 @@ export const PhotoGallery = ({
   ];
 
   return (
-    <div className="mt-20 md:mt-40 relative">
+    <div className="mt-8 md:mt-16 relative">
       <h3 className="z-20 mx-auto max-w-2xl justify-center py-3 text-center font-medium" style={{ fontSize: '40px', color: '#000' }}>
         My Work
       </h3>
