@@ -66,12 +66,12 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-black text-white leading-none"
+          className="block font-black text-white leading-none font-jersey-10"
           style={{ 
             fontSize: isMobile ? '32px' : isDesktop ? '50px' : '64px'
           }}
         >
-          Evangeline Ng
+          EVANGELINE NG
         </span>
       </div>
 
@@ -84,12 +84,12 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-black text-white leading-none"
+          className="block font-black text-white leading-none font-jersey-10"
           style={{ 
             fontSize: isMobile ? '28px' : isDesktop ? '50px' : '56px'
           }}
         >
-          Product Designer
+          PRODUCT DESIGNER
         </span>
       </div>
 
@@ -102,7 +102,7 @@ export function Hero() {
         }}
       >
         <span
-          className="block font-black text-white leading-none"
+          className="block font-black text-white leading-none font-jersey-10"
           style={{ 
             fontSize: isMobile ? '32px' : isDesktop ? '50px' : '56px'
           }}

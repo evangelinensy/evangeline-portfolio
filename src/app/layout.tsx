@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Jersey_10 } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -20,6 +21,15 @@ const geistMono = Geist_Mono({
   fallback: ["ui-monospace", "SFMono-Regular", "monospace"],
 });
 
+const jersey10 = Jersey_10({
+  variable: "--font-jersey-10",
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "sans-serif"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Evangeline - UX Designer Portfolio",
   description: "Product designer and UX specialist creating meaningful digital experiences",
@@ -33,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} antialiased font-sans`}
       >
         {children}
         <Navigation />
