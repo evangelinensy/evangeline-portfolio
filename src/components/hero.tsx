@@ -57,7 +57,7 @@ export function Hero() {
         </div>
 
         {/* Interactive Text Pressure Component */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
+        <div className="absolute inset-0 z-20 flex items-center justify-center" style={{ paddingTop: '60px' }}>
           <TextPressure
             text="PRODUCT DESIGNER"
             flex={true}
