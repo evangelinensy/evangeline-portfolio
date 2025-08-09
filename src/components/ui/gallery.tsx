@@ -358,7 +358,7 @@ export const Photo = ({
       }}
       className={cn(
         className,
-        "relative mx-auto shrink-0 cursor-pointer md:w-[330px] md:h-[330px]"
+        "relative mx-auto shrink-0 cursor-pointer w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[330px] lg:h-[330px]"
       )}
       onMouseMove={handleMouse}
       onMouseLeave={resetMouse}

@@ -32,6 +32,19 @@ const jersey10 = Jersey_10({
 export const metadata: Metadata = {
   title: "Evangeline - UX Designer Portfolio",
   description: "Product designer and UX specialist creating meaningful digital experiences",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Evangeline Portfolio",
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#ffffff',
 };
 
 export default function RootLayout({
