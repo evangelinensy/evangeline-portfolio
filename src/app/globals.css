@@ -2,6 +2,31 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* PP Neue Montreal Font */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -118,6 +143,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 
