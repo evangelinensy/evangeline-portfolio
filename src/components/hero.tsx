@@ -97,6 +97,8 @@ export function Hero() {
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === selectedCategory);
 
+  // Force deployment update
+
   return (
     <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-white text-center text-pretty overflow-hidden`}>
       {/* Hero Image Container - Responsive sizing */}
