@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useScreenSize } from "@/hooks/use-screen-size";
 import { PixelTrail } from "@/components/ui/pixel-trail";
-import { FlipReveal, FlipRevealItem } from "@/components/ui/flip-reveal";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export function Hero() {
@@ -93,6 +92,11 @@ export function Hero() {
     },
   ];
 
+  // Filter items based on selected category
+  const filteredItems = selectedCategory === "all" 
+    ? portfolioItems 
+    : portfolioItems.filter(item => item.category === selectedCategory);
+
   return (
     <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center bg-white text-center text-pretty overflow-hidden`}>
       {/* Hero Image Container - Responsive sizing */}
@@ -105,7 +109,7 @@ export function Hero() {
           />
         </div>
 
-        {/* Flip Reveal Component */}
+        {/* Interactive Portfolio Grid */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-8" style={{ paddingTop: '40px' }}>
           {/* Toggle Group for Categories */}
           <ToggleGroup
@@ -125,27 +129,20 @@ export function Hero() {
             ))}
           </ToggleGroup>
 
-          {/* Flip Reveal Grid */}
-          <FlipReveal 
-            className="grid grid-cols-3 gap-4 max-w-2xl mx-auto" 
-            keys={[selectedCategory]} 
-            showClass="flex" 
-            hideClass="hidden"
-          >
-            {portfolioItems.map((item) => (
-              <FlipRevealItem key={item.id} flipKey={item.category}>
-                <div className="flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-16 h-16 rounded-lg object-cover mb-2"
-                  />
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1">{item.title}</h3>
-                  <p className="text-xs text-gray-600 text-center">{item.description}</p>
-                </div>
-              </FlipRevealItem>
+          {/* Portfolio Grid */}
+          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+            {filteredItems.map((item) => (
+              <div key={item.id} className="flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-16 h-16 rounded-lg object-cover mb-2"
+                />
+                <h3 className="text-sm font-semibold text-gray-900 mb-1">{item.title}</h3>
+                <p className="text-xs text-gray-600 text-center">{item.description}</p>
+              </div>
             ))}
-          </FlipReveal>
+          </div>
         </div>
       </div>
     </div>
