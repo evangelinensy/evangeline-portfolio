@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useScreenSize } from "@/hooks/use-screen-size";
 import { PixelTrail } from "@/components/ui/pixel-trail";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { portfolioItems, categories } from "@/data/portfolio";
 
 export function Hero() {
   const screenSize = useScreenSize();
@@ -18,60 +19,7 @@ export function Hero() {
     return screenSize.lessThan('md') ? 'max-w-md' : 'max-w-4xl';
   };
 
-  const categories = [
-    { value: "all", label: "All" },
-    { value: "work", label: "Work" },
-    { value: "projects", label: "Projects" },
-    { value: "art", label: "Art" },
-  ];
 
-  const portfolioItems = [
-    {
-      id: 1,
-      category: "work",
-      image: "https://images.unsplash.com/photo-1696086152504-4843b2106ab4?q=80&w=300",
-    },
-    {
-      id: 2,
-      category: "projects",
-      image: "https://images.unsplash.com/photo-1648688135643-2716ec8f4b24?q=80&w=300",
-    },
-    {
-      id: 3,
-      category: "art",
-      image: "https://images.unsplash.com/photo-1631984564919-1f6b2313a71c?q=80&w=300",
-    },
-    {
-      id: 4,
-      category: "work",
-      image: "https://images.unsplash.com/photo-1632168844625-b22d7b1053c0?q=80&w=300",
-    },
-    {
-      id: 5,
-      category: "projects",
-      image: "https://images.unsplash.com/photo-1583656346517-4716a62e27b7?q=80&w=300",
-    },
-    {
-      id: 6,
-      category: "art",
-      image: "https://images.unsplash.com/photo-1596480370804-cff0eed14888?q=80&w=300",
-    },
-    {
-      id: 7,
-      category: "work",
-      image: "https://images.unsplash.com/photo-1740711152088-88a009e877bb?q=80&w=300",
-    },
-    {
-      id: 8,
-      category: "projects",
-      image: "https://images.unsplash.com/photo-1696086152508-1711cc7bcc9d?q=80&w=300",
-    },
-    {
-      id: 9,
-      category: "art",
-      image: "https://images.unsplash.com/photo-1684790369514-f292d2dffc11?q=80&w=300",
-    },
-  ];
 
   // Filter items based on selected category
   const filteredItems = selectedCategory === "all" 
