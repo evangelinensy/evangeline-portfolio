@@ -8,8 +8,6 @@ import {
   SunMoon,
 } from 'lucide-react';
 
-import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
-
 const data = [
   {
     title: 'Home',
@@ -74,17 +72,18 @@ export default function DemoPage() {
         </p>
         
         <div className='absolute bottom-2 left-1/2 max-w-full -translate-x-1/2'>
-          <Dock className='items-end pb-3'>
+          <div className='flex items-end gap-2 pb-3 bg-gray-100/80 backdrop-blur-sm rounded-full p-2 border border-gray-200/50'>
             {data.map((item, idx) => (
-              <DockItem
+              <div
                 key={idx}
-                className='aspect-square rounded-full bg-gray-200 group'
+                className='aspect-square rounded-full bg-gray-200/80 backdrop-blur-sm border border-gray-300/50 flex items-center justify-center hover:bg-gray-300/80 transition-colors group'
               >
-                <DockLabel>{item.title}</DockLabel>
-                <DockIcon>{item.icon}</DockIcon>
-              </DockItem>
+                <div className='flex h-6 w-6 items-center justify-center'>
+                  {item.icon}
+                </div>
+              </div>
             ))}
-          </Dock>
+          </div>
         </div>
       </div>
     </div>

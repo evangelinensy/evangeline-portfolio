@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Jersey_10 } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
@@ -46,7 +45,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} antialiased font-sans`}
       >
         {children}
-        <Navigation />
         <Footer />
       </body>
     </html>
