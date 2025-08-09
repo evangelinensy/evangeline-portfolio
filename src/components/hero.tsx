@@ -20,75 +20,56 @@ export function Hero() {
 
   const categories = [
     { value: "all", label: "All" },
-    { value: "evangeline", label: "Evangeline Ng" },
-    { value: "work", label: "Work" },
-    { value: "projects", label: "Projects" },
-    { value: "journal", label: "Journal" },
+    { value: "shirt", label: "Shirt" },
+    { value: "goggles", label: "Goggles" },
+    { value: "shoes", label: "Shoes" },
   ];
 
   const portfolioItems = [
     {
       id: 1,
-      category: "evangeline",
-      title: "UX Designer",
-      description: "Product Designer & UX Researcher",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300",
+      category: "shirt",
+      image: "https://images.unsplash.com/photo-1696086152504-4843b2106ab4?q=80&w=300",
     },
     {
       id: 2,
-      category: "work",
-      title: "Case Studies",
-      description: "Detailed design process",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=300",
+      category: "goggles",
+      image: "https://images.unsplash.com/photo-1648688135643-2716ec8f4b24?q=80&w=300",
     },
     {
       id: 3,
-      category: "projects",
-      title: "Portfolio",
-      description: "Selected works",
-      image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=300",
+      category: "shoes",
+      image: "https://images.unsplash.com/photo-1631984564919-1f6b2313a71c?q=80&w=300",
     },
     {
       id: 4,
-      category: "journal",
-      title: "Design Blog",
-      description: "Thoughts & insights",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=300",
+      category: "goggles",
+      image: "https://images.unsplash.com/photo-1632168844625-b22d7b1053c0?q=80&w=300",
     },
     {
       id: 5,
-      category: "work",
-      title: "Research",
-      description: "User research & insights",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=300",
+      category: "shirt",
+      image: "https://images.unsplash.com/photo-1583656346517-4716a62e27b7?q=80&w=300",
     },
     {
       id: 6,
-      category: "projects",
-      title: "Prototypes",
-      description: "Interactive designs",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=300",
+      category: "shoes",
+      image: "https://images.unsplash.com/photo-1596480370804-cff0eed14888?q=80&w=300",
     },
     {
       id: 7,
-      category: "journal",
-      title: "Process",
-      description: "Design methodology",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=300",
+      category: "shirt",
+      image: "https://images.unsplash.com/photo-1740711152088-88a009e877bb?q=80&w=300",
     },
     {
       id: 8,
-      category: "evangeline",
-      title: "About",
-      description: "Get to know me",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=300",
+      category: "shoes",
+      image: "https://images.unsplash.com/photo-1696086152508-1711cc7bcc9d?q=80&w=300",
     },
     {
       id: 9,
-      category: "work",
-      title: "Strategy",
-      description: "Design strategy",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=300",
+      category: "goggles",
+      image: "https://images.unsplash.com/photo-1684790369514-f292d2dffc11?q=80&w=300",
     },
   ];
 
@@ -132,16 +113,14 @@ export function Hero() {
           </ToggleGroup>
 
           {/* Portfolio Grid */}
-          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
             {filteredItems.map((item) => (
-              <div key={item.id} className="flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+              <div key={item.id} className="flex items-center justify-center">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-16 h-16 rounded-lg object-cover mb-2"
+                  className="size-20 rounded-md sm:size-24 xl:size-32 object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <h3 className="text-sm font-semibold text-gray-900 mb-1">{item.title}</h3>
-                <p className="text-xs text-gray-600 text-center">{item.description}</p>
               </div>
             ))}
           </div>
