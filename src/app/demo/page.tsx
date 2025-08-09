@@ -14,49 +14,49 @@ const data = [
   {
     title: 'Home',
     icon: (
-      <HomeIcon className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <HomeIcon className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
   {
     title: 'Products',
     icon: (
-      <Package className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <Package className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
   {
     title: 'Components',
     icon: (
-      <Component className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <Component className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
   {
     title: 'Activity',
     icon: (
-      <Activity className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <Activity className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
   {
     title: 'Change Log',
     icon: (
-      <ScrollText className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <ScrollText className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
   {
     title: 'Email',
     icon: (
-      <Mail className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <Mail className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
   {
     title: 'Theme',
     icon: (
-      <SunMoon className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+      <SunMoon className='h-full w-full text-gray-600' />
     ),
     href: '#',
   },
@@ -64,12 +64,12 @@ const data = [
 
 export default function DemoPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 mb-8">
           Dock Navigation Demo
         </h1>
-        <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-12">
+        <p className="text-lg text-gray-600 mb-12">
           Hover over the dock items to see the magnification effect
         </p>
         
@@ -78,7 +78,7 @@ export default function DemoPage() {
             {data.map((item, idx) => (
               <DockItem
                 key={idx}
-                className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800'
+                className='aspect-square rounded-full bg-gray-200 group'
               >
                 <DockLabel>{item.title}</DockLabel>
                 <DockIcon>{item.icon}</DockIcon>
