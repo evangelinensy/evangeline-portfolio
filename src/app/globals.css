@@ -11,6 +11,24 @@
   font-display: swap;
 }
 
+/* Register Bricolage Grotesque for hero title */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Register Sequel Sans Medium Disp for card titles */
+@font-face {
+  font-family: 'Sequel Sans Medium Disp';
+  src: url('/fonts/Sequel Sans Medium Disp.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
