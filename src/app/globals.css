@@ -2,27 +2,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* PP Neue Montreal Font */
+/* Register Sequel Sans Head Semi Bold */
 @font-face {
-  font-family: 'PP Neue Montreal';
-  src: url('/fonts/PPNeueMontreal-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PP Neue Montreal';
-  src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PP Neue Montreal';
-  src: url('/fonts/PPNeueMontreal-Bold.otf') format('opentype');
-  font-weight: 700;
+  font-family: 'Sequel Sans Head';
+  src: url('/fonts/Sequel Sans Semi Bold Head.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -70,20 +54,21 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Site color overrides */
+  --background: #F2F2F2;
+  --foreground: #838383;
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: var(--foreground);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary-foreground: var(--foreground);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: var(--foreground);
   --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent-foreground: var(--foreground);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -143,7 +128,25 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Sequel Sans Head', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #838383;
+    background-color: #F2F2F2;
+  }
+  /* Subtle grain overlay across the entire page */
+  html, body {
+    min-height: 100%;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('/images/grain-texture.png');
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    opacity: 0.25;
+    z-index: 10;
+    mix-blend-mode: multiply;
   }
 }
 

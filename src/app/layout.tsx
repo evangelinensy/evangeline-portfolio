@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Jersey_10 } from "next/font/google";
 import "./globals.css";
+import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
@@ -32,19 +33,14 @@ const jersey10 = Jersey_10({
 export const metadata: Metadata = {
   title: "Evangeline - UX Designer Portfolio",
   description: "Product designer and UX specialist creating meaningful digital experiences",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Evangeline Portfolio",
-  },
 };
 
-export const viewport = {
-  width: 'device-width',
+export const viewport: Viewport = {
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#ffffff',
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -58,6 +54,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} antialiased font-sans`}
       >
         {children}
+        <Navigation />
         <Footer />
       </body>
     </html>
