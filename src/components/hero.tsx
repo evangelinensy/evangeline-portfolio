@@ -64,12 +64,12 @@ export function Hero() {
         
         {/* Hero Title - Centered at top */}
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
-          <h1 className="font-['Bricolage_Grotesque'] font-semibold text-center mix-blend-overlay"
+          <h1 className="font-['Bricolage_Grotesque'] font-semibold text-center mix-blend-overlay text-6xl md:text-8xl lg:text-[160px]"
               style={{ 
                 color: '#FFFFFF',
                 textAlign: 'center',
                 fontFamily: 'Bricolage Grotesque',
-                fontSize: '180px',
+                fontSize: '160px',
                 fontStyle: 'normal',
                 fontWeight: 600,
                 lineHeight: '80%',
@@ -79,7 +79,7 @@ export function Hero() {
                 opacity: 0.6,
                 fontVariationSettings: "'opsz' 14, 'wdth' 100"
               }}>
-            Hello, I'm Evan
+            Hello,<br />I'm Evan
           </h1>
         </div>
 

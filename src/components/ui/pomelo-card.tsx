@@ -22,18 +22,21 @@ export function PomeloCard({ className = "", onClick }: PomeloCardProps) {
       {/* Green Card (Back) - Top left, smallest visible */}
       <motion.div 
         className="absolute flex inset-[20%_-50%_30%_-5%] items-center justify-center"
+        style={{
+          transform: 'translateY(10px) rotate(20.262deg)'
+        }}
         animate={isHovered ? {
-          y: -10,
+          y: -20,
           rotate: 8,
           scale: 1.02
         } : {
           y: 0,
-          rotate: 20.262,
+          rotate: 0,
           scale: 1
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <div className="flex-none h-[140px] w-[220px]">
+        <div className="flex-none h-[140px] w-[220px] -ml-[10px]">
           <img 
             src="/images/Pomelo-Card-Vector-GREEN.png" 
             alt="Pomelo Green Card"
@@ -45,18 +48,21 @@ export function PomeloCard({ className = "", onClick }: PomeloCardProps) {
       {/* Pink Card (Middle) - Center, medium visible */}
       <motion.div 
         className="absolute flex inset-[30%_-40%_10%_-10%] items-center justify-center"
+        style={{
+          transform: 'translateY(10px) rotate(10.84deg)'
+        }}
         animate={isHovered ? {
-          y: -15,
+          y: -25,
           rotate: 3,
           scale: 1.05
         } : {
           y: 0,
-          rotate: 10.84,
+          rotate: 0,
           scale: 1
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <div className="flex-none h-[140px] w-[220px]">
+        <div className="flex-none h-[140px] w-[220px] -ml-[10px]">
           <img 
             src="/images/Pomelo-Card-Vector-PINK.png.png" 
             alt="Pomelo Pink Card"
@@ -68,8 +74,11 @@ export function PomeloCard({ className = "", onClick }: PomeloCardProps) {
       {/* White Card (Front) - Bottom right, largest visible */}
       <motion.div 
         className="absolute flex inset-[40%_-30%_-10%_-15%] items-center justify-center"
+        style={{
+          transform: 'translateY(10px) rotate(0deg)'
+        }}
         animate={isHovered ? {
-          y: -20,
+          y: -30,
           rotate: 0,
           scale: 1.08
         } : {
@@ -79,7 +88,7 @@ export function PomeloCard({ className = "", onClick }: PomeloCardProps) {
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <div className="flex-none h-[140px] w-[220px]">
+        <div className="flex-none h-[140px] w-[220px] -ml-[10px]">
           <img 
             src="/images/Pomelo-Card-Vector-WHITE.png" 
             alt="Pomelo White Card"
