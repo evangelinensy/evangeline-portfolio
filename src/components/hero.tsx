@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/cursor";
 import { MousePointer2 } from "lucide-react";
 import { PomeloCard } from "@/components/ui/pomelo-card";
+import RetroTV from "@/components/ui/retro-tv";
+import AlbumGrid from "@/components/ui/album-grid";
 
 export function Hero() {
   const screenSize = useScreenSize();
@@ -21,7 +23,8 @@ export function Hero() {
 
   // Utility functions for responsive sizing
   const getHeroHeight = () => {
-    return screenSize.lessThan('md') ? 'h-[800px]' : 'h-[900px]';
+    // Increase container height so the TV + album section is fully visible
+    return screenSize.lessThan('md') ? 'h-[1200px]' : 'h-[1600px]';
   };
 
   const getMaxWidth = () => {
@@ -64,12 +67,12 @@ export function Hero() {
         
         {/* Hero Title - Centered at top */}
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
-          <h1 className="font-['Bricolage_Grotesque'] font-semibold text-center mix-blend-overlay text-6xl md:text-8xl lg:text-[160px]"
+          <h1 className="font-['Bricolage_Grotesque'] font-semibold text-center mix-blend-overlay text-6xl md:text-8xl lg:text-[148px]"
               style={{ 
                 color: '#FFFFFF',
                 textAlign: 'center',
                 fontFamily: 'Bricolage Grotesque',
-                fontSize: '160px',
+                fontSize: '148px',
                 fontStyle: 'normal',
                 fontWeight: 600,
                 lineHeight: '80%',
@@ -83,8 +86,8 @@ export function Hero() {
           </h1>
         </div>
 
-        {/* Four Rotated White Squares with Images and Links - Hero Section Only */}
-        <div className="absolute inset-0 flex items-center justify-center z-30">
+        {/* Four Rotated White Squares with Images and Links - hidden for now */}
+        <div className="hidden absolute inset-0 items-center justify-center z-30">
           <div className="grid grid-cols-4 gap-8 max-w-4xl mx-auto">
             {/* Square 1 - Pomelo Mobile App */}
             <div className="flex flex-col items-center justify-center">
@@ -180,6 +183,16 @@ export function Hero() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* New TV + Album section (desktop first pass) */}
+        <div className="relative z-30 mt-64 flex flex-col items-center gap-8">
+          <RetroTV width={300} className="mt-10" />
+          <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
+          <AlbumGrid
+            className="w-full max-w-5xl"
+            items={new Array(6).fill(0).map((_, i) => ({ id: `disc-${i+1}`, title: `Disc ${i+1}` }))}
+          />
         </div>
 
         {/* Portfolio Grid - Hidden for now as per request */}

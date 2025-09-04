@@ -159,7 +159,7 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
           ref={pointerRef}
           data-role="custom-pointer"
           className={cx(
-            "pointer-events-none z-[9999] absolute transform -translate-x-1/2 -translate-y-1/2",
+            "pointer-events-none z-[9999] absolute",
             className
           )}
           style={{ top: y, left: x, ...style }}
