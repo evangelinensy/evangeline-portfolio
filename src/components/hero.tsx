@@ -48,7 +48,7 @@ export function Hero() {
       '_blank',
       'noopener,noreferrer'
     ) : i === 1 ? () => window.open(
-      'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=90-62533&p=f&viewport=1262%2C-431%2C0.3&t=UlouTGzCEnbM9FYr-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=35%3A1088&show-proto-sidebar=1',
+      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
       '_blank',
       'noopener,noreferrer'
     ) : i === 2 ? () => window.open(
