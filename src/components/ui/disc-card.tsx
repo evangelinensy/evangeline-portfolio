@@ -66,7 +66,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
 
       {/* Sleeve cover recreated with live UI (no image) */}
       <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[20px] overflow-hidden"
-           style={{ width: `${sleeveWidthPercent}%` }}>
+           style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
         <div
           style={{
             writingMode: 'vertical-rl',
@@ -76,6 +76,9 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             gap: 6,
             paddingTop: 4,
             paddingBottom: 4,
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            maxHeight: '100%',
           }}
         >
           <span
@@ -84,6 +87,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontSize: 16,
               lineHeight: 1.15,
               color: '#8FA7B4',
+              overflow: 'hidden',
+              textOverflow: 'clip',
             }}
           >
             {sleeveTitle}
@@ -93,6 +98,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 11,
               color: '#8FA7B4',
+              overflow: 'hidden',
+              textOverflow: 'clip',
             }}
           >
             {sleeveSubtitle}
@@ -105,6 +112,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             fontFamily: 'Sequel Sans Book Body',
             fontSize: 11,
             color: '#8FA7B4',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
           }}
         >
           {sleeveBottomCaption}
