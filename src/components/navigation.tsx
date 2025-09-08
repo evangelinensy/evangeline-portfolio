@@ -43,7 +43,7 @@ const navigationItems = [
   {
     title: 'Medium',
     icon: <BookOpen className='h-full w-full text-neutral-300' />,
-    href: 'https://medium.com/@yournocodefriend',
+    href: 'https://yournocodefriend.medium.com/',
     external: true,
   },
   {
