@@ -47,7 +47,19 @@ export function Hero() {
       'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Pomelo-Case-Study?page-id=0%3A1&node-id=0-8022&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=0%3A8022',
       '_blank',
       'noopener,noreferrer'
+    ) : i === 1 ? () => window.open(
+      'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=90-62533&p=f&viewport=1262%2C-431%2C0.3&t=UlouTGzCEnbM9FYr-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=35%3A1088&show-proto-sidebar=1',
+      '_blank',
+      'noopener,noreferrer'
+    ) : i === 2 ? () => window.open(
+      'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=90-62062&p=f&viewport=1262%2C-431%2C0.3&t=UlouTGzCEnbM9FYr-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=35%3A1088&show-proto-sidebar=1',
+      '_blank',
+      'noopener,noreferrer'
     ) : undefined,
+    discSrc: i === 1 ? '/images/disc-sanrio.png' : undefined,
+    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : undefined,
+    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : undefined,
+    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : undefined,
   }));
 
   return (
