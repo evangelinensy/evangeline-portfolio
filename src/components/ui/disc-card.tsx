@@ -34,10 +34,10 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         setEject((v) => !v);
         onClick?.();
       }}
-      className={`relative w-full aspect-square rounded-[32px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
+      className={`relative w-full aspect-square rounded-[20px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
     >
-      {/* Base: plastic tray background image */}
-      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[32px]" />
+      {/* Base: plastic tray background image at 60% */}
+      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[20px] opacity-60" />
 
       {/* Noise overlay */}
       <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[32px] mix-blend-color-burn opacity-90 pointer-events-none" />
@@ -46,7 +46,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       <motion.div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white pointer-events-none"
         style={{ width: "80%", height: "80%" }}
-        animate={{ x: eject ? -95 : -40 }}
+        animate={{ x: eject ? -80 : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
@@ -56,12 +56,12 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         alt="disc"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-contain pointer-events-none"
         style={{ width: "80%", height: "80%" }}
-        animate={{ x: eject ? -95 : -40 }}
+        animate={{ x: eject ? -80 : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-3 py-3 bg-white rounded-r-[32px]"
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-3 py-3 bg-white rounded-r-[20px]"
            style={{ width: "38%" }}>
         <div>
           <div
@@ -69,7 +69,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontFamily: 'Sequel Sans Medium Disp',
               fontSize: 18,
               lineHeight: 1.1,
-              color: '#000',
+              color: '#8FA7B4',
               textAlign: 'left',
             }}
           >
@@ -79,7 +79,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             style={{
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 12,
-              color: '#525252',
+              color: '#8FA7B4',
               textAlign: 'left',
             }}
           >
@@ -91,7 +91,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             whiteSpace: 'pre-line',
             fontFamily: 'Sequel Sans Book Body',
             fontSize: 12,
-            color: '#2b2b2b',
+            color: '#8FA7B4',
             textAlign: 'left',
           }}
         >
