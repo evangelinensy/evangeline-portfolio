@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function CromaticTechBioCaseStudy() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white" style={{ fontFamily: 'Sequel Sans, sans-serif' }}>
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-50 to-green-50 py-16">
         <div className="max-w-6xl mx-auto px-6">
