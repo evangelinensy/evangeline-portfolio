@@ -69,11 +69,10 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
            style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
         <div
           style={{
-            writingMode: 'vertical-rl',
-            textOrientation: 'mixed',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 6,
+            gap: 8,
             paddingTop: 4,
             paddingBottom: 4,
             overflow: 'hidden',
@@ -83,6 +82,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         >
           <span
             style={{
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed',
               fontFamily: 'Sequel Sans Medium Disp',
               fontSize: 16,
               lineHeight: 1.15,
@@ -95,6 +96,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
           </span>
           <span
             style={{
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed',
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 11,
               color: '#8FA7B4',
