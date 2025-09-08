@@ -190,7 +190,7 @@ export function Hero() {
           <RetroTV width={300} className="mt-10" />
           <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
           <AlbumGrid
-            className="w-full max-w-5xl"
+            className="w-full max-w-7xl"
             items={new Array(6).fill(0).map((_, i) => ({ id: `disc-${i+1}`, title: `Disc ${i+1}` }))}
           />
         </div>

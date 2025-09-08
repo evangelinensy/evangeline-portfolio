@@ -65,7 +65,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[20px]"
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[20px] overflow-hidden"
            style={{ width: `${sleeveWidthPercent}%` }}>
         <div
           style={{
@@ -73,7 +73,9 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             textOrientation: 'mixed',
             display: 'flex',
             alignItems: 'flex-start',
-            gap: 8,
+            gap: 6,
+            paddingTop: 4,
+            paddingBottom: 4,
           }}
         >
           <span
