@@ -40,7 +40,7 @@ export function Hero() {
   };
 
   // Items for the album grid; first item opens a Figma link in a new tab
-  const albumItems = new Array(6).fill(0).map((_, i) => ({
+  const albumItems = new Array(9).fill(0).map((_, i) => ({
     id: `disc-${i + 1}`,
     title: `Disc ${i + 1}`,
     onClick: i === 0 ? () => window.open(
