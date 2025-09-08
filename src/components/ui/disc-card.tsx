@@ -65,16 +65,16 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[20px] overflow-hidden"
-           style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[18px] overflow-hidden"
+            style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 8,
-            paddingTop: 4,
-            paddingBottom: 4,
+            gap: 10,
+            paddingTop: 6,
+            paddingBottom: 6,
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             maxHeight: '100%',
@@ -85,9 +85,9 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               writingMode: 'vertical-rl',
               textOrientation: 'mixed',
               fontFamily: 'Sequel Sans Medium Disp',
-              fontSize: 16,
-              lineHeight: 1.15,
-              color: '#8FA7B4',
+              fontSize: 18,
+              lineHeight: 1.1,
+              color: '#2B2B2B',
               overflow: 'hidden',
               textOverflow: 'clip',
             }}
@@ -99,8 +99,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               writingMode: 'vertical-rl',
               textOrientation: 'mixed',
               fontFamily: 'Sequel Sans Book Body',
-              fontSize: 11,
-              color: '#8FA7B4',
+              fontSize: 12,
+              color: '#4B5563',
               overflow: 'hidden',
               textOverflow: 'clip',
             }}
@@ -113,8 +113,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             writingMode: 'vertical-rl',
             textOrientation: 'mixed',
             fontFamily: 'Sequel Sans Book Body',
-            fontSize: 11,
-            color: '#8FA7B4',
+            fontSize: 12,
+            color: '#6B7280',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
           }}
