@@ -24,7 +24,7 @@ type DiscCardProps = {
  * DiscCard renders a CD partially inside a sleeve, using provided PNG assets.
  * Hover: disc slides left by 12px. Click: triggers onClick to start insert flow.
  */
-export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/Disc-plastic.jpg", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
+export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/disc-bg-new.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   return (
     <button
