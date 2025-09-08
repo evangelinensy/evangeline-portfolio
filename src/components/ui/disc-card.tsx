@@ -38,14 +38,14 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         setEject((v) => !v);
         onClick?.();
       }}
-                  className={`relative w-full aspect-square rounded-[16px] overflow-visible ${className}`}
+                  className={`relative w-full aspect-square rounded-[8px] overflow-visible ${className}`}
                   style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.20)' }}
     >
       {/* Base: plastic tray background image at 40% */}
-      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[16px] opacity-40" />
+      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[8px] opacity-40" />
 
       {/* Noise overlay */}
-      <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[16px] mix-blend-color-burn opacity-90 pointer-events-none" />
+      <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[8px] mix-blend-color-burn opacity-90 pointer-events-none" />
 
       {/* Disc backdrop to ensure white base (avoids dark/black showing through PNG transparency) */}
       <motion.div
