@@ -294,7 +294,7 @@ export function Hero() {
       <Cursor>
         <MousePointer2 className="fill-white stroke-gray-400" size={24} />
       </Cursor>
-      <CursorFollow align="bottom-right">
+      <CursorFollow align="bottom-right" gap={40}>
         <div className="bg-white text-gray-800 border border-gray-200 text-xs px-3 py-1 rounded-md shadow-md">
           Wanderer
         </div>

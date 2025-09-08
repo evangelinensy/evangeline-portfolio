@@ -72,30 +72,19 @@ function MouseTrackerProvider({
     // Skip cursor functionality on touch devices
     if (isTouchDevice) return;
 
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    const container = wrapper.parentElement;
-    if (!container) return;
-
-    if (getComputedStyle(container).position === "static") {
-      container.style.position = "relative";
-    }
-
     const updatePosition = (e: MouseEvent) => {
-      const bounds = container.getBoundingClientRect();
-      setPosition({ x: e.clientX - bounds.left, y: e.clientY - bounds.top });
+      setPosition({ x: e.clientX, y: e.clientY });
       setActive(true);
     };
 
     const clearPosition = () => setActive(false);
 
-    container.addEventListener("mousemove", updatePosition);
-    container.addEventListener("mouseleave", clearPosition);
+    window.addEventListener("mousemove", updatePosition);
+    window.addEventListener("mouseout", clearPosition);
 
     return () => {
-      container.removeEventListener("mousemove", updatePosition);
-      container.removeEventListener("mouseleave", clearPosition);
+      window.removeEventListener("mousemove", updatePosition);
+      window.removeEventListener("mouseout", clearPosition);
     };
   }, [isTouchDevice]);
 
@@ -139,13 +128,12 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
     // Skip cursor hiding on touch devices
     if (isTouchDevice) return;
 
-    const container = wrapperRef.current?.parentElement;
-    if (container && active) container.style.cursor = "none";
+    if (active) document.body.style.cursor = "none";
 
     return () => {
-      if (container) container.style.cursor = "default";
+      document.body.style.cursor = "default";
     };
-  }, [active, wrapperRef, isTouchDevice]);
+  }, [active, isTouchDevice]);
 
   React.useEffect(() => {
     x.set(position.x);
@@ -159,7 +147,7 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
           ref={pointerRef}
           data-role="custom-pointer"
           className={cx(
-            "pointer-events-none z-[9999] absolute",
+            "pointer-events-none z-[9999] fixed",
             className
           )}
           style={{ top: y, left: x, ...style }}
@@ -241,8 +229,8 @@ function PointerFollower({
   const pw = pointerBox?.width ?? 20;
   const ph = pointerBox?.height ?? 20;
 
-  const x = position.x - offset.x + pw / 2;
-  const y = position.y - offset.y + ph / 2;
+  const x = position.x - offset.x;
+  const y = position.y - offset.y;
 
   return (
     <AnimatePresence>
@@ -251,7 +239,7 @@ function PointerFollower({
           ref={followerRef}
           data-role="pointer-follower"
           className={cx(
-            "pointer-events-none z-[9998] absolute transform -translate-x-1/2 -translate-y-1/2 font-medium",
+            "pointer-events-none z-[9998] fixed transform -translate-x-1/2 -translate-y-1/2 font-medium",
             className
           )}
           style={{ top: y, left: x, ...style }}
