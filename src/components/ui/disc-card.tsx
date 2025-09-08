@@ -70,6 +70,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontSize: 18,
               lineHeight: 1.1,
               color: '#000',
+              textAlign: 'left',
             }}
           >
             {sleeveTitle}
@@ -79,6 +80,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 12,
               color: '#525252',
+              textAlign: 'left',
             }}
           >
             {sleeveSubtitle}
@@ -90,6 +92,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             fontFamily: 'Sequel Sans Book Body',
             fontSize: 12,
             color: '#2b2b2b',
+            textAlign: 'left',
           }}
         >
           {sleeveBottomCaption}
