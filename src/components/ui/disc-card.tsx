@@ -65,10 +65,10 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 pointer-events-none bg-white overflow-hidden"
+      <div className="absolute right-0 top-0 h-full pointer-events-none bg-white overflow-hidden"
             style={{ 
               width: '64px',
-              height: '244px',
+              height: '100%',
               boxSizing: 'border-box',
               borderRadius: '0 4px 4px 0',
               filter: 'drop-shadow(0 2.519px 6.299px rgba(129, 129, 129, 0.20))'
@@ -77,7 +77,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
           style={{
             display: 'flex',
             width: '64px',
-            height: '244px',
+            height: '100%',
             flexDirection: 'column',
             alignItems: 'flex-start',
             gap: '134px',
