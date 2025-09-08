@@ -65,61 +65,78 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-3 py-5 bg-white rounded-r-[16px] overflow-hidden"
-            style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box' }}>
+      <div className="absolute right-0 top-0 h-full pointer-events-none bg-white overflow-hidden"
+            style={{ 
+              width: `${sleeveWidthPercent}%`, 
+              height: '100%', 
+              boxSizing: 'border-box',
+              borderRadius: '0 4px 4px 0',
+              boxShadow: '-4px 0 8px 0 rgba(0, 0, 0, 0.15), -14.4px 0 20px 0 rgba(196, 196, 196, 0.50) inset'
+            }}>
         <div
           style={{
             display: 'flex',
+            width: '27px',
+            height: '219px',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 8,
-            paddingTop: 4,
-            paddingBottom: 4,
-            whiteSpace: 'normal',
-            maxHeight: '100%',
+            gap: '134px',
+            flexShrink: 0,
+            padding: '16px 8px',
+            boxSizing: 'border-box'
           }}
         >
-          <span
+          <div
             style={{
-              writingMode: 'vertical-rl',
-              textOrientation: 'mixed',
-              fontFamily: 'Sequel Sans Medium Disp',
-              fontSize: 16,
-              lineHeight: 1.2,
-              color: '#1F2937',
-              whiteSpace: 'nowrap',
-              letterSpacing: '0.01em',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '4px',
+              alignSelf: 'stretch',
+              flexDirection: 'column'
             }}
           >
-            {sleeveTitle}
-          </span>
+            <span
+              style={{
+                writingMode: 'vertical-rl',
+                textOrientation: 'mixed',
+                fontFamily: 'Sequel Sans Medium Disp',
+                fontSize: 16,
+                lineHeight: 1.2,
+                color: '#1F2937',
+                whiteSpace: 'nowrap',
+                letterSpacing: '0.01em',
+              }}
+            >
+              {sleeveTitle}
+            </span>
+            <span
+              style={{
+                writingMode: 'vertical-rl',
+                textOrientation: 'mixed',
+                fontFamily: 'Sequel Sans Book Body',
+                fontSize: 10,
+                color: '#6B7280',
+                whiteSpace: 'nowrap',
+                letterSpacing: '0.02em',
+              }}
+            >
+              {sleeveSubtitle}
+            </span>
+          </div>
           <span
             style={{
               writingMode: 'vertical-rl',
               textOrientation: 'mixed',
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 10,
-              color: '#6B7280',
+              color: '#9CA3AF',
               whiteSpace: 'nowrap',
               letterSpacing: '0.02em',
             }}
           >
-            {sleeveSubtitle}
+            {sleeveBottomCaption}
           </span>
         </div>
-        <span
-          style={{
-            writingMode: 'vertical-rl',
-            textOrientation: 'mixed',
-            fontFamily: 'Sequel Sans Book Body',
-            fontSize: 10,
-            color: '#9CA3AF',
-            whiteSpace: 'nowrap',
-            letterSpacing: '0.02em',
-          }}
-        >
-          {sleeveBottomCaption}
-        </span>
       </div>
     </button>
   );
