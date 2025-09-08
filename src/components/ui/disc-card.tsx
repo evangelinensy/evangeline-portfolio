@@ -27,7 +27,7 @@ type DiscCardProps = {
 export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/disc-bg-new.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   // Visual constants tuned to Figma reference
-  const sleeveWidthPercent = 36; // right sleeve width relative to card
+  const sleeveWidthPercent = 40; // right sleeve width relative to card
   const discPercent = 84; // disc diameter relative to card
   const ejectOffsetPx = -43; // reduced by half
   return (
@@ -38,10 +38,10 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         setEject((v) => !v);
         onClick?.();
       }}
-      className={`relative w-full aspect-square rounded-[20px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
+      className={`relative w-full aspect-square rounded-[12px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
     >
       {/* Base: plastic tray background image at 40% */}
-      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[20px] opacity-40" />
+      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[12px] opacity-40" />
 
       {/* Noise overlay */}
       <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[32px] mix-blend-color-burn opacity-90 pointer-events-none" />
@@ -65,7 +65,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[18px] overflow-hidden"
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[12px] overflow-hidden"
             style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
         <div
           style={{
