@@ -38,7 +38,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         setEject((v) => !v);
         onClick?.();
       }}
-      className={`relative w-full aspect-square rounded-[16px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-visible ${className}`}
+                  className={`relative w-full aspect-square rounded-[16px] overflow-visible ${className}`}
+                  style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.20)' }}
     >
       {/* Base: plastic tray background image at 40% */}
       <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[16px] opacity-40" />
