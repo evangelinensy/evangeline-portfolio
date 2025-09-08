@@ -64,7 +64,7 @@ export function Hero() {
       '_blank',
       'noopener,noreferrer'
     ) : undefined,
-              discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 2 ? '/images/disc-cromatic-new.png' : i === 3 ? '/images/disc-aboutme.png' : i === 4 ? '/images/disc-llmcook.png' : undefined,
+              discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 2 ? '/images/disc-cromatic-new.png' : i === 3 ? '/images/disc-aboutme.png' : i === 4 ? '/images/disc-llmcook-new.png' : undefined,
     sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : undefined,
     sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : undefined,
     sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? undefined : i === 4 ? 'Web App' : undefined,
@@ -228,98 +228,98 @@ export function Hero() {
 
         {/* Portfolio Grid - Hidden for now as per request */}
         <div className="hidden">
-          <div className="absolute inset-0 z-15">
-            <PixelTrail
-              pixelSize={screenSize.lessThan('md') ? 8 : 12}
-              className="w-full h-full"
-            />
-          </div>
+        <div className="absolute inset-0 z-15">
+          <PixelTrail
+            pixelSize={screenSize.lessThan('md') ? 8 : 12}
+            className="w-full h-full"
+          />
+        </div>
 
           <div className="absolute inset-0 z-20 flex flex-col items-center px-4" style={{ paddingTop: screenSize.lessThan('md') ? '60px' : '80px' }}>
             <div className="w-full flex justify-center mb-4 sm:mb-6 md:mb-8">
-              <ToggleGroup
-                type="single"
-                className="bg-white/90 backdrop-blur-sm rounded-full border border-gray-200 p-1 sm:p-2 shadow-lg w-full max-w-xs sm:max-w-md"
-                value={selectedCategory}
-                onValueChange={(value) => setSelectedCategory(value)}
-              >
-                {categories.map((category) => (
-                  <ToggleGroupItem
-                    key={category.value}
-                    value={category.value}
-                    className="px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 text-sm sm:text-base font-medium text-gray-700 hover:text-gray-900 active:scale-95 data-[state=on]:bg-black data-[state=on]:text-white rounded-full transition-all flex-1 touch-manipulation"
-                  >
-                    {category.label}
-                  </ToggleGroupItem>
-                ))}
-              </ToggleGroup>
-            </div>
+            <ToggleGroup
+              type="single"
+              className="bg-white/90 backdrop-blur-sm rounded-full border border-gray-200 p-1 sm:p-2 shadow-lg w-full max-w-xs sm:max-w-md"
+              value={selectedCategory}
+              onValueChange={(value) => setSelectedCategory(value)}
+            >
+              {categories.map((category) => (
+                <ToggleGroupItem
+                  key={category.value}
+                  value={category.value}
+                  className="px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 text-sm sm:text-base font-medium text-gray-700 hover:text-gray-900 active:scale-95 data-[state=on]:bg-black data-[state=on]:text-white rounded-full transition-all flex-1 touch-manipulation"
+                >
+                  {category.label}
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
+          </div>
 
-            <div className="flex-1 flex items-center justify-center">
-              <FlipReveal
+          <div className="flex-1 flex items-center justify-center">
+            <FlipReveal
                 className={`grid ${getGridCols()} gap-4 sm:gap-5 md:gap-6 max-w-xs sm:max-w-md md:max-w-2xl mx-auto`}
-                keys={[selectedCategory]}
-                showClass="flex"
-                hideClass="hidden"
+              keys={[selectedCategory]}
+              showClass="flex"
+              hideClass="hidden"
                 duration={0.3}
                 ease="power2.out"
                 stagger={0.05}
-                style={{
-                  gridTemplateRows: 'repeat(auto-fit, minmax(0, 1fr))',
-                  gridAutoRows: '1fr'
-                }}
-              >
-                {portfolioItems.map((item) => (
-                  <FlipRevealItem 
-                    key={item.id} 
-                    flipKey={item.category} 
-                    className="flex items-center justify-center w-full h-full"
-                    style={{
-                      willChange: 'transform',
-                      backfaceVisibility: 'hidden',
-                      transformStyle: 'preserve-3d'
-                    }}
-                  >
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Popover
-                        title={item.popoverTitle || item.title}
-                        description={item.popoverDescription || item.description}
-                        href={item.href}
-                        external={item.external}
-                      >
-                        <div 
-                          className="cursor-pointer w-full h-full flex items-center justify-center"
-                          onClick={() => {
-                            if (item.href) {
-                              if (item.external) {
-                                window.open(item.href, '_blank', 'noopener,noreferrer');
-                              } else {
-                                window.location.href = item.href;
-                              }
+              style={{
+                gridTemplateRows: 'repeat(auto-fit, minmax(0, 1fr))',
+                gridAutoRows: '1fr'
+              }}
+            >
+              {portfolioItems.map((item) => (
+                <FlipRevealItem 
+                  key={item.id} 
+                  flipKey={item.category} 
+                  className="flex items-center justify-center w-full h-full"
+                  style={{
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden',
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Popover
+                      title={item.popoverTitle || item.title}
+                      description={item.popoverDescription || item.description}
+                      href={item.href}
+                      external={item.external}
+                    >
+                      <div 
+                        className="cursor-pointer w-full h-full flex items-center justify-center"
+                        onClick={() => {
+                          if (item.href) {
+                            if (item.external) {
+                              window.open(item.href, '_blank', 'noopener,noreferrer');
+                            } else {
+                              window.location.href = item.href;
                             }
-                          }}
-                        >
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            loading="lazy"
-                            className={`${getImageSize()} rounded-md object-cover hover:scale-105 active:scale-95 transition-transform duration-300 touch-manipulation`}
-                            style={{
-                              willChange: 'transform',
-                              backfaceVisibility: 'hidden',
+                          }
+                        }}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          loading="lazy"
+                          className={`${getImageSize()} rounded-md object-cover hover:scale-105 active:scale-95 transition-transform duration-300 touch-manipulation`}
+                          style={{
+                            willChange: 'transform',
+                            backfaceVisibility: 'hidden',
                               aspectRatio: '1 / 1'
-                            }}
-                          />
-                        </div>
-                      </Popover>
-                    </div>
-                  </FlipRevealItem>
-                ))}
-              </FlipReveal>
-            </div>
+                          }}
+                        />
+                      </div>
+                    </Popover>
+                  </div>
+                </FlipRevealItem>
+              ))}
+            </FlipReveal>
           </div>
         </div>
       </div>
+    </div>
       
       {/* Custom Cursor */}
       <Cursor>
@@ -333,4 +333,4 @@ export function Hero() {
     </div>
     </CursorProvider>
   );
-}
+} 
