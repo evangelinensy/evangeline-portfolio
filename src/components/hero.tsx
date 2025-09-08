@@ -39,6 +39,17 @@ export function Hero() {
     return screenSize.lessThan('sm') ? 'size-20' : screenSize.lessThan('md') ? 'size-24' : 'size-32';
   };
 
+  // Items for the album grid; first item opens a Figma link in a new tab
+  const albumItems = new Array(6).fill(0).map((_, i) => ({
+    id: `disc-${i + 1}`,
+    title: `Disc ${i + 1}`,
+    onClick: i === 0 ? () => window.open(
+      'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=90-69798&p=f&viewport=1262%2C-431%2C0.3&t=UlouTGzCEnbM9FYr-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=90%3A62513',
+      '_blank',
+      'noopener,noreferrer'
+    ) : undefined,
+  }));
+
   return (
     <CursorProvider>
       <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center text-center text-pretty overflow-hidden rounded-[32px]`}>
@@ -191,7 +202,7 @@ export function Hero() {
           <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
           <AlbumGrid
             className="w-full max-w-7xl"
-            items={new Array(6).fill(0).map((_, i) => ({ id: `disc-${i+1}`, title: `Disc ${i+1}` }))}
+            items={albumItems}
           />
         </div>
 
