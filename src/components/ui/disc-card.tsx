@@ -10,6 +10,8 @@ type DiscCardProps = {
   discSrc?: string;
   /** Optional override for the background/base color (defaults to white/30%) */
   backgroundColor?: string;
+  /** Optional override for the plastic tray background image */
+  backgroundImageSrc?: string;
   /** Text shown on the sleeve (top title) */
   sleeveTitle?: string;
   /** Text shown under the title */
@@ -22,7 +24,7 @@ type DiscCardProps = {
  * DiscCard renders a CD partially inside a sleeve, using provided PNG assets.
  * Hover: disc slides left by 12px. Click: triggers onClick to start insert flow.
  */
-export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
+export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/Disc-plastic.jpg", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   return (
     <button
@@ -34,8 +36,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       }}
       className={`relative w-full aspect-square rounded-[32px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
     >
-      {/* Base: semi-transparent white background */}
-      <div className="absolute inset-0 rounded-[32px]" style={{ background: backgroundColor }} />
+      {/* Base: plastic tray background image */}
+      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[32px]" />
 
       {/* Noise overlay */}
       <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[32px] mix-blend-color-burn opacity-90 pointer-events-none" />
@@ -59,7 +61,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pr-4 py-3 text-right bg-white rounded-r-[32px]"
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-3 py-3 bg-white rounded-r-[32px]"
            style={{ width: "38%" }}>
         <div>
           <div
