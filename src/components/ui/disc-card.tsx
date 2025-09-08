@@ -100,7 +100,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
                 writingMode: 'vertical-rl',
                 textOrientation: 'mixed',
                 fontFamily: 'Sequel Sans Medium Disp',
-                fontSize: 14,
+                fontSize: 16,
                 lineHeight: 1.2,
                 color: '#1F2937',
                 whiteSpace: 'nowrap',

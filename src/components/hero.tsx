@@ -64,7 +64,7 @@ export function Hero() {
       '_blank',
       'noopener,noreferrer'
     ) : undefined,
-    discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 3 ? '/images/disc-egg.png' : i === 4 ? '/images/disc-llmcook.png' : undefined,
+              discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 2 ? '/images/disc-cromatic.png' : i === 3 ? '/images/disc-egg.png' : i === 4 ? '/images/disc-llmcook.png' : undefined,
     sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : undefined,
     sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Introduction' : i === 4 ? 'AI Cooking' : undefined,
     sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? 'Slides' : i === 4 ? 'Web App' : undefined,
