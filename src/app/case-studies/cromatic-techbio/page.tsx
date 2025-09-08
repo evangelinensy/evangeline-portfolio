@@ -7,14 +7,8 @@ export default function CromaticTechBioCaseStudy() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-50 to-green-50 py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-8">
+          <div className="mb-8">
             <h1 className="text-4xl font-bold text-blue-600">TechBio, Outsourcing Tool (Dashboard)</h1>
-            <div className="flex space-x-4">
-              <span className="text-gray-600">Work</span>
-              <span className="text-gray-600">Art</span>
-              <span className="text-gray-600">Ideas</span>
-              <span className="text-gray-600">About</span>
-            </div>
           </div>
           
           {/* Project Details */}
