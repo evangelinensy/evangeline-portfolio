@@ -44,7 +44,7 @@ export function Hero() {
     id: `disc-${i + 1}`,
     title: `Disc ${i + 1}`,
     onClick: i === 0 ? () => window.open(
-      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Pomelo-Case-Study?page-id=0%3A1&node-id=0-8022&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=0%3A8022',
+      'https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1',
       '_blank',
       'noopener,noreferrer'
     ) : i === 1 ? () => window.open(
@@ -55,11 +55,15 @@ export function Hero() {
       'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=90-62062&p=f&viewport=1262%2C-431%2C0.3&t=UlouTGzCEnbM9FYr-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=35%3A1088&show-proto-sidebar=1',
       '_blank',
       'noopener,noreferrer'
+    ) : i === 3 ? () => window.open(
+      'https://www.llmcook.com',
+      '_blank',
+      'noopener,noreferrer'
     ) : undefined,
-    discSrc: i === 1 ? '/images/disc-sanrio.png' : undefined,
-    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : undefined,
-    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : undefined,
-    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : undefined,
+    discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 3 ? '/images/disc-llmcook.png' : undefined,
+    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : undefined,
+    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Introduction' : undefined,
+    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? 'Slides' : undefined,
   }));
 
   return (

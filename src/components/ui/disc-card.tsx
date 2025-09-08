@@ -27,7 +27,7 @@ type DiscCardProps = {
 export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/disc-bg-new.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   // Visual constants tuned to Figma reference
-  const sleeveWidthPercent = 40; // right sleeve width relative to card
+  const sleeveWidthPercent = 55; // Increased sleeve width to prevent text clipping
   const discPercent = 84; // disc diameter relative to card
   const ejectOffsetPx = -43; // reduced by half
   return (
@@ -65,18 +65,17 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[12px] overflow-hidden"
-            style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-3 pr-3 py-4 bg-white rounded-r-[12px] overflow-hidden"
+            style={{ width: `${sleeveWidthPercent}%`, height: '100%', boxSizing: 'border-box' }}>
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 10,
-            paddingTop: 6,
-            paddingBottom: 6,
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
+            gap: 12,
+            paddingTop: 8,
+            paddingBottom: 8,
+            whiteSpace: 'normal',
             maxHeight: '100%',
           }}
         >
@@ -88,8 +87,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontSize: 18,
               lineHeight: 1.1,
               color: '#2B2B2B',
-              overflow: 'hidden',
-              textOverflow: 'clip',
+              whiteSpace: 'nowrap',
             }}
           >
             {sleeveTitle}
@@ -101,8 +99,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 9,
               color: '#4B5563',
-              overflow: 'hidden',
-              textOverflow: 'clip',
+              whiteSpace: 'nowrap',
             }}
           >
             {sleeveSubtitle}
@@ -115,7 +112,6 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             fontFamily: 'Sequel Sans Book Body',
             fontSize: 9,
             color: '#6B7280',
-            overflow: 'hidden',
             whiteSpace: 'nowrap',
           }}
         >
