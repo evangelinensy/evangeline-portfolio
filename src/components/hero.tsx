@@ -56,14 +56,18 @@ export function Hero() {
       '_blank',
       'noopener,noreferrer'
     ) : i === 3 ? () => window.open(
+      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
+      '_blank',
+      'noopener,noreferrer'
+    ) : i === 4 ? () => window.open(
       'https://www.llmcook.com',
       '_blank',
       'noopener,noreferrer'
     ) : undefined,
-    discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 3 ? '/images/disc-llmcook.png' : undefined,
-    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : undefined,
-    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Introduction' : undefined,
-    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? 'Slides' : undefined,
+    discSrc: i === 1 ? '/images/disc-sanrio.png' : i === 3 ? '/images/disc-egg.png' : i === 4 ? '/images/disc-llmcook.png' : undefined,
+    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : undefined,
+    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Introduction' : i === 4 ? 'AI Cooking' : undefined,
+    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? 'Slides' : i === 4 ? 'Web App' : undefined,
   }));
 
   return (
