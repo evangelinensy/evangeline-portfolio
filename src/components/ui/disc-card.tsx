@@ -8,10 +8,8 @@ type DiscCardProps = {
   onClick?: () => void;
   /** Optional override for the disc image (defaults to /images/disc-pomelo.png) */
   discSrc?: string;
-  /** Optional override for the background/base image (defaults to /images/CDbackground.png) */
-  backgroundSrc?: string;
-  /** Optional override for the right-side sleeve cover (defaults to /images/Disc-side-cover.png) */
-  sideCoverSrc?: string;
+  /** Optional override for the background/base color (defaults to white/30%) */
+  backgroundColor?: string;
   /** Text shown on the sleeve (top title) */
   sleeveTitle?: string;
   /** Text shown under the title */
@@ -24,7 +22,7 @@ type DiscCardProps = {
  * DiscCard renders a CD partially inside a sleeve, using provided PNG assets.
  * Hover: disc slides left by 12px. Click: triggers onClick to start insert flow.
  */
-export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundSrc = "/images/CDbackground.png", sideCoverSrc = "/images/Disc-side-cover.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
+export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   return (
     <button
@@ -36,8 +34,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       }}
       className={`relative w-full aspect-square rounded-[32px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
     >
-      {/* Base */}
-      <img src={backgroundSrc} alt="disc background" className="absolute inset-0 w-full h-full object-cover rounded-[32px]" />
+      {/* Base: semi-transparent white background */}
+      <div className="absolute inset-0 rounded-[32px]" style={{ background: backgroundColor }} />
 
       {/* Noise overlay */}
       <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[32px] mix-blend-color-burn opacity-90 pointer-events-none" />
@@ -60,11 +58,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
-      {/* Sleeve cover on the right (right-aligned) */}
-      <img src={sideCoverSrc} alt="cover" className="absolute right-0 top-0 h-full object-contain pointer-events-none" />
-
-      {/* Sleeve text overlay (right-aligned area). Uses live text in Sequel Sans. */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pr-4 py-3 text-right"
+      {/* Sleeve cover recreated with live UI (no image) */}
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pr-4 py-3 text-right bg-white rounded-r-[32px]"
            style={{ width: "38%" }}>
         <div>
           <div
