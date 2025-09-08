@@ -26,6 +26,10 @@ type DiscCardProps = {
  */
 export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/disc-bg-new.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
+  // Visual constants tuned to Figma reference
+  const sleeveWidthPercent = 36; // right sleeve width relative to card
+  const discPercent = 84; // disc diameter relative to card
+  const ejectOffsetPx = -86; // negative X to slide left under sleeve
   return (
     <button
       onMouseEnter={() => setEject(true)}
@@ -45,8 +49,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       {/* Disc backdrop to ensure white base (avoids dark/black showing through PNG transparency) */}
       <motion.div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white pointer-events-none"
-        style={{ width: "80%", height: "80%" }}
-        animate={{ x: eject ? -80 : 0 }}
+        style={{ width: `${discPercent}%`, height: `${discPercent}%` }}
+        animate={{ x: eject ? ejectOffsetPx : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
@@ -55,20 +59,20 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         src={discSrc}
         alt="disc"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-contain pointer-events-none"
-        style={{ width: "80%", height: "80%" }}
-        animate={{ x: eject ? -80 : 0 }}
+        style={{ width: `${discPercent}%`, height: `${discPercent}%` }}
+        animate={{ x: eject ? ejectOffsetPx : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-3 py-3 bg-white rounded-r-[20px]"
-           style={{ width: "38%" }}>
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-4 py-4 bg-white rounded-r-[20px]"
+           style={{ width: `${sleeveWidthPercent}%` }}>
         <div>
           <div
             style={{
               fontFamily: 'Sequel Sans Medium Disp',
-              fontSize: 18,
-              lineHeight: 1.1,
+              fontSize: 20,
+              lineHeight: 1.15,
               color: '#8FA7B4',
               textAlign: 'left',
             }}
@@ -78,7 +82,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
           <div
             style={{
               fontFamily: 'Sequel Sans Book Body',
-              fontSize: 12,
+              fontSize: 13,
               color: '#8FA7B4',
               textAlign: 'left',
             }}
@@ -90,7 +94,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
           style={{
             whiteSpace: 'pre-line',
             fontFamily: 'Sequel Sans Book Body',
-            fontSize: 12,
+            fontSize: 13,
             color: '#8FA7B4',
             textAlign: 'left',
           }}
