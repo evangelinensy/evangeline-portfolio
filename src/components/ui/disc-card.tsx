@@ -29,7 +29,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
   // Visual constants tuned to Figma reference
   const sleeveWidthPercent = 36; // right sleeve width relative to card
   const discPercent = 84; // disc diameter relative to card
-  const ejectOffsetPx = -86; // negative X to slide left under sleeve
+  const ejectOffsetPx = -43; // reduced by half
   return (
     <button
       onMouseEnter={() => setEject(true)}
@@ -40,8 +40,8 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       }}
       className={`relative w-full aspect-square rounded-[20px] shadow-[0_18px_60px_rgba(41,52,118,0.15)] overflow-visible ${className}`}
     >
-      {/* Base: plastic tray background image at 60% */}
-      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[20px] opacity-60" />
+      {/* Base: plastic tray background image at 40% */}
+      <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[20px] opacity-40" />
 
       {/* Noise overlay */}
       <img src="/images/noise.png" alt="noise" className="absolute inset-0 w-full h-full object-cover rounded-[32px] mix-blend-color-burn opacity-90 pointer-events-none" />
@@ -65,42 +65,48 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       />
 
       {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-4 pr-4 py-4 bg-white rounded-r-[20px]"
+      <div className="absolute right-0 top-0 h-full pointer-events-none flex flex-col justify-between pl-2 pr-2 py-3 bg-white rounded-r-[20px]"
            style={{ width: `${sleeveWidthPercent}%` }}>
-        <div>
-          <div
+        <div
+          style={{
+            writingMode: 'vertical-rl',
+            textOrientation: 'mixed',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: 8,
+          }}
+        >
+          <span
             style={{
               fontFamily: 'Sequel Sans Medium Disp',
               fontSize: 20,
               lineHeight: 1.15,
               color: '#8FA7B4',
-              textAlign: 'left',
             }}
           >
             {sleeveTitle}
-          </div>
-          <div
+          </span>
+          <span
             style={{
               fontFamily: 'Sequel Sans Book Body',
               fontSize: 13,
               color: '#8FA7B4',
-              textAlign: 'left',
             }}
           >
             {sleeveSubtitle}
-          </div>
+          </span>
         </div>
-        <div
+        <span
           style={{
-            whiteSpace: 'pre-line',
+            writingMode: 'vertical-rl',
+            textOrientation: 'mixed',
             fontFamily: 'Sequel Sans Book Body',
             fontSize: 13,
             color: '#8FA7B4',
-            textAlign: 'left',
           }}
         >
           {sleeveBottomCaption}
-        </div>
+        </span>
       </div>
     </button>
   );
