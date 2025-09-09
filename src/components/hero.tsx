@@ -23,8 +23,8 @@ export function Hero() {
 
   // Utility functions for responsive sizing
   const getHeroHeight = () => {
-    // Increase container height so the TV + album section is fully visible
-    return screenSize.lessThan('md') ? 'h-[1200px]' : 'h-[1600px]';
+    // Remove fixed heights to allow page to grow and scroll on smaller screens
+    return "";
   };
 
   const getMaxWidth = () => {
@@ -59,16 +59,32 @@ export function Hero() {
       'https://www.llmcook.com',
       '_blank',
       'noopener,noreferrer'
-    ) : undefined,
-              discSrc: i === 0 ? '/images/the disc-pomelo-new.png' : i === 1 ? '/images/disc-sanrio.png' : i === 2 ? '/images/disc-cromatic-new.png' : i === 3 ? '/images/disc-aboutme.png' : i === 4 ? '/images/disc-llmcook-new.png' : undefined,
-    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : undefined,
-    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : undefined,
+    ) : i === 5 ? () => window.open(
+      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=12-30858&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=12%3A30858&show-proto-sidebar=1',
+      '_blank',
+      'noopener,noreferrer'
+    ) : i === 7 ? () => window.open(
+      'https://loveletter.lovable.app/',
+      '_blank',
+      'noopener,noreferrer'
+    ) : i === 8 ? () => window.open('/case-studies/cromatic-branding-website', '_self') : undefined,
+    discSrc: i === 0 ? '/images/the disc-pomelo-new.png'
+      : i === 1 ? '/images/disc-sanrio.png'
+      : i === 2 ? '/images/disc-cromatic-new.png'
+      : i === 3 ? '/images/disc-aboutme.png'
+      : i === 4 ? '/images/disc-llmcook-new.png'
+      : i === 5 ? '/images/pomelo-2-disc-new2.png'
+      : i === 7 ? '/images/disc-loveletter.png'
+      : i === 8 ? '/images/disc-cromatic2.png'
+      : undefined,
+    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : i === 5 ? 'Pomelo.com' : i === 7 ? 'Love Letter' : i === 8 ? 'Cromatic' : undefined,
+    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : i === 5 ? 'Website' : i === 7 ? 'Web App' : i === 8 ? 'Website' : undefined,
     sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? undefined : i === 4 ? 'Web App' : undefined,
   }));
 
   return (
     <CursorProvider>
-      <div className={`relative w-full ${getHeroHeight()} flex items-center justify-center text-center text-pretty overflow-hidden rounded-[32px]`}>
+      <div className={`relative w-full flex items-center justify-center text-center text-pretty overflow-visible rounded-[32px]`}>
       
       {/* Website Background Image */}
       <div className="absolute inset-0 z-0"
@@ -90,7 +106,7 @@ export function Hero() {
       </div>
 
       {/* Main Content Container */}
-      <div className={`relative w-full ${getMaxWidth()} ${getHeroHeight()} mx-auto z-20`}>
+      <div className={`relative w-full ${getMaxWidth()} mx-auto z-20`}>
         
         {/* Hero Title - Centered at top */}
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
@@ -109,7 +125,7 @@ export function Hero() {
                 opacity: 0.6,
                 fontVariationSettings: "'opsz' 14, 'wdth' 100"
               }}>
-            Hello,<br />I'm Evan
+            Hello,<br />I&apos;m Evan
           </h1>
         </div>
 

@@ -67,7 +67,7 @@ export function Navigation() {
         {navigationItems.map((item, idx) => (
           <DockItem
             key={idx}
-            className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 hover:bg-gradient-to-br hover:from-[#79A8FF] hover:via-[#B2DDDA] hover:to-[#F2B7C8] hover:opacity-60 transition-all duration-300'
+            className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 hover:bg-gradient-to-br hover:from-[#79A8FF] hover:via-[#B2DDDA] hover:to-[#F2B7C8] hover:opacity-60 transition-colors duration-150 will-change-transform'
           >
             <DockLabel>{item.title}</DockLabel>
             <DockIcon>
@@ -89,7 +89,7 @@ export function Navigation() {
           </DockItem>
         ))}
         {/* Contact Popover */}
-        <DockItem className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 hover:bg-gradient-to-br hover:from-[#79A8FF] hover:via-[#B2DDDA] hover:to-[#F2B7C8] hover:opacity-60 transition-all duration-300'>
+        <DockItem className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 hover:bg-gradient-to-br hover:from-[#79A8FF] hover:via-[#B2DDDA] hover:to-[#F2B7C8] hover:opacity-60 transition-colors duration-150 will-change-transform'>
           <DockLabel>Contact</DockLabel>
           <DockIcon>
             <ContactPopover />

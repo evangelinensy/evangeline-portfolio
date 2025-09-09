@@ -1,12 +1,29 @@
-import Image from 'next/image';
+/* eslint-disable react/no-unescaped-entities */
 import Link from 'next/link';
+import fs from 'fs';
+import path from 'path';
+
+function getWebAppImages(): string[] {
+  try {
+    const dir = path.join(process.cwd(), 'public', 'images', 'portfolio', 'projects', 'cromatic-webapp');
+    if (!fs.existsSync(dir)) return [];
+    const files = fs
+      .readdirSync(dir)
+      .filter((f) => /\.(png|jpe?g|gif|webp|avif)$/i.test(f))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+    return files.map((f) => `/images/portfolio/projects/cromatic-webapp/${encodeURIComponent(f)}`);
+  } catch {
+    return [];
+  }
+}
 
 export default function CromaticTechBioCaseStudy() {
+  const images = getWebAppImages();
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white px-[34px] py-[40px] rounded-[24px]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-50 to-green-50 py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <div className="bg-gradient-to-r from-blue-50 to-green-50 py-16 rounded-[16px]">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-blue-600">TechBio, Outsourcing Tool (Dashboard)</h1>
           </div>
@@ -27,15 +44,20 @@ export default function CromaticTechBioCaseStudy() {
             </div>
           </div>
           
-          <button className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors">
+          <a
+            href="http://cromatic.bio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-700"
+          >
             Go to platform
-          </button>
+          </a>
         </div>
       </div>
 
       {/* Role and Overview */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Cromatic: Outsourcing Management Tool Web Application</h2>
           
           <h3 className="text-2xl font-semibold text-gray-800 mb-4">Role and Overview</h3>
@@ -47,8 +69,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* Background */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 bg-gray-50 rounded-[16px]">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Background</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             During Covid-19, Biotechs like Pfizer depended on vendors to increase vaccine production as they raced against time. 
@@ -59,7 +81,7 @@ export default function CromaticTechBioCaseStudy() {
 
       {/* The Goal */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Goal</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             The goal is to design a dashboard for Biotechs to contract the right vendors, and track its progress.
@@ -68,8 +90,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* Process Overview */}
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 bg-blue-50 rounded-[16px]">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Process Overview</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             Conducted user research with 40+ Biotechs and vendors, synthesized insights, identified opportunities, rapidly tested solutions for user value and needs, ideated and implemented solutions.
@@ -77,9 +99,23 @@ export default function CromaticTechBioCaseStudy() {
         </div>
       </section>
 
+      {/* Image sequence */}
+      {images.length > 0 && (
+        <section className="py-12">
+          <div className="max-w-4xl mx-auto space-y-8">
+            {images.map((src, i) => (
+              <div key={src} className="w-full overflow-hidden rounded-xl border border-gray-100 shadow-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt={`Cromatic web app ${i + 1}`} className="w-full h-auto" />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Summary of Insights */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Summary of insights</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -104,8 +140,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* Market Opportunity */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 bg-gray-50 rounded-[16px]">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Market Opportunity</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             Some Biotechs and vendors use Slack for internal tracking, but they still relied on email for external communication and tracking across different organizations.
@@ -116,7 +152,7 @@ export default function CromaticTechBioCaseStudy() {
 
       {/* Assumption Testing */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Assumption Testing</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             The goal here is to test if a PM tool + External communications is going to help Biotechs find a vendor and track progress well.
@@ -158,8 +194,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* The Solution */}
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 bg-blue-50 rounded-[16px]">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Solution</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             The challenge is to design a dashboard for Biotechs to quickly find the right vendors to contract, communicate and track requests.
@@ -183,7 +219,7 @@ export default function CromaticTechBioCaseStudy() {
 
       {/* Design Explorations */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Design explorations</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             The challenge is to propose a dashboard that is:
@@ -287,8 +323,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* Final Design */}
-      <section className="py-16 bg-green-50">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 bg-green-50 rounded-[16px]">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Final Design</h2>
           
           <h3 className="text-2xl font-semibold text-gray-800 mb-4">Intuitive, Seamless, Familiar</h3>
@@ -311,8 +347,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* Results */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="py-16 bg-gray-900 text-white rounded-[16px]">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-6">Results</h2>
           <ul className="list-disc list-inside space-y-4 text-lg">
             <li>As the Lead and sole Product Designer, we shipped the product from 0-1 in ~6 months.</li>
@@ -327,7 +363,7 @@ export default function CromaticTechBioCaseStudy() {
 
       {/* Testimonial */}
       <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
           <blockquote className="text-lg text-gray-700 leading-relaxed italic mb-4">
             "I had the pleasure of collaborating with Evangeline on a project where she served as the lead product designer, and I was the CTO.
             <br /><br />
@@ -340,8 +376,8 @@ export default function CromaticTechBioCaseStudy() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <footer className="py-8 bg-gray-100 rounded-[16px]">
+        <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-600 mb-4">Copyright © 2023 Evangeline, Inc. All rights reserved.</p>
           <div className="flex justify-center space-x-6">
             <a href="#" className="text-blue-600 hover:underline">Twitter</a>
@@ -352,8 +388,8 @@ export default function CromaticTechBioCaseStudy() {
       </footer>
 
       {/* Back to Portfolio */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-16 bg-gray-100 rounded-[16px]">
+        <div className="max-w-4xl mx-auto text-center">
           <Link 
             href="/" 
             className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"

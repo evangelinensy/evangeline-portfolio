@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import {
@@ -22,8 +23,8 @@ import {
 import { cn } from '@/lib/utils';
 
 const DOCK_HEIGHT = 128;
-const DEFAULT_MAGNIFICATION = 80;
-const DEFAULT_DISTANCE = 150;
+const DEFAULT_MAGNIFICATION = 88;
+const DEFAULT_DISTANCE = 140;
 const DEFAULT_PANEL_HEIGHT = 64;
 
 type DockProps = {
@@ -75,7 +76,7 @@ function useDock() {
 function Dock({
   children,
   className,
-  spring = { mass: 0.1, stiffness: 150, damping: 12 },
+  spring = { mass: 0.08, stiffness: 220, damping: 16 },
   magnification = DEFAULT_MAGNIFICATION,
   distance = DEFAULT_DISTANCE,
   panelHeight = DEFAULT_PANEL_HEIGHT,
@@ -160,7 +161,7 @@ function DockItem({ children, className }: DockItemProps) {
       aria-haspopup='true'
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { width, isHovered })
+        cloneElement(child as React.ReactElement, { width, isHovered } as any)
       )}
     </motion.div>
   );
