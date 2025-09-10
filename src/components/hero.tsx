@@ -110,17 +110,17 @@ export function Hero() {
         
         {/* Hero Title - Centered at top */}
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
-          <h1 className="font-['Bricolage_Grotesque'] font-semibold text-center mix-blend-overlay text-6xl md:text-8xl lg:text-[148px]"
+          <h1 className="font-['Bricolage_Grotesque'] font-semibold text-center mix-blend-overlay text-4xl sm:text-6xl md:text-8xl lg:text-[148px]"
               style={{ 
                 color: '#FFFFFF',
                 textAlign: 'center',
                 fontFamily: 'Bricolage Grotesque',
-                fontSize: '148px',
+                fontSize: screenSize.lessThan('sm') ? '48px' : screenSize.lessThan('md') ? '96px' : '148px',
                 fontStyle: 'normal',
                 fontWeight: 600,
                 lineHeight: '80%',
-                width: '1338px',
-                height: '494px',
+                width: screenSize.lessThan('sm') ? '300px' : screenSize.lessThan('md') ? '600px' : '1338px',
+                height: screenSize.lessThan('sm') ? '120px' : screenSize.lessThan('md') ? '240px' : '494px',
                 flexShrink: 0,
                 opacity: 0.6,
                 fontVariationSettings: "'opsz' 14, 'wdth' 100"

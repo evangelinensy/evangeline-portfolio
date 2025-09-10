@@ -101,7 +101,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               style={{
                 writingMode: 'vertical-rl',
                 textOrientation: 'mixed',
-                fontFamily: 'Sequel Sans Medium Disp',
+                fontFamily: 'Sequel Sans Medium Disp, Geist, sans-serif',
                 fontSize: 14,
                 lineHeight: 1.2,
                 color: '#8FA8B6',
@@ -115,7 +115,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
               style={{
                 writingMode: 'vertical-rl',
                 textOrientation: 'mixed',
-                fontFamily: 'Sequel Sans Book Body',
+                fontFamily: 'Sequel Sans Book Body, Geist, sans-serif',
                 fontSize: 9,
                 color: '#8FA8B6',
                 whiteSpace: 'nowrap',
