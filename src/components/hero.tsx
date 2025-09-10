@@ -84,10 +84,10 @@ export function Hero() {
 
   return (
     <CursorProvider>
-      <div className={`relative w-full flex items-center justify-center text-center text-pretty overflow-visible rounded-[32px]`}>
+      <div className={`relative w-full min-h-screen flex items-start justify-center text-center text-pretty overflow-visible rounded-[24px]`}>
       
       {/* Website Background Image */}
-      <div className="absolute inset-0 z-0"
+      <div className="absolute inset-0 z-0 rounded-[24px]"
            style={{ 
              backgroundImage: 'url("/images/Website-background.png")',
              backgroundRepeat: 'no-repeat',
@@ -97,7 +97,7 @@ export function Hero() {
       </div>
       
       {/* Grain Texture Overlay */}
-      <div className="absolute inset-0 z-10 mix-blend-soft-light opacity-25"
+      <div className="absolute inset-0 z-10 mix-blend-soft-light opacity-25 rounded-[24px]"
            style={{ 
              backgroundImage: 'url("/images/grain-texture.png")',
              backgroundRepeat: 'repeat',
@@ -229,7 +229,7 @@ export function Hero() {
         </div>
 
         {/* New TV + Album section (desktop first pass) */}
-        <div className="relative z-30 mt-64 flex flex-col items-center gap-8">
+        <div className="relative z-30 mt-64 flex flex-col items-center gap-8 pb-20">
           <RetroTV width={300} className="mt-10" />
           <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
           <AlbumGrid
