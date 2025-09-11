@@ -65,16 +65,18 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
-      {/* Sleeve cover recreated with live UI (no image) */}
-      <div className="absolute right-0 top-0 h-full pointer-events-none bg-white overflow-hidden"
-            style={{ 
-              width: '48px',
-              height: '100%',
-              boxSizing: 'border-box',
-              borderRadius: '0 4px 4px 0',
-              boxShadow: '-4px 0 8px 0 rgba(0, 0, 0, 0.15), -14.4px 0 20px 0 rgba(196, 196, 196, 0.50) inset',
-              filter: 'drop-shadow(0 2.519px 6.299px rgba(129, 129, 129, 0.20))'
-            }}>
+                  {/* Sleeve cover recreated with live UI (no image) */}
+                  <div className="absolute pointer-events-none bg-white overflow-hidden"
+                        style={{ 
+                          width: '48px',
+                          right: '6px',
+                          top: '6px',
+                          height: 'calc(100% - 12px)',
+                          boxSizing: 'border-box',
+                          borderRadius: '0 8px 8px 0',
+                          boxShadow: '-4px 0 8px 0 rgba(0, 0, 0, 0.15), -14.4px 0 20px 0 rgba(196, 196, 196, 0.50) inset',
+                          filter: 'drop-shadow(0 2.519px 6.299px rgba(129, 129, 129, 0.20))'
+                        }}>
         <div
           style={{
             display: 'flex',
@@ -88,42 +90,44 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             boxSizing: 'border-box'
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '4px',
-              alignSelf: 'stretch',
-              flexDirection: 'column'
-            }}
-          >
-            <span
-              style={{
-                writingMode: 'vertical-rl',
-                textOrientation: 'mixed',
-                fontFamily: 'Sequel Sans Medium Disp, Geist, sans-serif',
-                fontSize: 14,
-                lineHeight: 1.2,
-                color: '#8FA8B6',
-                whiteSpace: 'nowrap',
-                letterSpacing: '0.01em',
-              }}
-            >
-              {sleeveTitle}
-            </span>
-            <span
-              style={{
-                writingMode: 'vertical-rl',
-                textOrientation: 'mixed',
-                fontFamily: 'Sequel Sans Book Body, Geist, sans-serif',
-                fontSize: 9,
-                color: '#8FA8B6',
-                whiteSpace: 'nowrap',
-                letterSpacing: '0.02em',
-              }}
-            >
-              {sleeveSubtitle}
-            </span>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '16px',
+                          alignSelf: 'stretch',
+                          flexDirection: 'column'
+                        }}
+                      >
+                        <span
+                          style={{
+                            writingMode: 'vertical-rl',
+                            textOrientation: 'mixed',
+                            fontFamily: 'Sequel Sans Light Head, Sequel Sans, Geist, sans-serif',
+                            fontSize: 14,
+                            lineHeight: '80%',
+                            color: '#7F8E95',
+                            textAlign: 'center',
+                            whiteSpace: 'nowrap',
+                            letterSpacing: '0.01em',
+                          }}
+                        >
+                          {sleeveTitle}
+                        </span>
+                        <span
+                          style={{
+                            writingMode: 'vertical-rl',
+                            textOrientation: 'mixed',
+                            fontFamily: 'Sequel Sans Book Display, Sequel Sans, Geist, sans-serif',
+                            fontSize: 9,
+                            lineHeight: '100%',
+                            color: '#7F8E95',
+                            whiteSpace: 'nowrap',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          {sleeveSubtitle}
+                        </span>
           </div>
           <span
             style={{

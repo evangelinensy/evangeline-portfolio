@@ -31,8 +31,25 @@ const jersey10 = Jersey_10({
 });
 
 export const metadata: Metadata = {
-  title: "Evangeline - UX Designer Portfolio",
-  description: "Product designer and UX specialist creating meaningful digital experiences",
+  title: "Evangeline Ng, Product Design in the Bay Area",
+  icons: {
+    icon: [
+      {
+        url: "/images/eggfavicon.png",
+        sizes: "any",
+      },
+      {
+        url: "/images/eggfavicon.png",
+        sizes: "32x32",
+      },
+      {
+        url: "/images/eggfavicon.png",
+        sizes: "16x16",
+      },
+    ],
+    shortcut: "/images/eggfavicon.png",
+    apple: "/images/eggfavicon.png",
+  },
 };
 
 export const viewport: Viewport = {

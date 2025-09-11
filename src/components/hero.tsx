@@ -49,7 +49,7 @@ export function Hero() {
       '_blank',
       'noopener,noreferrer'
     ) : i === 1 ? () => window.open(
-      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
+      'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
       '_blank',
       'noopener,noreferrer'
     ) : i === 2 ? () => window.open('/case-studies/cromatic-techbio', '_self') : i === 3 ? () => window.open(
@@ -61,7 +61,11 @@ export function Hero() {
       '_blank',
       'noopener,noreferrer'
     ) : i === 5 ? () => window.open(
-      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=12-30858&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=12%3A30858&show-proto-sidebar=1',
+      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
+      '_blank',
+      'noopener,noreferrer'
+    ) : i === 6 ? () => window.open(
+      'https://evangeline.webflow.io/work/locker-app',
       '_blank',
       'noopener,noreferrer'
     ) : i === 7 ? () => window.open(
@@ -70,17 +74,18 @@ export function Hero() {
       'noopener,noreferrer'
     ) : i === 8 ? () => window.open('/case-studies/cromatic-branding-website', '_self') : undefined,
     discSrc: i === 0 ? '/images/the disc-pomelo-new.png'
-      : i === 1 ? '/images/disc-sanrio.png'
+      : i === 1 ? '/images/pomelo-2-disc-new2.png'
       : i === 2 ? '/images/disc-cromatic-new.png'
       : i === 3 ? '/images/disc-aboutme.png'
       : i === 4 ? '/images/disc-llmcook-new.png'
-      : i === 5 ? '/images/pomelo-2-disc-new2.png'
+      : i === 5 ? '/images/disc-sanrio.png'
+      : i === 6 ? '/images/disc-locker.png'
       : i === 7 ? '/images/disc-loveletter.png'
       : i === 8 ? '/images/disc-cromatic2.png'
-      : undefined,
-    sleeveTitle: i === 1 ? 'Sanrio' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : i === 5 ? 'Pomelo.com' : i === 7 ? 'Love Letter' : i === 8 ? 'Cromatic' : undefined,
-    sleeveSubtitle: i === 1 ? 'Web3 Campaigns' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : i === 5 ? 'Website' : i === 7 ? 'Web App' : i === 8 ? 'Website' : undefined,
-    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? undefined : i === 4 ? 'Web App' : undefined,
+      : '/images/the disc-pomelo-new.png',
+    sleeveTitle: i === 0 ? 'Pomelo' : i === 1 ? 'Pomelo.com' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : i === 5 ? 'Sanrio' : i === 6 ? 'Parcel Locker' : i === 7 ? 'Love Letter' : i === 8 ? 'Cromatic' : 'Project',
+    sleeveSubtitle: i === 0 ? 'Send money' : i === 1 ? 'Website' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : i === 5 ? 'Web3 Campaigns' : i === 6 ? 'Mobile App' : i === 7 ? 'Web App' : i === 8 ? 'Website' : 'Coming Soon',
+    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? 'Design' : i === 4 ? 'Web App' : i === 6 ? 'TBD' : undefined,
   }));
 
   return (
@@ -102,40 +107,28 @@ export function Hero() {
            style={{ 
              backgroundImage: 'url("/images/grain-texture.png")',
              backgroundRepeat: 'repeat',
-             backgroundSize: '512px 512px'
+             backgroundSize: screenSize.lessThan('md') ? '256px 256px' : '512px 512px'
            }}>
       </div>
 
       {/* Main Content Container */}
       <div className={`relative w-full ${getMaxWidth()} mx-auto z-20`}>
         
-        {/* Hero Title - Animated Background */}
-        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="relative"
-               style={{ 
-                 width: screenSize.lessThan('sm') ? '300px' : screenSize.lessThan('md') ? '600px' : '1338px',
-                 height: screenSize.lessThan('sm') ? '120px' : screenSize.lessThan('md') ? '240px' : '494px',
-               }}>
-            
-            {/* "Hello" - slides left then back from right */}
+        {/* Hero Title - Two-line layout with constrained animation */}
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-screen max-w-[100vw] overflow-hidden">
+          <div className="relative w-full flex flex-col items-center justify-center gap-6">
+            {/* "Hello" */}
             <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              animate={{
-                x: [-200, -400, 400, 0],
-                opacity: [0.3, 0.1, 0.1, 0.3]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                times: [0, 0.3, 0.7, 1]
-              }}
+              className="w-full flex items-center justify-center"
+              initial={{ x: 0, opacity: 0.48 }}
+              animate={{ x: ["-6vw", "6vw", "-6vw"] , opacity: [0.48, 0.43, 0.48] }}
+              transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 fontFamily: 'Bricolage Grotesque',
-                fontSize: screenSize.lessThan('sm') ? '48px' : screenSize.lessThan('md') ? '96px' : '148px',
+                fontSize: '246.4px',
                 fontWeight: 600,
                 lineHeight: '80%',
-                color: '#FFFFFF',
+                color: '#D9D9D9',
                 textAlign: 'center',
                 fontVariationSettings: "'opsz' 14, 'wdth' 100"
               }}
@@ -143,26 +136,18 @@ export function Hero() {
               Hello
             </motion.div>
 
-            {/* "I'm Evan" - slides right then back from left */}
+            {/* "I'm Evan" */}
             <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              animate={{
-                x: [200, 400, -400, 0],
-                opacity: [0.3, 0.1, 0.1, 0.3]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                times: [0, 0.3, 0.7, 1],
-                delay: 2
-              }}
+              className="w-full flex items-center justify-center"
+              initial={{ x: 0, opacity: 0.48 }}
+              animate={{ x: ["6vw", "-6vw", "6vw"] , opacity: [0.48, 0.43, 0.48] }}
+              transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 fontFamily: 'Bricolage Grotesque',
-                fontSize: screenSize.lessThan('sm') ? '48px' : screenSize.lessThan('md') ? '96px' : '148px',
+                fontSize: '246.4px',
                 fontWeight: 600,
                 lineHeight: '80%',
-                color: '#FFFFFF',
+                color: '#D9D9D9',
                 textAlign: 'center',
                 fontVariationSettings: "'opsz' 14, 'wdth' 100"
               }}
