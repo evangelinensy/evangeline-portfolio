@@ -41,14 +41,22 @@ export const metadata: Metadata = {
       {
         url: "/images/eggfavicon.png",
         sizes: "32x32",
+        type: "image/png",
       },
       {
         url: "/images/eggfavicon.png",
         sizes: "16x16",
+        type: "image/png",
       },
     ],
     shortcut: "/images/eggfavicon.png",
     apple: "/images/eggfavicon.png",
+    other: [
+      {
+        rel: "icon",
+        url: "/images/eggfavicon.png",
+      },
+    ],
   },
 };
 
