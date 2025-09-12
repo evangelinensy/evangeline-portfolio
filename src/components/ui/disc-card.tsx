@@ -92,15 +92,15 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
             boxSizing: 'border-box'
           }}
         >
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '16px',
-                          alignSelf: 'stretch',
-                          flexDirection: 'column'
-                        }}
-                      >
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '16px',
+                            alignSelf: 'stretch',
+                            flexDirection: 'column-reverse'
+                          }}
+                        >
                         <span
                           style={{
                             writingMode: 'vertical-rl',

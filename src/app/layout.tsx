@@ -33,30 +33,9 @@ const jersey10 = Jersey_10({
 export const metadata: Metadata = {
   title: "Evangeline Ng, Product Design in the Bay Area",
   icons: {
-    icon: [
-      {
-        url: "/images/eggfavicon.png",
-        sizes: "any",
-      },
-      {
-        url: "/images/eggfavicon.png",
-        sizes: "32x32",
-        type: "image/png",
-      },
-      {
-        url: "/images/eggfavicon.png",
-        sizes: "16x16",
-        type: "image/png",
-      },
-    ],
+    icon: "/images/eggfavicon.png",
     shortcut: "/images/eggfavicon.png",
     apple: "/images/eggfavicon.png",
-    other: [
-      {
-        rel: "icon",
-        url: "/images/eggfavicon.png",
-      },
-    ],
   },
 };
 
