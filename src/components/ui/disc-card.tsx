@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import { useScreenSize } from "@/hooks/use-screen-size";
 
 type DiscCardProps = {
   className?: string;
@@ -26,6 +27,7 @@ type DiscCardProps = {
  */
 export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/disc-bg-new.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
+  const screenSize = useScreenSize();
   // Visual constants tuned to Figma reference
   const sleeveWidthPercent = 50; // Optimized width per Figma spec
   const discPercent = 84; // disc diameter relative to card
@@ -103,8 +105,22 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
                           style={{
                             writingMode: 'vertical-rl',
                             textOrientation: 'mixed',
+                            fontFamily: 'Sequel Sans Book Display, Sequel Sans, Geist, sans-serif',
+                            fontSize: screenSize.lessThan('md') ? 11 : 9,
+                            lineHeight: '100%',
+                            color: '#7F8E95',
+                            whiteSpace: 'nowrap',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          {sleeveSubtitle}
+                        </span>
+                        <span
+                          style={{
+                            writingMode: 'vertical-rl',
+                            textOrientation: 'mixed',
                             fontFamily: 'Sequel Sans Light Head, Sequel Sans, Geist, sans-serif',
-                            fontSize: 14,
+                            fontSize: screenSize.lessThan('md') ? 16 : 14,
                             lineHeight: '80%',
                             color: '#7F8E95',
                             textAlign: 'center',
@@ -114,34 +130,22 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
                         >
                           {sleeveTitle}
                         </span>
-                        <span
-                          style={{
-                            writingMode: 'vertical-rl',
-                            textOrientation: 'mixed',
-                            fontFamily: 'Sequel Sans Book Display, Sequel Sans, Geist, sans-serif',
-                            fontSize: 9,
-                            lineHeight: '100%',
-                            color: '#7F8E95',
-                            whiteSpace: 'nowrap',
-                            letterSpacing: '0.02em',
-                          }}
-                        >
-                          {sleeveSubtitle}
-                        </span>
           </div>
-          <span
-            style={{
-              writingMode: 'vertical-rl',
-              textOrientation: 'mixed',
-              fontFamily: 'Sequel Sans Book Body',
-              fontSize: 10,
-              color: '#9CA3AF',
-              whiteSpace: 'nowrap',
-              letterSpacing: '0.02em',
-            }}
-          >
-            {sleeveBottomCaption}
-          </span>
+          {sleeveBottomCaption && (
+            <span
+              style={{
+                writingMode: 'vertical-rl',
+                textOrientation: 'mixed',
+                fontFamily: 'Sequel Sans Book Body',
+                fontSize: 10,
+                color: '#9CA3AF',
+                whiteSpace: 'nowrap',
+                letterSpacing: '0.02em',
+              }}
+            >
+              {sleeveBottomCaption}
+            </span>
+          )}
         </div>
       </div>
     </button>

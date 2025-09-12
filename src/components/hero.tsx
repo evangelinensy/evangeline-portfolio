@@ -29,7 +29,7 @@ export function Hero() {
   };
 
   const getMaxWidth = () => {
-    return screenSize.lessThan('md') ? 'max-w-sm' : 'max-w-4xl';
+    return screenSize.lessThan('md') ? 'max-w-7xl' : 'max-w-4xl';
   };
 
   const getGridCols = () => {
@@ -85,7 +85,7 @@ export function Hero() {
       : '/images/the disc-pomelo-new.png',
     sleeveTitle: i === 0 ? 'Pomelo' : i === 1 ? 'Pomelo.com' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : i === 5 ? 'Sanrio' : i === 6 ? 'Parcel Locker' : i === 7 ? 'Love Letter' : i === 8 ? 'Cromatic' : 'Project',
     sleeveSubtitle: i === 0 ? 'Send money' : i === 1 ? 'Website' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : i === 5 ? 'Web3 Campaigns' : i === 6 ? 'Mobile App' : i === 7 ? 'Web App' : i === 8 ? 'Website' : 'Coming Soon',
-    sleeveBottomCaption: i === 1 ? 'Web App' : i === 2 ? 'Desktop Web App' : i === 3 ? 'Design' : i === 4 ? 'Web App' : i === 6 ? 'TBD' : undefined,
+    sleeveBottomCaption: undefined,
   }));
 
   return (
@@ -256,8 +256,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* New TV + Album section (desktop first pass) */}
-        <div className="relative z-30 mt-64 flex flex-col items-center gap-8 pb-20">
+        {/* New TV + Album section */}
+        <div className={`relative z-30 ${screenSize.lessThan('md') ? 'mt-20' : 'mt-32'} flex flex-col items-center gap-8 pb-20`}>
           <RetroTV width={300} className="mt-10" />
           <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
           <AlbumGrid
