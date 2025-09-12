@@ -44,15 +44,19 @@ export function Hero() {
   const albumItems = new Array(9).fill(0).map((_, i) => ({
     id: `disc-${i + 1}`,
     title: `Disc ${i + 1}`,
-    onClick: i === 0 ? () => window.open(
-      'https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 1 ? () => window.open(
-      'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 2 ? () => window.open('/case-studies/cromatic-techbio', '_self') : i === 3 ? () => window.open(
+                onClick: i === 0 ? () => window.open(
+                  'https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1',
+                  '_blank',
+                  'noopener,noreferrer'
+                ) : i === 1 ? () => window.open(
+                  'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
+                  '_blank',
+                  'noopener,noreferrer'
+                ) : i === 2 ? () => window.open(
+                  'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1',
+                  '_blank',
+                  'noopener,noreferrer'
+                ) : i === 3 ? () => window.open(
       'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
       '_blank',
       'noopener,noreferrer'
