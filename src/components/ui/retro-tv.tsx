@@ -139,7 +139,6 @@ export function RetroTV({
                     style={{ opacity: 0.6 }}
                     controls={false}
                     playsInline
-                    volume={0.4}
                   >
                     <source src={videoSrc} type="video/mp4" />
                   </video>

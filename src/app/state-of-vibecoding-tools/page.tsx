@@ -279,7 +279,7 @@ export default function Page() {
             <figcaption className="mt-2 text-sm text-gray-500">Claude Artifact for Data Visualization</figcaption>
           </figure>
           <p className="text-[19px] leading-7" style={{ color: '#3a3a3a' }}>
-            You can prototype 'complex' things like draggable chat nodes. It is a tier below Lovable for me because I can't connect it to a backend service as of today.
+            You can prototype &apos;complex&apos; things like draggable chat nodes. It is a tier below Lovable for me because I can&apos;t connect it to a backend service as of today.
           </p>
           <p className="text-[19px] leading-7" style={{ color: '#3a3a3a' }}>
             Special highlight: You can upload CSV or integrate it with Google Sheets and visualize data with different displays and share it to a public URL.

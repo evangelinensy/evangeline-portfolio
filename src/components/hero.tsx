@@ -166,7 +166,17 @@ export function Hero() {
     'Website',
   ];
 
-  let albumItems: any[] = workItems.map((item, i) => {
+  let albumItems: Array<{
+    id: string;
+    title: string;
+    onClick: (event?: React.MouseEvent) => void;
+    discSrc: string;
+    sleeveTitle: string;
+    sleeveSubtitle: string;
+    sleeveBottomCaption?: string;
+    href: string | undefined;
+    external: boolean | undefined;
+  }> = workItems.map((item, i) => {
     const discId = `disc-${i + 1}`;
     const discSrc = i === 0 ? '/images/the disc-pomelo-new.png'
       : i === 1 ? '/images/pomelo-2-disc-new2.png'
