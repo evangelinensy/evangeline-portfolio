@@ -17,21 +17,38 @@ export type DiscItem = {
 type AlbumGridProps = {
   items: DiscItem[];
   className?: string;
+  animatingDiscId?: string | null;
+  tvState?: string;
 };
 
-export function AlbumGrid({ items, className = "" }: AlbumGridProps) {
+export function AlbumGrid({ items, className = "", animatingDiscId, tvState }: AlbumGridProps) {
+  const getDiscAnimationState = (itemId: string) => {
+    if (animatingDiscId === itemId) {
+      switch (tvState) {
+        case 'ejecting': return 'ejecting';
+        case 'moving': return 'moving';
+        case 'inserting': return 'inserting';
+        case 'playing': return 'inserted';
+        default: return 'idle';
+      }
+    }
+    return 'idle';
+  };
+
   return (
-    <div className={`rounded-[60px] bg-white/30 backdrop-blur-[66px] shadow-[0_20px_60px_rgba(0,0,0,0.12)] p-10 sm:p-14 md:p-20 lg:p-24 mx-4 sm:mx-6 md:mx-8 ${className}`}>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 max-w-8xl mx-auto place-items-center scale-105 md:scale-105 lg:scale-120 origin-center justify-items-center">
+    <div className={`rounded-[60px] bg-white/30 backdrop-blur-[66px] shadow-[0_20px_60px_rgba(0,0,0,0.12)] p-6 sm:p-8 md:p-12 lg:p-16 ${className}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-6xl mx-auto place-items-center">
         {items.map((item) => (
           <DiscCard
             key={item.id}
             onClick={item.onClick}
-            className="w-full sm:w-4/5"
+            className="w-full max-w-48"
             discSrc={item.discSrc}
             sleeveTitle={item.sleeveTitle}
             sleeveSubtitle={item.sleeveSubtitle}
             sleeveBottomCaption={item.sleeveBottomCaption}
+            animationState={getDiscAnimationState(item.id)}
+            isAnimating={animatingDiscId === item.id}
           />
         ))}
       </div>

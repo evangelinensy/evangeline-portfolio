@@ -33,9 +33,14 @@ const jersey10 = Jersey_10({
 export const metadata: Metadata = {
   title: "Evangeline Ng, Product Design in the Bay Area",
   icons: {
-    icon: "/images/eggfavicon.png",
-    shortcut: "/images/eggfavicon.png",
-    apple: "/images/eggfavicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/evan favicon.png?v=2", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-32x32.ico", sizes: "32x32" },
+      { url: "/favicon-16x16.ico", sizes: "16x16" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/images/evan favicon.png?v=2",
   },
 };
 
@@ -54,6 +59,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/evan favicon.png?v=2" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} antialiased font-sans`}
       >

@@ -4,9 +4,11 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { useScreenSize } from "@/hooks/use-screen-size";
 
+type DiscAnimationState = 'idle' | 'ejecting' | 'moving' | 'inserting' | 'inserted';
+
 type DiscCardProps = {
   className?: string;
-  onClick?: () => void;
+  onClick?: (event?: React.MouseEvent) => void;
   /** Optional override for the disc image (defaults to /images/disc-pomelo.png) */
   discSrc?: string;
   /** Optional override for the background/base color (defaults to white/30%) */
@@ -19,29 +21,106 @@ type DiscCardProps = {
   sleeveSubtitle?: string;
   /** Bottom-left caption on the sleeve */
   sleeveBottomCaption?: string;
+  /** Animation state for disc insertion flow */
+  animationState?: DiscAnimationState;
+  /** Whether this disc is currently being animated */
+  isAnimating?: boolean;
 };
 
 /**
  * DiscCard renders a CD partially inside a sleeve, using provided PNG assets.
  * Hover: disc slides left by 12px. Click: triggers onClick to start insert flow.
  */
-export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pomelo.png", backgroundColor = "rgba(255,255,255,0.3)", backgroundImageSrc = "/images/disc-bg-new.png", sleeveTitle = "Pomelo", sleeveSubtitle = "Send money", sleeveBottomCaption = "Mobile\nApplication" }: DiscCardProps) {
+export function DiscCard({ 
+  className = "", 
+  onClick, 
+  discSrc = "/images/disc-pomelo.png", 
+  backgroundColor = "rgba(255,255,255,0.3)", 
+  backgroundImageSrc = "/images/disc-bg-new.png", 
+  sleeveTitle = "Pomelo", 
+  sleeveSubtitle = "Send money", 
+  sleeveBottomCaption = "Mobile\nApplication",
+  animationState = 'idle',
+  isAnimating = false
+}: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   const screenSize = useScreenSize();
   // Visual constants tuned to Figma reference
   const sleeveWidthPercent = 50; // Optimized width per Figma spec
   const discPercent = 84; // disc diameter relative to card
   const ejectOffsetPx = -43; // reduced by half
+
+  // Animation variants for different states
+  const getDiscAnimation = () => {
+    // If not animating, use hover state
+    if (animationState === 'idle') {
+      return {
+        x: eject ? ejectOffsetPx : 0,
+        y: 0,
+        rotate: 0,
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.3 }
+      };
+    }
+    
+    // If animating, use animation states
+    switch (animationState) {
+      case 'ejecting':
+        return {
+          x: -60,
+          y: -20,
+          rotate: 15,
+          scale: 1.1,
+          transition: { duration: 0.6 }
+        };
+      case 'moving':
+        return {
+          x: 0,
+          y: -60,
+          rotate: 30,
+          scale: 0.6,
+          transition: { duration: 0.8 }
+        };
+      case 'inserting':
+        return {
+          x: 0,
+          y: -40,
+          rotate: 0,
+          scale: 0.3,
+          opacity: 0.9,
+          transition: { duration: 0.6 }
+        };
+      case 'inserted':
+        return {
+          x: 0,
+          y: -40,
+          rotate: 0,
+          scale: 0.3,
+          opacity: 0,
+          transition: { duration: 0.3 }
+        };
+      default:
+        return {
+          x: eject ? ejectOffsetPx : 0,
+          y: 0,
+          rotate: 0,
+          scale: 1,
+          opacity: 1,
+          transition: { duration: 0.3 }
+        };
+    }
+  };
   return (
     <button
       onMouseEnter={() => setEject(true)}
       onMouseLeave={() => setEject(false)}
       onClick={(e) => {
         setEject((v) => !v);
-        onClick?.();
+        onClick?.(e);
       }}
-                  className={`relative w-full aspect-square rounded-[8px] overflow-visible ${className}`}
-                  style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.20)' }}
+      className={`relative w-full aspect-square rounded-[8px] overflow-visible ${className}`}
+      style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.20)' }}
     >
       {/* Base: plastic tray background image at 40% */}
       <img src={backgroundImageSrc} alt="disc tray" className="absolute inset-0 w-full h-full object-cover rounded-[8px] opacity-40" />
@@ -53,8 +132,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
       <motion.div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white pointer-events-none"
         style={{ width: `${discPercent}%`, height: `${discPercent}%` }}
-        animate={{ x: eject ? ejectOffsetPx : 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        animate={isAnimating ? { opacity: 0 } : getDiscAnimation()}
       />
 
       {/* Disc */}
@@ -63,8 +141,7 @@ export function DiscCard({ className = "", onClick, discSrc = "/images/disc-pome
         alt="disc"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-contain pointer-events-none"
         style={{ width: `${discPercent}%`, height: `${discPercent}%` }}
-        animate={{ x: eject ? ejectOffsetPx : 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        animate={isAnimating ? { opacity: 0 } : getDiscAnimation()}
       />
 
                   {/* Sleeve cover recreated with live UI (no image) */}

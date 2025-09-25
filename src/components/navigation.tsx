@@ -8,10 +8,10 @@ import {
   Linkedin,
   Play,
   BookOpen,
+  Youtube,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
-import ContactPopover from '@/components/ui/contact-popover';
 
 const navigationItems = [
   {
@@ -44,6 +44,18 @@ const navigationItems = [
     title: 'Medium',
     icon: <BookOpen className='h-full w-full text-neutral-300' />,
     href: 'https://yournocodefriend.medium.com/',
+    external: true,
+  },
+  {
+    title: 'Substack',
+    icon: <FileText className='h-full w-full text-neutral-300' />,
+    href: 'https://substack.com/@eggsvans',
+    external: true,
+  },
+  {
+    title: 'YouTube',
+    icon: <Youtube className='h-full w-full text-neutral-300' />,
+    href: 'https://www.youtube.com/channel/UCbluSlrGF4NqTjuNQnD79Lw',
     external: true,
   },
   {
@@ -88,13 +100,6 @@ export function Navigation() {
             </DockIcon>
           </DockItem>
         ))}
-        {/* Contact Popover */}
-        <DockItem className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 hover:bg-gradient-to-br hover:from-[#79A8FF] hover:via-[#B2DDDA] hover:to-[#F2B7C8] hover:opacity-60 transition-colors duration-150 will-change-transform'>
-          <DockLabel>Contact</DockLabel>
-          <DockIcon>
-            <ContactPopover />
-          </DockIcon>
-        </DockItem>
       </Dock>
     </div>
   );

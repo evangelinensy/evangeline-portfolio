@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useScreenSize } from "@/hooks/use-screen-size";
 import { PixelTrail } from "@/components/ui/pixel-trail";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -21,6 +21,105 @@ import AlbumGrid from "@/components/ui/album-grid";
 export function Hero() {
   const screenSize = useScreenSize();
   const [selectedCategory, setSelectedCategory] = useState("all");
+  
+  // Animation state management
+  const [tvState, setTvState] = useState<'idle' | 'ejecting' | 'moving' | 'inserting' | 'playing' | 'static'>('idle');
+  const [currentDisc, setCurrentDisc] = useState<string | null>(null);
+  const [currentVideo, setCurrentVideo] = useState<string | null>(null);
+  const [animatingDiscId, setAnimatingDiscId] = useState<string | null>(null);
+  const [discStartPosition, setDiscStartPosition] = useState<{x: number, y: number} | null>(null);
+  const timeoutsRef = useRef<number[]>([]);
+
+  const clearAnimationTimers = () => {
+    timeoutsRef.current.forEach((id) => clearTimeout(id));
+    timeoutsRef.current = [];
+  };
+
+  const resetDiscState = () => {
+    clearAnimationTimers();
+    setTvState('idle');
+    setAnimatingDiscId(null);
+    setCurrentDisc(null);
+    setCurrentVideo(null);
+    setDiscStartPosition(null);
+  };
+
+  // Animation handler
+  const handleDiscClick = (
+    discId: string,
+    discSrc: string,
+    event?: React.MouseEvent,
+    url?: string,
+    external?: boolean
+  ) => {
+    if (tvState !== 'idle' && tvState !== 'static') {
+      return; // Prevent clicks during animation
+    }
+    
+    // Get the position of the clicked disc card
+    if (event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const heroRect = document.querySelector('.hero-section')?.getBoundingClientRect();
+      if (heroRect) {
+        const x = rect.left + rect.width / 2 - heroRect.left;
+        const y = rect.top + rect.height / 2 - heroRect.top;
+        // Calculate offset to TV center so all discs end at same position
+        const centerX = heroRect.width / 2;
+        const tvY = heroRect.height * 0.2; // TV is at 20% from top
+        const xOffset = centerX - x;
+        const yOffset = tvY - y;
+        setDiscStartPosition({ x: xOffset, y: yOffset });
+      }
+    }
+    
+    setAnimatingDiscId(discId);
+    setCurrentDisc(discSrc);
+    
+    // Start animation sequence
+    setTvState('ejecting');
+    
+    // No video URL - will use placeholder component
+    setCurrentVideo(null);
+    
+    // Animation timeline - synchronized with 2.5s disc animation
+    timeoutsRef.current.push(window.setTimeout(() => setTvState('moving'), 300));
+
+    // Open URL in new tab shortly after animation starts
+    if (url) {
+      timeoutsRef.current.push(window.setTimeout(() => {
+        if (external) {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        } else {
+          window.open(url, '_blank');
+        }
+      }, 900));
+    }
+  };
+
+  // Handle video end
+  const handleVideoEnd = () => {
+    setTvState('static');
+    timeoutsRef.current.push(window.setTimeout(() => {
+      resetDiscState();
+    }, 1000));
+  };
+
+  // When user returns to the tab/window, ensure disc resets to original position
+  useEffect(() => {
+    const handleReturn = () => {
+      resetDiscState();
+    };
+    window.addEventListener('focus', handleReturn);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) handleReturn();
+    });
+    return () => {
+      window.removeEventListener('focus', handleReturn);
+      document.removeEventListener('visibilitychange', () => {
+        if (!document.hidden) handleReturn();
+      });
+    };
+  }, []);
 
   // Utility functions for responsive sizing
   const getHeroHeight = () => {
@@ -40,61 +139,111 @@ export function Hero() {
     return screenSize.lessThan('sm') ? 'size-20' : screenSize.lessThan('md') ? 'size-24' : 'size-32';
   };
 
-  // Items for the album grid; first item opens a Figma link in a new tab
-  const albumItems = new Array(9).fill(0).map((_, i) => ({
-    id: `disc-${i + 1}`,
-    title: `Disc ${i + 1}`,
-                onClick: i === 0 ? () => window.open(
-                  'https://www.figma.com/proto/5J0BiJ9DUAak9ADjciKolR/Ng-Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=628-63951&starting-point-node-id=601%3A73257&scaling=scale-down-width&content-scaling=fixed&t=O1FOkD94Iru5awBL-1',
-                  '_blank',
-                  'noopener,noreferrer'
-                ) : i === 1 ? () => window.open(
-                  'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
-                  '_blank',
-                  'noopener,noreferrer'
-                ) : i === 2 ? () => window.open(
-                  'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1',
-                  '_blank',
-                  'noopener,noreferrer'
-                ) : i === 3 ? () => window.open(
-      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 4 ? () => window.open(
-      'https://www.llmcook.com',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 5 ? () => window.open(
-      'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 6 ? () => window.open(
-      'https://evangeline.webflow.io/work/locker-app',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 7 ? () => window.open(
-      'https://loveletter.lovable.app/',
-      '_blank',
-      'noopener,noreferrer'
-    ) : i === 8 ? () => window.open('/case-studies/cromatic-branding-website', '_self') : undefined,
-    discSrc: i === 0 ? '/images/the disc-pomelo-new.png'
+  // Items for the album grid with animation support
+  // Map first 6 discs to existing portfolio links (work category)
+  const workItems = portfolioItems.filter((p) => p.category === 'work').slice(0, 6);
+  // Desired sleeve labels by position (matches provided screenshot)
+  const sleeveTitles = [
+    'Pomelo',
+    'Pomelo.com',
+    'Cromatic',
+    'About Me',
+    'AI Vibecode Tools',
+    'Love Letter',
+    'Parcel Locker',
+    'Love Letter',
+    'Cromatic',
+  ];
+  const sleeveSubtitles = [
+    'Send money',
+    'Website',
+    'TechBio',
+    'Design',
+    'Guide',
+    'Web App',
+    'Mobile App',
+    'Web App',
+    'Website',
+  ];
+
+  let albumItems: any[] = workItems.map((item, i) => {
+    const discId = `disc-${i + 1}`;
+    const discSrc = i === 0 ? '/images/the disc-pomelo-new.png'
       : i === 1 ? '/images/pomelo-2-disc-new2.png'
       : i === 2 ? '/images/disc-cromatic-new.png'
       : i === 3 ? '/images/disc-aboutme.png'
-      : i === 4 ? '/images/disc-llmcook-new.png'
-      : i === 5 ? '/images/disc-sanrio.png'
-      : i === 6 ? '/images/disc-locker.png'
-      : i === 7 ? '/images/disc-loveletter.png'
-      : i === 8 ? '/images/disc-cromatic2.png'
-      : '/images/the disc-pomelo-new.png',
-    sleeveTitle: i === 0 ? 'Pomelo' : i === 1 ? 'Pomelo.com' : i === 2 ? 'Cromatic' : i === 3 ? 'About Me' : i === 4 ? 'LLMCook' : i === 5 ? 'Sanrio' : i === 6 ? 'Parcel Locker' : i === 7 ? 'Love Letter' : i === 8 ? 'Cromatic' : 'Project',
-    sleeveSubtitle: i === 0 ? 'Send money' : i === 1 ? 'Website' : i === 2 ? 'TechBio' : i === 3 ? 'Design' : i === 4 ? 'Game' : i === 5 ? 'Web3 Campaigns' : i === 6 ? 'Mobile App' : i === 7 ? 'Web App' : i === 8 ? 'Website' : 'Coming Soon',
+      : i === 4 ? '/images/stateofvibecode/stateofvibedisc.png'
+      : '/images/disc-loveletter.png';
+
+    // Override URL for Disc 2 (Pomelo.com) per request
+    const overrideHref = i === 1
+      ? 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482'
+      : i === 2
+      ? 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1'
+      : i === 3
+      ? 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121'
+      : i === 4
+      ? 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing'
+      : i === 5
+      ? 'https://loveletter.lovable.app/'
+      : item.href;
+    const overrideExternal = (i === 1 || i === 2 || i === 3 || i === 4 || i === 5) ? true : item.external;
+
+    return {
+      id: discId,
+      title: sleeveTitles[i],
+      onClick: (event?: React.MouseEvent) => handleDiscClick(discId, discSrc, event, overrideHref, overrideExternal),
+      discSrc: discSrc,
+      sleeveTitle: sleeveTitles[i],
+      sleeveSubtitle: sleeveSubtitles[i],
+      sleeveBottomCaption: undefined,
+      href: overrideHref,
+      external: overrideExternal,
+    };
+  });
+
+  // Append Sanrio (Disc 7)
+  albumItems = albumItems.concat({
+    id: 'disc-7',
+    title: 'Sanrio',
+    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-7', '/images/disc-sanrio.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1', true),
+    discSrc: '/images/disc-sanrio.png',
+    sleeveTitle: 'Sanrio',
+    sleeveSubtitle: 'Web3 Campaigns',
     sleeveBottomCaption: undefined,
-  }));
+    href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
+    external: true,
+  });
+
+  // Append Parcel Locker (Disc 8)
+  albumItems = albumItems.concat({
+    id: 'disc-8',
+    title: 'Parcel Locker',
+    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-8', '/images/disc-locker.png', event, 'https://evangeline.webflow.io/work/locker-app', true),
+    discSrc: '/images/disc-locker.png',
+    sleeveTitle: 'Parcel Locker',
+    sleeveSubtitle: 'Mobile App',
+    sleeveBottomCaption: undefined,
+    href: 'https://evangeline.webflow.io/work/locker-app',
+    external: true,
+  });
+
+  // Append Cromatic Website (Disc 9)
+  albumItems = albumItems.concat({
+    id: 'disc-9',
+    title: 'Cromatic',
+    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-9', '/images/disc-cromatic2.png', event, 'https://evangeline.design/case-studies/cromatic-branding-website/', true),
+    discSrc: '/images/disc-cromatic2.png',
+    sleeveTitle: 'Cromatic',
+    sleeveSubtitle: 'Website',
+    sleeveBottomCaption: undefined,
+    href: 'https://evangeline.design/case-studies/cromatic-branding-website/',
+    external: true,
+  });
 
   return (
     <CursorProvider>
-      <div className={`relative w-full min-h-screen flex items-start justify-center text-center text-pretty overflow-visible rounded-[24px]`}>
+      <div className={`hero-section relative w-full min-h-screen flex items-start justify-center text-center text-pretty overflow-visible rounded-[24px]`}>
       
       {/* Website Background Image */}
       <div className="absolute inset-0 z-0 rounded-[24px]"
@@ -260,14 +409,88 @@ export function Hero() {
           </div>
         </div>
 
-        {/* New TV + Album section */}
-        <div className={`relative z-30 ${screenSize.lessThan('md') ? 'mt-20' : 'mt-32'} flex flex-col items-center gap-8 pb-20`}>
-          <RetroTV width={300} className="mt-10" />
+                    {/* New TV + Album section */}
+                    <div className={`relative z-30 ${screenSize.lessThan('md') ? 'mt-20' : 'mt-32'} flex flex-col items-center gap-8 pb-20`}>
+                      <RetroTV 
+                        width={300} 
+                        className="mt-10" 
+                        tvState={tvState}
+                        currentDisc={currentDisc || undefined}
+                        videoSrc={currentVideo || '/evangelineng-design-hackathon.mov'}
+                        onVideoEnd={handleVideoEnd}
+                        onScreenClick={() => {
+                          if (tvState === 'playing') {
+                            setTvState('static');
+                          } else {
+                            setTvState('playing');
+                          }
+                        }}
+                      />
           <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
           <AlbumGrid
-            className="w-full max-w-7xl"
+            className="w-full max-w-7xl mx-auto"
             items={albumItems}
+            animatingDiscId={animatingDiscId}
+            tvState={tvState}
           />
+          
+          {/* Flying disc that travels across screen */}
+          <AnimatePresence>
+            {animatingDiscId && currentDisc && (
+              <motion.div
+                className="absolute z-50 pointer-events-none"
+                initial={{ 
+                  x: 0, 
+                  y: 0, 
+                  scale: 1,
+                  rotate: 0,
+                  rotateX: 0,
+                  rotateY: 0,
+                  skewX: 0,
+                  skewY: 0,
+                  opacity: 1
+                }}
+                animate={{
+                  x: [0, 0, 0], // Stay centered horizontally
+                  y: [300, 100, 0], // Move up to screen center
+                  scale: [1, 1.05, 1], // Slight emphasis
+                  rotate: [0, 5, 0],
+                  rotateX: [0, 5, 0],
+                  rotateY: [0, 0, 0],
+                  skewX: [0, 0, 0],
+                  skewY: [0, 0, 0],
+                  opacity: [1, 1, 1]
+                }}
+                transition={{
+                  duration: 1.0,
+                  times: [0, 0.6, 1],
+                  ease: "easeOut"
+                }}
+                style={{
+                  width: screenSize.lessThan('md') ? '134px' : '161px', // Match disc card size
+                  height: screenSize.lessThan('md') ? '134px' : '161px', // Match disc card size
+                  left: '50%',
+                  top: '50%', // Animate to screen center
+                  transform: 'translate(-50%, -50%)',
+                  transformStyle: 'preserve-3d', // Enable 3D transforms
+                  perspective: '800px', // Closer perspective for more dramatic effect
+                  zIndex: 50 // Ensure it's above other elements
+                }}
+              >
+                <img
+                  src={currentDisc}
+                  alt="Flying disc"
+                  className="w-full h-full object-contain"
+                  style={{
+                    transform: 'translateZ(0)', // Force hardware acceleration
+                    backfaceVisibility: 'hidden', // Clean 3D rendering
+                    filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3)) drop-shadow(0 5px 10px rgba(0,0,0,0.2))', // Enhanced shadow
+                    imageRendering: 'crisp-edges' // Sharp rendering for better 3D effect
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Portfolio Grid - Hidden for now as per request */}
