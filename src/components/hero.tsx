@@ -149,9 +149,9 @@ export function Hero() {
     'Cromatic',
     'About Me',
     'AI Vibecode Tools',
-    'Love Letter',
+    'Timer',
     'Parcel Locker',
-    'Love Letter',
+    'Timer',
     'Cromatic',
   ];
   const sleeveSubtitles = [
@@ -160,9 +160,9 @@ export function Hero() {
     'TechBio',
     'Design',
     'Guide',
-    'Web App',
+    'Web + Extension',
     'Mobile App',
-    'Web App',
+    'Web + Extension',
     'Website',
   ];
 
@@ -183,7 +183,7 @@ export function Hero() {
       : i === 2 ? '/images/disc-cromatic-new.png'
       : i === 3 ? '/images/disc-aboutme.png'
       : i === 4 ? '/images/stateofvibecode/stateofvibedisc.png'
-      : '/images/disc-loveletter.png';
+      : '/images/disc-timer.png';
 
     // Override URL for Disc 2 (Pomelo.com) per request
     const overrideHref = i === 1
@@ -195,7 +195,7 @@ export function Hero() {
       : i === 4
       ? 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing'
       : i === 5
-      ? 'https://loveletter.lovable.app/'
+      ? 'https://countdowntodate.netlify.app/'
       : item.href;
     const overrideExternal = (i === 1 || i === 2 || i === 3 || i === 4 || i === 5) ? true : item.external;
 
