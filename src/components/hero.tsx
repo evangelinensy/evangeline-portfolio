@@ -183,7 +183,7 @@ export function Hero() {
       : i === 2 ? '/images/disc-cromatic-new.png'
       : i === 3 ? '/images/disc-aboutme.png'
       : i === 4 ? '/images/stateofvibecode/stateofvibedisc.png'
-      : '/images/disc-timer.png';
+      : '/images/timer-disc.png';
 
     // Override URL for Disc 2 (Pomelo.com) per request
     const overrideHref = i === 1
