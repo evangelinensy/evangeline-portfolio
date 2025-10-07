@@ -15,7 +15,7 @@ export default function Page() {
             Spotify GenAI Playlist Covers
           </h1>
           <p className="mt-3 text-[18px]" style={{ color: '#A0A0A0' }}>
-            Designed on Figma, coded with Claude Code, built on top of Dreamlayer and ComfyUI.
+            A design-to-code project enabling AI-generated playlist covers for Spotify. Designed in Figma and built with Claude Code, integrating Stable Diffusion via ComfyUI and Dreamlayer. Demonstrates full-stack product development from UX design through AI model integration.
           </p>
         </header>
 
