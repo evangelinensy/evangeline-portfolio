@@ -145,22 +145,22 @@ export function Hero() {
   // Desired sleeve labels by position (matches provided screenshot)
   const sleeveTitles = [
     'Pomelo',
-    'Pomelo.com',
-    'Cromatic',
+    'Spotify GenAI Covers',
+    'Timer',
     'About Me',
     'AI Vibecode Tools',
-    'Timer',
+    'Cromatic',
     'Parcel Locker',
     'Timer',
     'Cromatic',
   ];
   const sleeveSubtitles = [
     'Send money',
-    'Website',
-    'TechBio',
+    '',
+    'Web + Extension',
     'Design',
     'Guide',
-    'Web + Extension',
+    'TechBio',
     'Mobile App',
     'Web + Extension',
     'Website',
@@ -179,25 +179,25 @@ export function Hero() {
   }> = workItems.map((item, i) => {
     const discId = `disc-${i + 1}`;
     const discSrc = i === 0 ? '/images/the disc-pomelo-new.png'
-      : i === 1 ? '/images/pomelo-2-disc-new2.png'
-      : i === 2 ? '/images/disc-cromatic-new.png'
+      : i === 1 ? '/images/spotify-disc2.png'
+      : i === 2 ? '/images/timer-disc.png'
       : i === 3 ? '/images/disc-aboutme.png'
       : i === 4 ? '/images/stateofvibecode/stateofvibedisc.png'
-      : '/images/timer-disc.png'; // Updated timer disc with clean background
+      : '/images/disc-cromatic-new.png'; // Cromatic TechBio
 
-    // Override URL for Disc 2 (Pomelo.com) per request
+    // Override URL for each disc
     const overrideHref = i === 1
-      ? 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482'
+      ? '/spotifyplaylist'
       : i === 2
-      ? 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1'
+      ? 'https://countdowntodate.netlify.app/'
       : i === 3
       ? 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121'
       : i === 4
       ? 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing'
       : i === 5
-      ? 'https://countdowntodate.netlify.app/'
+      ? 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1'
       : item.href;
-    const overrideExternal = (i === 1 || i === 2 || i === 3 || i === 4 || i === 5) ? true : item.external;
+    const overrideExternal = (i === 2 || i === 3 || i === 4 || i === 5) ? true : item.external;
 
     return {
       id: discId,
@@ -225,16 +225,16 @@ export function Hero() {
     external: true,
   });
 
-  // Append Parcel Locker (Disc 8)
+  // Append Pomelo.com Website (Disc 8)
   albumItems = albumItems.concat({
     id: 'disc-8',
-    title: 'Parcel Locker',
-    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-8', '/images/disc-locker.png', event, 'https://evangeline.webflow.io/work/locker-app', true),
-    discSrc: '/images/disc-locker.png',
-    sleeveTitle: 'Parcel Locker',
-    sleeveSubtitle: 'Mobile App',
+    title: 'Pomelo.com',
+    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-8', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
+    discSrc: '/images/pomelo-2-disc-new2.png',
+    sleeveTitle: 'Pomelo.com',
+    sleeveSubtitle: 'Website',
     sleeveBottomCaption: undefined,
-    href: 'https://evangeline.webflow.io/work/locker-app',
+    href: 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
     external: true,
   });
 
