@@ -29,7 +29,7 @@ export default function Page() {
             muted
             playsInline
           >
-            <source src="/videos/Spotifyplaylistdemo.mov" type="video/mp4" />
+            <source src="/videos/Spotifyplaylistdemo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
