@@ -139,34 +139,8 @@ export function Hero() {
     return screenSize.lessThan('sm') ? 'size-20' : screenSize.lessThan('md') ? 'size-24' : 'size-32';
   };
 
-  // Items for the album grid with animation support
-  // Map first 6 discs to existing portfolio links (work category)
-  const workItems = portfolioItems.filter((p) => p.category === 'work').slice(0, 6);
-  // Desired sleeve labels by position (matches provided screenshot)
-  const sleeveTitles = [
-    'Pomelo',
-    'Spotify GenAI Covers',
-    'Timer',
-    'About Me',
-    'AI Vibecode Tools',
-    'Cromatic',
-    'Parcel Locker',
-    'Timer',
-    'Cromatic',
-  ];
-  const sleeveSubtitles = [
-    'Send money',
-    '',
-    'Web + Extension',
-    'Design',
-    'Guide',
-    'TechBio',
-    'Mobile App',
-    'Web + Extension',
-    'Website',
-  ];
-
-  let albumItems: Array<{
+  // Product Design Items (6 discs)
+  const productDesignItems: Array<{
     id: string;
     title: string;
     onClick: (event?: React.MouseEvent) => void;
@@ -176,80 +150,130 @@ export function Hero() {
     sleeveBottomCaption?: string;
     href: string | undefined;
     external: boolean | undefined;
-  }> = workItems.map((item, i) => {
-    const discId = `disc-${i + 1}`;
-    const discSrc = i === 0 ? '/images/the disc-pomelo-new.png'
-      : i === 1 ? '/images/spotify-disc2.png'
-      : i === 2 ? '/images/timer-disc.png'
-      : i === 3 ? '/images/disc-aboutme.png'
-      : i === 4 ? '/images/stateofvibecode/stateofvibedisc.png'
-      : '/images/disc-cromatic-new.png'; // Cromatic TechBio
-
-    // Override URL for each disc
-    const overrideHref = i === 1
-      ? '/spotifyplaylist'
-      : i === 2
-      ? 'https://countdowntodate.netlify.app/'
-      : i === 3
-      ? 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121'
-      : i === 4
-      ? 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing'
-      : i === 5
-      ? 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1'
-      : item.href;
-    const overrideExternal = (i === 2 || i === 3 || i === 4 || i === 5) ? true : item.external;
-
-    return {
-      id: discId,
-      title: sleeveTitles[i],
-      onClick: (event?: React.MouseEvent) => handleDiscClick(discId, discSrc, event, overrideHref, overrideExternal),
-      discSrc: discSrc,
-      sleeveTitle: sleeveTitles[i],
-      sleeveSubtitle: sleeveSubtitles[i],
+  }> = [
+    // Pomelo
+    {
+      id: 'disc-pd-1',
+      title: 'Pomelo',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/the disc-pomelo-new.png', event, portfolioItems[0].href, portfolioItems[0].external),
+      discSrc: '/images/the disc-pomelo-new.png',
+      sleeveTitle: 'Pomelo',
+      sleeveSubtitle: 'Send money',
       sleeveBottomCaption: undefined,
-      href: overrideHref,
-      external: overrideExternal,
-    };
-  });
+      href: portfolioItems[0].href,
+      external: portfolioItems[0].external,
+    },
+    // About Me
+    {
+      id: 'disc-pd-2',
+      title: 'About Me',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/disc-aboutme.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121', true),
+      discSrc: '/images/disc-aboutme.png',
+      sleeveTitle: 'About Me',
+      sleeveSubtitle: 'Design',
+      sleeveBottomCaption: undefined,
+      href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
+      external: true,
+    },
+    // Cromatic TechBio
+    {
+      id: 'disc-pd-3',
+      title: 'Cromatic',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-3', '/images/disc-cromatic-new.png', event, 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1', true),
+      discSrc: '/images/disc-cromatic-new.png',
+      sleeveTitle: 'Cromatic',
+      sleeveSubtitle: 'TechBio',
+      sleeveBottomCaption: undefined,
+      href: 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1',
+      external: true,
+    },
+    // Sanrio
+    {
+      id: 'disc-pd-4',
+      title: 'Sanrio',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-4', '/images/disc-sanrio.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1', true),
+      discSrc: '/images/disc-sanrio.png',
+      sleeveTitle: 'Sanrio',
+      sleeveSubtitle: 'Web3 Campaigns',
+      sleeveBottomCaption: undefined,
+      href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
+      external: true,
+    },
+    // Pomelo.com Website
+    {
+      id: 'disc-pd-5',
+      title: 'Pomelo.com',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-5', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
+      discSrc: '/images/pomelo-2-disc-new2.png',
+      sleeveTitle: 'Pomelo.com',
+      sleeveSubtitle: 'Website',
+      sleeveBottomCaption: undefined,
+      href: 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
+      external: true,
+    },
+    // Cromatic Website
+    {
+      id: 'disc-pd-6',
+      title: 'Cromatic',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-6', '/images/disc-cromatic2.png', event, 'https://evangeline.design/case-studies/cromatic-branding-website/', true),
+      discSrc: '/images/disc-cromatic2.png',
+      sleeveTitle: 'Cromatic',
+      sleeveSubtitle: 'Website',
+      sleeveBottomCaption: undefined,
+      href: 'https://evangeline.design/case-studies/cromatic-branding-website/',
+      external: true,
+    },
+  ];
 
-  // Append Sanrio (Disc 7)
-  albumItems = albumItems.concat({
-    id: 'disc-7',
-    title: 'Sanrio',
-    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-7', '/images/disc-sanrio.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1', true),
-    discSrc: '/images/disc-sanrio.png',
-    sleeveTitle: 'Sanrio',
-    sleeveSubtitle: 'Web3 Campaigns',
-    sleeveBottomCaption: undefined,
-    href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
-    external: true,
-  });
-
-  // Append Pomelo.com Website (Disc 8)
-  albumItems = albumItems.concat({
-    id: 'disc-8',
-    title: 'Pomelo.com',
-    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-8', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
-    discSrc: '/images/pomelo-2-disc-new2.png',
-    sleeveTitle: 'Pomelo.com',
-    sleeveSubtitle: 'Website',
-    sleeveBottomCaption: undefined,
-    href: 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
-    external: true,
-  });
-
-  // Append Cromatic Website (Disc 9)
-  albumItems = albumItems.concat({
-    id: 'disc-9',
-    title: 'Cromatic',
-    onClick: (event?: React.MouseEvent) => handleDiscClick('disc-9', '/images/disc-cromatic2.png', event, 'https://evangeline.design/case-studies/cromatic-branding-website/', true),
-    discSrc: '/images/disc-cromatic2.png',
-    sleeveTitle: 'Cromatic',
-    sleeveSubtitle: 'Website',
-    sleeveBottomCaption: undefined,
-    href: 'https://evangeline.design/case-studies/cromatic-branding-website/',
-    external: true,
-  });
+  // Design Engineering with AI Items (3 discs, expandable for future plugins)
+  const designEngineeringItems: Array<{
+    id: string;
+    title: string;
+    onClick: (event?: React.MouseEvent) => void;
+    discSrc: string;
+    sleeveTitle: string;
+    sleeveSubtitle: string;
+    sleeveBottomCaption?: string;
+    href: string | undefined;
+    external: boolean | undefined;
+  }> = [
+    // Spotify GenAI Covers
+    {
+      id: 'disc-ai-1',
+      title: 'Spotify GenAI Covers',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1', '/images/spotify-disc2.png', event, '/spotifyplaylist', false),
+      discSrc: '/images/spotify-disc2.png',
+      sleeveTitle: 'Spotify GenAI Covers',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: '/spotifyplaylist',
+      external: false,
+    },
+    // Timer
+    {
+      id: 'disc-ai-2',
+      title: 'Timer',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-2', '/images/timer-disc.png', event, 'https://countdowntodate.netlify.app/', true),
+      discSrc: '/images/timer-disc.png',
+      sleeveTitle: 'Timer',
+      sleeveSubtitle: 'Web + Extension',
+      sleeveBottomCaption: undefined,
+      href: 'https://countdowntodate.netlify.app/',
+      external: true,
+    },
+    // AI Vibecode Tools
+    {
+      id: 'disc-ai-3',
+      title: 'AI Vibecode Tools',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-3', '/images/stateofvibecode/stateofvibedisc.png', event, 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing', true),
+      discSrc: '/images/stateofvibecode/stateofvibedisc.png',
+      sleeveTitle: 'AI Vibecode Tools',
+      sleeveSubtitle: 'Guide',
+      sleeveBottomCaption: undefined,
+      href: 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing',
+      external: true,
+    },
+  ];
 
   return (
     <CursorProvider>
@@ -421,9 +445,9 @@ export function Hero() {
 
                     {/* New TV + Album section */}
                     <div className={`relative z-30 ${screenSize.lessThan('md') ? 'mt-20' : 'mt-32'} flex flex-col items-center gap-8 pb-20`}>
-                      <RetroTV 
-                        width={300} 
-                        className="mt-10" 
+                      <RetroTV
+                        width={300}
+                        className="mt-10"
                         tvState={tvState}
                         currentDisc={currentDisc || undefined}
                         videoSrc={currentVideo || '/evangelineng-design-hackathon.mov'}
@@ -436,13 +460,28 @@ export function Hero() {
                           }
                         }}
                       />
-          <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Select a work</p>
-          <AlbumGrid
-            className="w-full max-w-7xl mx-auto"
-            items={albumItems}
-            animatingDiscId={animatingDiscId}
-            tvState={tvState}
-          />
+
+          {/* Design Engineering with AI Section */}
+          <div className="w-full flex flex-col items-center gap-6 mt-8">
+            <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Design Engineering with AI</p>
+            <AlbumGrid
+              className="w-full max-w-7xl mx-auto"
+              items={designEngineeringItems}
+              animatingDiscId={animatingDiscId}
+              tvState={tvState}
+            />
+          </div>
+
+          {/* Product Design Section */}
+          <div className="w-full flex flex-col items-center gap-6 mt-16">
+            <p className="text-sm" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>Product Design</p>
+            <AlbumGrid
+              className="w-full max-w-7xl mx-auto"
+              items={productDesignItems}
+              animatingDiscId={animatingDiscId}
+              tvState={tvState}
+            />
+          </div>
           
           {/* Flying disc that travels across screen */}
           <AnimatePresence>

@@ -19,9 +19,10 @@ type AlbumGridProps = {
   className?: string;
   animatingDiscId?: string | null;
   tvState?: string;
+  title?: string;
 };
 
-export function AlbumGrid({ items, className = "", animatingDiscId, tvState }: AlbumGridProps) {
+export function AlbumGrid({ items, className = "", animatingDiscId, tvState, title }: AlbumGridProps) {
   const getDiscAnimationState = (itemId: string) => {
     if (animatingDiscId === itemId) {
       switch (tvState) {
@@ -37,6 +38,11 @@ export function AlbumGrid({ items, className = "", animatingDiscId, tvState }: A
 
   return (
     <div className={`rounded-[60px] bg-white/30 backdrop-blur-[66px] shadow-[0_20px_60px_rgba(0,0,0,0.12)] p-6 sm:p-8 md:p-12 lg:p-16 ${className}`}>
+      {title && (
+        <p className="text-sm text-center mb-6 sm:mb-8" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>
+          {title}
+        </p>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-6xl mx-auto place-items-center">
         {items.map((item) => (
           <DiscCard
