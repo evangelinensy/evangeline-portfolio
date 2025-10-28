@@ -7,7 +7,6 @@ import {
   Github,
   Linkedin,
   Play,
-  BookOpen,
   Youtube,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -40,12 +39,6 @@ const navigationItems = [
   //   href: '/play',
   //   external: false,
   // },
-  {
-    title: 'Medium',
-    icon: <BookOpen className='h-full w-full text-neutral-300' />,
-    href: 'https://yournocodefriend.medium.com/',
-    external: true,
-  },
   {
     title: 'Substack',
     icon: <FileText className='h-full w-full text-neutral-300' />,
