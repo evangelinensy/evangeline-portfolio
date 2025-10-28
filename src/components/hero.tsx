@@ -163,16 +163,16 @@ export function Hero() {
       href: portfolioItems[0].href,
       external: portfolioItems[0].external,
     },
-    // About Me
+    // Pomelo.com Website
     {
       id: 'disc-pd-2',
-      title: 'About Me',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/disc-aboutme.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121', true),
-      discSrc: '/images/disc-aboutme.png',
-      sleeveTitle: 'About Me',
-      sleeveSubtitle: 'Design',
+      title: 'Pomelo.com',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
+      discSrc: '/images/pomelo-2-disc-new2.png',
+      sleeveTitle: 'Pomelo.com',
+      sleeveSubtitle: 'Website',
       sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
+      href: 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
       external: true,
     },
     // Cromatic TechBio
@@ -199,16 +199,16 @@ export function Hero() {
       href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
       external: true,
     },
-    // Pomelo.com Website
+    // About Me
     {
       id: 'disc-pd-5',
-      title: 'Pomelo.com',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-5', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
-      discSrc: '/images/pomelo-2-disc-new2.png',
-      sleeveTitle: 'Pomelo.com',
-      sleeveSubtitle: 'Website',
+      title: 'About Me',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-5', '/images/disc-aboutme.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121', true),
+      discSrc: '/images/disc-aboutme.png',
+      sleeveTitle: 'About Me',
+      sleeveSubtitle: 'Design',
       sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482',
+      href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
       external: true,
     },
     // Cromatic Website
@@ -225,7 +225,7 @@ export function Hero() {
     },
   ];
 
-  // Design Engineering with AI Items (3 discs, expandable for future plugins)
+  // Design Engineering with AI Items (5 discs, expandable for future plugins)
   const designEngineeringItems: Array<{
     id: string;
     title: string;
@@ -237,29 +237,29 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
-    // Spotify GenAI Covers
+    // Product Design Copilot
     {
       id: 'disc-ai-1',
-      title: 'Spotify GenAI Covers',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1', '/images/spotify-disc2.png', event, '/spotifyplaylist', false),
-      discSrc: '/images/spotify-disc2.png',
-      sleeveTitle: 'Spotify GenAI Covers',
+      title: 'Product Design Copilot',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1', '/images/disc-designcopilot.png', event, '/product-design-copilot', false),
+      discSrc: '/images/disc-designcopilot.png',
+      sleeveTitle: 'Product Design Copilot',
       sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: '/spotifyplaylist',
+      href: '/product-design-copilot',
       external: false,
     },
-    // Timer
+    // AI Copy Plugin
     {
       id: 'disc-ai-2',
-      title: 'Timer',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-2', '/images/timer-disc.png', event, 'https://countdowntodate.netlify.app/', true),
-      discSrc: '/images/timer-disc.png',
-      sleeveTitle: 'Timer',
-      sleeveSubtitle: 'Web + Extension',
+      title: 'AI Copy Plugin',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-2', '/images/disc-copygen.png', event, '/ai-copy-plugin', false),
+      discSrc: '/images/disc-copygen.png',
+      sleeveTitle: 'AI Copy Plugin',
+      sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://countdowntodate.netlify.app/',
-      external: true,
+      href: '/ai-copy-plugin',
+      external: false,
     },
     // AI Vibecode Tools
     {
@@ -271,6 +271,30 @@ export function Hero() {
       sleeveSubtitle: 'Guide',
       sleeveBottomCaption: undefined,
       href: 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing',
+      external: true,
+    },
+    // Spotify GenAI Covers
+    {
+      id: 'disc-ai-4',
+      title: 'Spotify GenAI Covers',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-4', '/images/spotify-disc2.png', event, '/spotifyplaylist', false),
+      discSrc: '/images/spotify-disc2.png',
+      sleeveTitle: 'Spotify GenAI Covers',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: '/spotifyplaylist',
+      external: false,
+    },
+    // Timer
+    {
+      id: 'disc-ai-5',
+      title: 'Timer',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-5', '/images/timer-disc.png', event, 'https://countdowntodate.netlify.app/', true),
+      discSrc: '/images/timer-disc.png',
+      sleeveTitle: 'Timer',
+      sleeveSubtitle: 'Web + Extension',
+      sleeveBottomCaption: undefined,
+      href: 'https://countdowntodate.netlify.app/',
       external: true,
     },
   ];
