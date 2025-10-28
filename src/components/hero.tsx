@@ -261,16 +261,16 @@ export function Hero() {
       href: '/ai-copy-plugin',
       external: false,
     },
-    // AI Vibecode Tools
+    // Research Agent
     {
       id: 'disc-ai-3',
-      title: 'AI Vibecode Tools',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-3', '/images/stateofvibecode/stateofvibedisc.png', event, 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing', true),
-      discSrc: '/images/stateofvibecode/stateofvibedisc.png',
-      sleeveTitle: 'AI Vibecode Tools',
-      sleeveSubtitle: 'Guide',
+      title: 'Research Agent',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-3', '/images/disc-researchagent.png', event, 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5', true),
+      discSrc: '/images/disc-researchagent.png',
+      sleeveTitle: 'Research Agent',
+      sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing',
+      href: 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5',
       external: true,
     },
     // Spotify GenAI Covers
@@ -295,6 +295,18 @@ export function Hero() {
       sleeveSubtitle: 'Web + Extension',
       sleeveBottomCaption: undefined,
       href: 'https://countdowntodate.netlify.app/',
+      external: true,
+    },
+    // AI Vibecode Tools
+    {
+      id: 'disc-ai-6',
+      title: 'AI Vibecode Tools',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-6', '/images/stateofvibecode/stateofvibedisc.png', event, 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing', true),
+      discSrc: '/images/stateofvibecode/stateofvibedisc.png',
+      sleeveTitle: 'AI Vibecode Tools',
+      sleeveSubtitle: 'Guide',
+      sleeveBottomCaption: undefined,
+      href: 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing',
       external: true,
     },
   ];
