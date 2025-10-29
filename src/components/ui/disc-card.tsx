@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { useScreenSize } from "@/hooks/use-screen-size";
+import { useSound } from "@/hooks/use-sound";
 
 type DiscAnimationState = 'idle' | 'ejecting' | 'moving' | 'inserting' | 'inserted';
 
@@ -45,6 +46,8 @@ export function DiscCard({
 }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   const screenSize = useScreenSize();
+  const playClickSound = useSound("/sounds/click.mp3", 0.5);
+
   // Visual constants tuned to Figma reference
   const sleeveWidthPercent = 50; // Optimized width per Figma spec
   const discPercent = 84; // disc diameter relative to card
@@ -116,6 +119,7 @@ export function DiscCard({
       onMouseEnter={() => setEject(true)}
       onMouseLeave={() => setEject(false)}
       onClick={(e) => {
+        playClickSound();
         setEject((v) => !v);
         onClick?.(e);
       }}
