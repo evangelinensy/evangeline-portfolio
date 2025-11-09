@@ -128,10 +128,23 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
     // Skip cursor hiding on touch devices
     if (isTouchDevice) return;
 
-    if (active) document.body.style.cursor = "none";
+    // Only modify cursor if we're inside the tracker wrapper
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    if (active) {
+      // Store original cursor
+      const originalCursor = document.body.style.cursor || "";
+      wrapper.setAttribute("data-original-cursor", originalCursor);
+      document.body.style.cursor = "none";
+    }
 
     return () => {
-      document.body.style.cursor = "default";
+      // Restore original cursor only if we set it
+      const originalCursor = wrapper?.getAttribute("data-original-cursor");
+      if (originalCursor !== null) {
+        document.body.style.cursor = originalCursor || "";
+      }
     };
   }, [active, isTouchDevice]);
 

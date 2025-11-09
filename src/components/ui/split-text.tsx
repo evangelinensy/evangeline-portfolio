@@ -64,7 +64,8 @@ const SplitText: React.FC<SplitTextProps> = ({
 
   return (
     <motion.div
-      className={`${className} text-${textAlign}`}
+      className={className}
+      style={{ textAlign }}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
