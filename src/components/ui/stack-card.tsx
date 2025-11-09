@@ -49,11 +49,9 @@ const cards: [string | React.ReactNode, string][] = [
         <>
             <span style={{ fontSize: "19px", fontWeight: 500, fontFamily: "Bricolage Grotesque, sans-serif" }}>Inviting</span>
             <br /><br />
-            The best products feel welcoming. They invite users into a delightful experience. The best products are also built collaboratively, so I invite collaborators into the design process.
+            The best products are built collaboratively, I create an inviting collaborative experience into the design process.
             <br /><br />
-            I do this by:
-            <br />
-            ⊹ Speaking common languages such as user needs
+            ⊹ Speak common languages
             <br />
             ⊹ Create shared artifacts
             <br />

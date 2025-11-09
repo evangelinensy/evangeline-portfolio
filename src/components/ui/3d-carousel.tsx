@@ -1,6 +1,6 @@
 "use client"
 
-import { memo, useEffect, useLayoutEffect, useMemo, useState } from "react"
+import { memo, useEffect, useLayoutEffect, useMemo, useState, useRef } from "react"
 import {
   AnimatePresence,
   motion,
@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion"
+import { X } from "lucide-react"
 
 export const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
@@ -93,6 +94,8 @@ const Carousel = memo(
       rotation,
       (value) => `rotate3d(0, 1, 0, ${value}deg)`
     )
+    const hasDraggedRef = useRef(false)
+    const dragStartRef = useRef<{ x: number; y: number } | null>(null)
 
     return (
       <div
@@ -112,22 +115,42 @@ const Carousel = memo(
             width: cylinderWidth,
             transformStyle: "preserve-3d",
           }}
-          onDrag={(_, info) =>
-            isCarouselActive &&
-            rotation.set(rotation.get() + info.offset.x * 0.05)
-          }
-          onDragEnd={(_, info) =>
-            isCarouselActive &&
-            controls.start({
-              rotateY: rotation.get() + info.velocity.x * 0.05,
-              transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 30,
-                mass: 0.1,
-              },
-            })
-          }
+          onDragStart={(_, info) => {
+            dragStartRef.current = { x: info.point.x, y: info.point.y }
+            hasDraggedRef.current = false
+          }}
+          onDrag={(_, info) => {
+            if (dragStartRef.current) {
+              const distance = Math.sqrt(
+                Math.pow(info.point.x - dragStartRef.current.x, 2) + 
+                Math.pow(info.point.y - dragStartRef.current.y, 2)
+              )
+              if (distance > 10) {
+                hasDraggedRef.current = true
+              }
+            }
+            if (isCarouselActive) {
+              rotation.set(rotation.get() + info.offset.x * 0.05)
+            }
+          }}
+          onDragEnd={(_, info) => {
+            if (isCarouselActive) {
+              controls.start({
+                rotateY: rotation.get() + info.velocity.x * 0.05,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 30,
+                  mass: 0.1,
+                },
+              })
+            }
+            // Reset drag state after a short delay
+            setTimeout(() => {
+              hasDraggedRef.current = false
+              dragStartRef.current = null
+            }, 100)
+          }}
           animate={controls}
         >
           {cards.map((imgUrl, i) => (
@@ -140,7 +163,12 @@ const Carousel = memo(
                   i * (360 / faceCount)
                 }deg) translateZ(${radius}px)`,
               }}
-              onClick={() => handleClick(imgUrl, i)}
+              onClick={(e) => {
+                // Only open modal if there was no significant drag
+                if (!hasDraggedRef.current) {
+                  handleClick(imgUrl, i)
+                }
+              }}
             >
               <motion.img
                 src={imgUrl}
@@ -198,10 +226,20 @@ function ThreeDPhotoCarousel() {
             style={{ willChange: "opacity" }}
             transition={transitionOverlay}
           >
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                handleClose()
+              }}
+              className="absolute top-4 right-4 z-[60] bg-white/30 hover:bg-white/40 rounded-full p-2 shadow-lg transition-colors"
+              aria-label="Close image"
+            >
+              <X className="w-5 h-5 text-gray-800" />
+            </button>
             <motion.img
               layoutId={`img-${activeImg}`}
               src={activeImg}
-              className="max-w-full max-h-full rounded-lg shadow-lg"
+              className="w-full h-full object-cover rounded-3xl"
               initial={{ scale: 0.5 }} // Start with a smaller scale
               animate={{ scale: 1 }} // Animate to full scale
               transition={{
