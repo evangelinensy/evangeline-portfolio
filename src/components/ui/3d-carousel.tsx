@@ -212,6 +212,7 @@ function ThreeDPhotoCarousel() {
               style={{
                 willChange: "transform",
               }}
+              onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
         )}

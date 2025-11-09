@@ -218,6 +218,13 @@ function Card({ content, backgroundImage, i, isLastCard = false }: CardProps) {
 const cardVariants: Variants = {
     offscreen: {
         y: 300,
+        transition: {
+            type: "spring",
+            bounce: 0.2,
+            duration: 3.0,
+            stiffness: 30,
+            damping: 25,
+        },
     },
     onscreen: {
         y: 50,
@@ -292,6 +299,7 @@ const card: React.CSSProperties = {
 
 const cardLastCard: React.CSSProperties = {
     ...card,
+    height: "380px",
 }
 
 const cardWithMap: React.CSSProperties = {
@@ -308,7 +316,7 @@ const mapContainerStyle: React.CSSProperties = {
     width: "100%",
     position: "relative",
     overflow: "visible",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
 }
 
 const mapTextStyle: React.CSSProperties = {
@@ -317,7 +325,7 @@ const mapTextStyle: React.CSSProperties = {
     textAlign: "center",
     color: "#333",
     margin: 0,
-    marginTop: "-58px",
+    marginTop: "20px",
     fontFamily: "Sequel Sans Book Body, Sequel Sans, sans-serif",
     flexShrink: 0,
     position: "relative",
@@ -329,14 +337,16 @@ const mapWrapperStyle: React.CSSProperties = {
     top: 0,
     left: 0,
     right: 0,
-    flex: 1,
+    flex: "0 0 auto",
     overflow: "hidden",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
     marginTop: "0",
-    marginBottom: "-50px",
-    paddingBottom: "148px",
+    marginBottom: "0",
+    paddingBottom: "0",
+    minHeight: "293px",
+    height: "auto",
 }
 
 const mapScaleStyle: React.CSSProperties = {
@@ -344,6 +354,7 @@ const mapScaleStyle: React.CSSProperties = {
     transformOrigin: "top center",
     width: "33.33%",
     height: "33.33%",
+    maxHeight: "650px",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
