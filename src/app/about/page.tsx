@@ -55,7 +55,7 @@ export default function AboutPage() {
 
             {/* Testimonials Section */}
             <div className="mt-48 mb-16">
-              <div style={{ textAlign: "center", marginBottom: "5px" }}>
+              <div style={{ textAlign: "center", marginBottom: "40px" }}>
                 <h2 style={{ fontSize: "24px", fontWeight: 400, fontFamily: "Bricolage Grotesque, sans-serif", color: "#333", margin: 0 }}>What it&apos;s like working with me</h2>
               </div>
               <div className="flex flex-col gap-6">
