@@ -132,7 +132,7 @@ export function BlogSearch() {
                 </div>
               ) : filteredPosts.length === 0 ? (
                 <div className="p-8 text-center text-muted-foreground">
-                  No posts found for "{query}"
+                  No posts found for &ldquo;{query}&rdquo;
                 </div>
               ) : (
                 <div className="divide-y divide-border">

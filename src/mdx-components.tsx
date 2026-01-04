@@ -5,6 +5,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     img: (props) => (
       <Image
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {...(props as any)}
         width={800}
         height={600}
