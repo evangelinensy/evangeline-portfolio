@@ -21,13 +21,14 @@ import AlbumGrid from "@/components/ui/album-grid";
 export function Hero() {
   const screenSize = useScreenSize();
   const [selectedCategory, setSelectedCategory] = useState("all");
-  
+
   // Animation state management
   const [tvState, setTvState] = useState<'idle' | 'ejecting' | 'moving' | 'inserting' | 'playing' | 'static'>('idle');
   const [currentDisc, setCurrentDisc] = useState<string | null>(null);
   const [currentVideo, setCurrentVideo] = useState<string | null>(null);
   const [animatingDiscId, setAnimatingDiscId] = useState<string | null>(null);
   const [discStartPosition, setDiscStartPosition] = useState<{x: number, y: number} | null>(null);
+  const [hoveredDiscId, setHoveredDiscId] = useState<string | null>(null);
   const timeoutsRef = useRef<number[]>([]);
 
   const clearAnimationTimers = () => {
@@ -517,6 +518,7 @@ export function Hero() {
               items={designEngineeringItems}
               animatingDiscId={animatingDiscId}
               tvState={tvState}
+              onDiscHover={setHoveredDiscId}
             />
           </div>
 
@@ -528,6 +530,7 @@ export function Hero() {
               items={productDesignItems}
               animatingDiscId={animatingDiscId}
               tvState={tvState}
+              onDiscHover={setHoveredDiscId}
             />
           </div>
           
@@ -691,7 +694,15 @@ export function Hero() {
       </Cursor>
       <CursorFollow align="bottom-right" gap={40}>
         <div className="bg-white text-gray-800 border border-gray-200 text-xs px-3 py-1 rounded-md shadow-md">
-          Wanderer
+          {hoveredDiscId === 'disc-pd-1' ? (
+            <div className="text-center">
+              Email eggsvans@gmail.com
+              <br />
+              for password
+            </div>
+          ) : (
+            'Wanderer'
+          )}
         </div>
       </CursorFollow>
     </div>

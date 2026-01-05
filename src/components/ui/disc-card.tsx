@@ -25,23 +25,29 @@ type DiscCardProps = {
   animationState?: DiscAnimationState;
   /** Whether this disc is currently being animated */
   isAnimating?: boolean;
+  /** Mouse enter handler */
+  onMouseEnter?: () => void;
+  /** Mouse leave handler */
+  onMouseLeave?: () => void;
 };
 
 /**
  * DiscCard renders a CD partially inside a sleeve, using provided PNG assets.
  * Hover: disc slides left by 12px. Click: triggers onClick to start insert flow.
  */
-export function DiscCard({ 
-  className = "", 
-  onClick, 
-  discSrc = "/images/disc-pomelo.png", 
-  backgroundColor = "rgba(255,255,255,0.3)", 
-  backgroundImageSrc = "/images/disc-bg-new.png", 
-  sleeveTitle = "Pomelo", 
-  sleeveSubtitle = "Send money", 
+export function DiscCard({
+  className = "",
+  onClick,
+  discSrc = "/images/disc-pomelo.png",
+  backgroundColor = "rgba(255,255,255,0.3)",
+  backgroundImageSrc = "/images/disc-bg-new.png",
+  sleeveTitle = "Pomelo",
+  sleeveSubtitle = "Send money",
   sleeveBottomCaption = "Mobile\nApplication",
   animationState = 'idle',
-  isAnimating = false
+  isAnimating = false,
+  onMouseEnter,
+  onMouseLeave
 }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   const screenSize = useScreenSize();
@@ -113,8 +119,14 @@ export function DiscCard({
   };
   return (
     <button
-      onMouseEnter={() => setEject(true)}
-      onMouseLeave={() => setEject(false)}
+      onMouseEnter={() => {
+        setEject(true);
+        onMouseEnter?.();
+      }}
+      onMouseLeave={() => {
+        setEject(false);
+        onMouseLeave?.();
+      }}
       onClick={(e) => {
         setEject((v) => !v);
         onClick?.(e);

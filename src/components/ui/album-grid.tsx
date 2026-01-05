@@ -20,9 +20,10 @@ type AlbumGridProps = {
   animatingDiscId?: string | null;
   tvState?: string;
   title?: string;
+  onDiscHover?: (discId: string | null) => void;
 };
 
-export function AlbumGrid({ items, className = "", animatingDiscId, tvState, title }: AlbumGridProps) {
+export function AlbumGrid({ items, className = "", animatingDiscId, tvState, title, onDiscHover }: AlbumGridProps) {
   const getDiscAnimationState = (itemId: string) => {
     if (animatingDiscId === itemId) {
       switch (tvState) {
@@ -55,6 +56,8 @@ export function AlbumGrid({ items, className = "", animatingDiscId, tvState, tit
             sleeveBottomCaption={item.sleeveBottomCaption}
             animationState={getDiscAnimationState(item.id)}
             isAnimating={animatingDiscId === item.id}
+            onMouseEnter={() => onDiscHover?.(item.id)}
+            onMouseLeave={() => onDiscHover?.(null)}
           />
         ))}
       </div>
