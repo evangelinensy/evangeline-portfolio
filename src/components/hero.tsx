@@ -8,15 +8,16 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Popover } from "@/components/ui/popover";
 import { FlipReveal, FlipRevealItem } from "@/components/ui/flip-reveal";
 import { portfolioItems, categories } from "@/data/portfolio";
-import { 
-  MouseTrackerProvider as CursorProvider, 
-  Pointer as Cursor, 
-  PointerFollower as CursorFollow 
+import {
+  MouseTrackerProvider as CursorProvider,
+  Pointer as Cursor,
+  PointerFollower as CursorFollow
 } from "@/components/ui/cursor";
 import { MousePointer2 } from "lucide-react";
 import { PomeloCard } from "@/components/ui/pomelo-card";
 import RetroTV from "@/components/ui/retro-tv";
 import AlbumGrid from "@/components/ui/album-grid";
+import { PasswordOverlay } from "@/components/ui/password-overlay";
 
 export function Hero() {
   const screenSize = useScreenSize();
@@ -30,6 +31,11 @@ export function Hero() {
   const [discStartPosition, setDiscStartPosition] = useState<{x: number, y: number} | null>(null);
   const [hoveredDiscId, setHoveredDiscId] = useState<string | null>(null);
   const timeoutsRef = useRef<number[]>([]);
+
+  // Password overlay state
+  const [isPasswordOverlayOpen, setIsPasswordOverlayOpen] = useState(false);
+  const [pendingUrl, setPendingUrl] = useState<string | null>(null);
+  const [pendingProjectTitle, setPendingProjectTitle] = useState<string>('Support Copilot');
 
   const clearAnimationTimers = () => {
     timeoutsRef.current.forEach((id) => clearTimeout(id));
@@ -51,12 +57,22 @@ export function Hero() {
     discSrc: string,
     event?: React.MouseEvent,
     url?: string,
-    external?: boolean
+    external?: boolean,
+    requiresPassword?: boolean,
+    projectTitle?: string
   ) => {
     if (tvState !== 'idle' && tvState !== 'static') {
       return; // Prevent clicks during animation
     }
-    
+
+    // If this disc requires password protection, show overlay instead of opening URL
+    if (requiresPassword && url) {
+      setPendingUrl(url);
+      setPendingProjectTitle(projectTitle || 'Support Copilot');
+      setIsPasswordOverlayOpen(true);
+      return;
+    }
+
     // Get the position of the clicked disc card
     if (event) {
       const rect = event.currentTarget.getBoundingClientRect();
@@ -72,16 +88,16 @@ export function Hero() {
         setDiscStartPosition({ x: xOffset, y: yOffset });
       }
     }
-    
+
     setAnimatingDiscId(discId);
     setCurrentDisc(discSrc);
-    
+
     // Start animation sequence
     setTvState('ejecting');
-    
+
     // No video URL - will use placeholder component
     setCurrentVideo(null);
-    
+
     // Animation timeline - synchronized with 2.5s disc animation
     timeoutsRef.current.push(window.setTimeout(() => setTvState('moving'), 300));
 
@@ -94,6 +110,15 @@ export function Hero() {
           window.open(url, '_blank');
         }
       }, 900));
+    }
+  };
+
+  // Handle successful password entry
+  const handlePasswordSuccess = () => {
+    setIsPasswordOverlayOpen(false);
+    if (pendingUrl) {
+      window.open(pendingUrl, '_blank', 'noopener,noreferrer');
+      setPendingUrl(null);
     }
   };
 
@@ -152,11 +177,11 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
-    // Support Copilot
+    // Support Copilot - Password Protected
     {
       id: 'disc-pd-1',
       title: 'Support Copilot',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/supporthead-disc.png', event, 'https://www.figma.com/proto/D3FtPcTMsqJMW8uSiVmLvt/Case-Study-Support-Copilot?page-id=0%3A1&node-id=1-87291&p=f&viewport=60%2C-823%2C0.4&t=nDYxHSxjgk5L9C9r-1&scaling=contain&content-scaling=responsive&starting-point-node-id=1%3A87291', true),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/supporthead-disc.png', event, 'https://www.figma.com/proto/D3FtPcTMsqJMW8uSiVmLvt/Case-Study-Support-Copilot?page-id=0%3A1&node-id=1-87291&p=f&viewport=60%2C-823%2C0.4&t=nDYxHSxjgk5L9C9r-1&scaling=contain&content-scaling=responsive&starting-point-node-id=1%3A87291', true, true, 'Support Copilot'),
       discSrc: '/images/supporthead-disc.png',
       sleeveTitle: 'Support Copilot',
       sleeveSubtitle: 'Web',
@@ -164,11 +189,23 @@ export function Hero() {
       href: 'https://www.figma.com/proto/D3FtPcTMsqJMW8uSiVmLvt/Case-Study-Support-Copilot?page-id=0%3A1&node-id=1-87291&p=f&viewport=60%2C-823%2C0.4&t=nDYxHSxjgk5L9C9r-1&scaling=contain&content-scaling=responsive&starting-point-node-id=1%3A87291',
       external: true,
     },
-    // Pomelo
+    // Wonder - Password Protected
     {
       id: 'disc-pd-2',
+      title: 'Wonder',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/wonder-disc.png', event, 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918', true, true, 'AI Design Tool'),
+      discSrc: '/images/wonder-disc.png',
+      sleeveTitle: 'Wonder',
+      sleeveSubtitle: 'AI Design Tool',
+      sleeveBottomCaption: undefined,
+      href: 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918',
+      external: true,
+    },
+    // Pomelo
+    {
+      id: 'disc-pd-3',
       title: 'Pomelo',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/the disc-pomelo-new.png', event, portfolioItems[0].href, portfolioItems[0].external),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-3', '/images/the disc-pomelo-new.png', event, portfolioItems[0].href, portfolioItems[0].external),
       discSrc: '/images/the disc-pomelo-new.png',
       sleeveTitle: 'Pomelo',
       sleeveSubtitle: 'Send money',
@@ -178,9 +215,9 @@ export function Hero() {
     },
     // Pomelo.com Website
     {
-      id: 'disc-pd-3',
+      id: 'disc-pd-4',
       title: 'Pomelo.com',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-3', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-4', '/images/pomelo-2-disc-new2.png', event, 'https://www.figma.com/proto/LUa94SB2a2AHmccU6P00S7/Pomelo-Website?page-id=0%3A1&node-id=1-1482&viewport=268%2C84%2C0.21&t=uweExkfTSg5hsLIU-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1482', true),
       discSrc: '/images/pomelo-2-disc-new2.png',
       sleeveTitle: 'Pomelo.com',
       sleeveSubtitle: 'Website',
@@ -190,9 +227,9 @@ export function Hero() {
     },
     // Cromatic TechBio
     {
-      id: 'disc-pd-4',
+      id: 'disc-pd-5',
       title: 'Cromatic',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-4', '/images/disc-cromatic-new.png', event, 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1', true),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-5', '/images/disc-cromatic-new.png', event, 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1', true),
       discSrc: '/images/disc-cromatic-new.png',
       sleeveTitle: 'Cromatic',
       sleeveSubtitle: 'TechBio',
@@ -202,9 +239,9 @@ export function Hero() {
     },
     // Sanrio
     {
-      id: 'disc-pd-5',
+      id: 'disc-pd-6',
       title: 'Sanrio',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-5', '/images/disc-sanrio.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1', true),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-6', '/images/disc-sanrio.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1', true),
       discSrc: '/images/disc-sanrio.png',
       sleeveTitle: 'Sanrio',
       sleeveSubtitle: 'Web3 Campaigns',
@@ -224,18 +261,18 @@ export function Hero() {
     //   href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=3-10121&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=3%3A10121',
     //   external: true,
     // },
-    // Cromatic Website
-    {
-      id: 'disc-pd-6',
-      title: 'Cromatic',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-6', '/images/disc-cromatic2.png', event, 'https://evangeline.design/case-studies/cromatic-branding-website/', true),
-      discSrc: '/images/disc-cromatic2.png',
-      sleeveTitle: 'Cromatic',
-      sleeveSubtitle: 'Website',
-      sleeveBottomCaption: undefined,
-      href: 'https://evangeline.design/case-studies/cromatic-branding-website/',
-      external: true,
-    },
+    // Cromatic Website - HIDDEN
+    // {
+    //   id: 'disc-pd-6-hidden',
+    //   title: 'Cromatic',
+    //   onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-6-hidden', '/images/disc-cromatic2.png', event, 'https://evangeline.design/case-studies/cromatic-branding-website/', true),
+    //   discSrc: '/images/disc-cromatic2.png',
+    //   sleeveTitle: 'Cromatic',
+    //   sleeveSubtitle: 'Website',
+    //   sleeveBottomCaption: undefined,
+    //   href: 'https://evangeline.design/case-studies/cromatic-branding-website/',
+    //   external: true,
+    // },
   ];
 
   // Design Engineering with AI Items (5 discs, expandable for future plugins)
@@ -705,6 +742,14 @@ export function Hero() {
           )}
         </div>
       </CursorFollow>
+
+      {/* Password Overlay for NDA Projects */}
+      <PasswordOverlay
+        isOpen={isPasswordOverlayOpen}
+        onClose={() => setIsPasswordOverlayOpen(false)}
+        onSuccess={handlePasswordSuccess}
+        projectTitle={pendingProjectTitle}
+      />
     </div>
     </CursorProvider>
   );
