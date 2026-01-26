@@ -21,6 +21,7 @@ import {
   useState,
 } from 'react';
 import { cn } from '@/lib/utils';
+import { useAudio } from '@/hooks/use-audio';
 
 const DOCK_HEIGHT = 128;
 const DEFAULT_MAGNIFICATION = 88;
@@ -126,22 +127,14 @@ function Dock({
 
 function DockItem({ children, className }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const clickSoundRef = useRef<HTMLAudioElement | null>(null);
 
   const { distance, magnification, mouseX, spring } = useDock();
+  const { playSound } = useAudio();
 
   const isHovered = useMotionValue(0);
 
-  useEffect(() => {
-    clickSoundRef.current = new Audio('/sounds/computer-mouse-click-352734 (1).mp3');
-    clickSoundRef.current.volume = 0.5;
-  }, []);
-
   const playClickSound = () => {
-    if (clickSoundRef.current) {
-      clickSoundRef.current.currentTime = 0;
-      clickSoundRef.current.play().catch(() => {});
-    }
+    playSound('/sounds/computer-mouse-click-352734 (1).mp3');
   };
 
   const mouseDistance = useTransform(mouseX, (val) => {

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { useScreenSize } from "@/hooks/use-screen-size";
+import { useAudio } from "@/hooks/use-audio";
 
 type DiscAnimationState = 'idle' | 'ejecting' | 'moving' | 'inserting' | 'inserted';
 
@@ -51,28 +52,14 @@ export function DiscCard({
 }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   const screenSize = useScreenSize();
-  const hoverSoundRef = React.useRef<HTMLAudioElement | null>(null);
-  const clickSoundRef = React.useRef<HTMLAudioElement | null>(null);
-
-  React.useEffect(() => {
-    hoverSoundRef.current = new Audio('/sounds/click-21156.mp3');
-    hoverSoundRef.current.volume = 0.5;
-    clickSoundRef.current = new Audio('/sounds/key-lock-insertion-mechanism-sfx-hd-269470.mp3');
-    clickSoundRef.current.volume = 0.5;
-  }, []);
+  const { playSound } = useAudio();
 
   const playHoverSound = () => {
-    if (hoverSoundRef.current) {
-      hoverSoundRef.current.currentTime = 0;
-      hoverSoundRef.current.play().catch(() => {});
-    }
+    playSound('/sounds/click-21156.mp3');
   };
 
   const playClickSound = () => {
-    if (clickSoundRef.current) {
-      clickSoundRef.current.currentTime = 0;
-      clickSoundRef.current.play().catch(() => {});
-    }
+    playSound('/sounds/key-lock-insertion-mechanism-sfx-hd-269470.mp3');
   };
   // Visual constants tuned to Figma reference
   const sleeveWidthPercent = 50; // Optimized width per Figma spec
