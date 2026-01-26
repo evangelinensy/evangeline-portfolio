@@ -51,6 +51,29 @@ export function DiscCard({
 }: DiscCardProps) {
   const [eject, setEject] = React.useState(false);
   const screenSize = useScreenSize();
+  const hoverSoundRef = React.useRef<HTMLAudioElement | null>(null);
+  const clickSoundRef = React.useRef<HTMLAudioElement | null>(null);
+
+  React.useEffect(() => {
+    hoverSoundRef.current = new Audio('/sounds/click-21156.mp3');
+    hoverSoundRef.current.volume = 0.5;
+    clickSoundRef.current = new Audio('/sounds/key-lock-insertion-mechanism-sfx-hd-269470.mp3');
+    clickSoundRef.current.volume = 0.5;
+  }, []);
+
+  const playHoverSound = () => {
+    if (hoverSoundRef.current) {
+      hoverSoundRef.current.currentTime = 0;
+      hoverSoundRef.current.play().catch(() => {});
+    }
+  };
+
+  const playClickSound = () => {
+    if (clickSoundRef.current) {
+      clickSoundRef.current.currentTime = 0;
+      clickSoundRef.current.play().catch(() => {});
+    }
+  };
   // Visual constants tuned to Figma reference
   const sleeveWidthPercent = 50; // Optimized width per Figma spec
   const discPercent = 84; // disc diameter relative to card
@@ -121,6 +144,7 @@ export function DiscCard({
     <button
       onMouseEnter={() => {
         setEject(true);
+        playHoverSound();
         onMouseEnter?.();
       }}
       onMouseLeave={() => {
@@ -129,6 +153,7 @@ export function DiscCard({
       }}
       onClick={(e) => {
         setEject((v) => !v);
+        playClickSound();
         onClick?.(e);
       }}
       className={`relative w-full aspect-square rounded-[8px] overflow-visible ${className}`}

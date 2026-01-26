@@ -11,10 +11,20 @@ const cards: [string | React.ReactNode, string][] = [
         <>
             Over the years, I&apos;ve been delivering impact by improving the businesses through design.
             <br /><br />
+            Currently, I lead design for the Support AI Copilot at{' '}
+            <a
+                href="https://www.paloaltonetworks.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-gray-900 underline"
+            >
+                Palo Alto Networks
+            </a>, a Fortune 500 CyberSecurity Enterprise as a Staff UX Designer.
+            <br /><br />
             Previously at{' '}
-            <a 
-                href="https://www.megaphone.xyz/" 
-                target="_blank" 
+            <a
+                href="https://www.megaphone.xyz/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-700 hover:text-gray-900 underline"
             >
@@ -23,25 +33,15 @@ const cards: [string | React.ReactNode, string][] = [
             I helped brands reward their community and go onchain at Megaphone as their Founding Product Designer.
             <br /><br />
             At{' '}
-            <a 
-                href="https://pomelo.com/" 
-                target="_blank" 
+            <a
+                href="https://pomelo.com/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-700 hover:text-gray-900 underline"
             >
                 Pomelo
             </a>{' '}
             I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.
-            <br /><br />
-            I helped clinicians work efficiently at a Medtech Startup called{' '}
-            <a 
-                href="https://www.see-mode.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-gray-900 underline"
-            >
-                See-mode
-            </a>. I was their first design hire and built the design foundations of their ultrasound web application.
         </>,
         "/images/aboutme-2-image/Card background 6.png"
     ],

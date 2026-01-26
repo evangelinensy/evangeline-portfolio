@@ -126,10 +126,23 @@ function Dock({
 
 function DockItem({ children, className }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const clickSoundRef = useRef<HTMLAudioElement | null>(null);
 
   const { distance, magnification, mouseX, spring } = useDock();
 
   const isHovered = useMotionValue(0);
+
+  useEffect(() => {
+    clickSoundRef.current = new Audio('/sounds/computer-mouse-click-352734 (1).mp3');
+    clickSoundRef.current.volume = 0.5;
+  }, []);
+
+  const playClickSound = () => {
+    if (clickSoundRef.current) {
+      clickSoundRef.current.currentTime = 0;
+      clickSoundRef.current.play().catch(() => {});
+    }
+  };
 
   const mouseDistance = useTransform(mouseX, (val) => {
     const domRect = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -152,6 +165,7 @@ function DockItem({ children, className }: DockItemProps) {
       onHoverEnd={() => isHovered.set(0)}
       onFocus={() => isHovered.set(1)}
       onBlur={() => isHovered.set(0)}
+      onClick={playClickSound}
       className={cn(
         'relative inline-flex items-center justify-center',
         className
