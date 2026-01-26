@@ -299,6 +299,18 @@ export function Hero() {
       href: '/product-design-copilot',
       external: false,
     },
+    // Research Agent
+    {
+      id: 'disc-ai-3',
+      title: 'Research Agent',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-3', '/images/disc-researchagent.png', event, 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5', true),
+      discSrc: '/images/disc-researchagent.png',
+      sleeveTitle: 'Research Agent',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5',
+      external: true,
+    },
     // AI Copy Plugin
     {
       id: 'disc-ai-2',
@@ -311,16 +323,16 @@ export function Hero() {
       href: '/ai-copy-plugin',
       external: false,
     },
-    // Research Agent
+    // AI Interviewer
     {
-      id: 'disc-ai-3',
-      title: 'Research Agent',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-3', '/images/disc-researchagent.png', event, 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5', true),
-      discSrc: '/images/disc-researchagent.png',
-      sleeveTitle: 'Research Agent',
+      id: 'disc-ai-1b',
+      title: 'AI Whiteboard Interview',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, 'https://design-coach.pages.dev/', true),
+      discSrc: '/images/whiteboard-disc.png',
+      sleeveTitle: 'AI Whiteboard Interview',
       sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5',
+      href: 'https://design-coach.pages.dev/',
       external: true,
     },
     // Spotify GenAI Covers
@@ -347,18 +359,18 @@ export function Hero() {
       href: 'https://countdowntodate.netlify.app/',
       external: true,
     },
-    // AI Vibecode Tools
-    {
-      id: 'disc-ai-6',
-      title: 'AI Vibecode Tools',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-6', '/images/stateofvibecode/stateofvibedisc.png', event, 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing', true),
-      discSrc: '/images/stateofvibecode/stateofvibedisc.png',
-      sleeveTitle: 'AI Vibecode Tools',
-      sleeveSubtitle: 'Guide',
-      sleeveBottomCaption: undefined,
-      href: 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing',
-      external: true,
-    },
+    // AI Vibecode Tools - HIDDEN
+    // {
+    //   id: 'disc-ai-6',
+    //   title: 'AI Vibecode Tools',
+    //   onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-6', '/images/stateofvibecode/stateofvibedisc.png', event, 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing', true),
+    //   discSrc: '/images/stateofvibecode/stateofvibedisc.png',
+    //   sleeveTitle: 'AI Vibecode Tools',
+    //   sleeveSubtitle: 'Guide',
+    //   sleeveBottomCaption: undefined,
+    //   href: 'https://evangelineng.substack.com/p/state-of-ai-vibe-coding-designing',
+    //   external: true,
+    // },
   ];
 
   return (
