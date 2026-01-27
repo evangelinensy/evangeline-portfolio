@@ -60,6 +60,14 @@ export default function AboutPage() {
               </div>
               <div className="flex flex-col gap-6">
                 <Testimonial
+                  name="Stefan Suarez"
+                  role="Director of Product Marketing"
+                  company="Remitly"
+                  image="/images/testimonials/stefanprofile.jpeg"
+                  testimonial="Evangeline is one of the best product designers I've worked with. Super customer-centric, seeks to truly understand the POV of the customer. She's also very professional: detail-oriented, structured thinker, crisp communicator -- all valuable for a role that is as cross functional as hers. Lastly, I simply love her aesthetic. She just has great taste! Keeps a close eye on trends, has her own original take on things, doesn't just copy. Balances aesthetic with function. Evangeline is the kind of person I'd hire again and again if I could. Talented, hardworking, has great character and attitude. Just a gem."
+                  className="w-full"
+                />
+                <Testimonial
                   name="Kelly Huang"
                   role="Product Design"
                   company="Netflix"
@@ -75,14 +83,6 @@ I have worked with Evangeline since her internship with us. By the end of intern
                   company="Turo"
                   image="/images/testimonials/angelicapandoprofile.jpeg"
                   testimonial="I had the pleasure of collaborating with Evangeline at Pomelo on the customer notifications project, where she served as the product designer. Evangeline's meticulous management of project requirements and delivery of exceptional designs were key to the project's success - she carefully tracked and organized items pending and in progress in a project with many variables. She always went the extra mile beyond her core responsibilities, owning a project that involved both frontend and backend engineering, design, copy, and customer support. Working with her was enjoyable, and her contributions were key to the success of the projects where we worked together at Pomelo. I would definitely love to work with her again!"
-                  className="w-full"
-                />
-                <Testimonial
-                  name="Stefan Suarez"
-                  role="Head of Growth"
-                  company="Kin"
-                  image="/images/testimonials/stefanprofile.jpeg"
-                  testimonial="Evangeline is one of the best product designers I've worked with. Super customer-centric, seeks to truly understand the POV of the customer. She's also very professional: detail-oriented, structured thinker, crisp communicator -- all valuable for a role that is as cross functional as hers. Lastly, I simply love her aesthetic. She just has great taste! Keeps a close eye on trends, has her own original take on things, doesn't just copy. Balances aesthetic with function. Evangeline is the kind of person I'd hire again and again if I could. Talented, hardworking, has great character and attitude. Just a gem."
                   className="w-full"
                 />
               </div>
