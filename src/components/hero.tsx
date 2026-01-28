@@ -181,12 +181,12 @@ export function Hero() {
     {
       id: 'disc-pd-1',
       title: 'Support Copilot',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/supporthead-disc.png', event, 'https://www.figma.com/proto/D3FtPcTMsqJMW8uSiVmLvt/Case-Study-Support-Copilot?page-id=0%3A1&node-id=1-87291&p=f&viewport=60%2C-823%2C0.4&t=nDYxHSxjgk5L9C9r-1&scaling=contain&content-scaling=responsive&starting-point-node-id=1%3A87291', true, true, 'Support Copilot'),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/supporthead-disc.png', event, 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291', true, true, 'Support Copilot'),
       discSrc: '/images/supporthead-disc.png',
       sleeveTitle: 'Support Copilot',
       sleeveSubtitle: 'Web',
       sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/D3FtPcTMsqJMW8uSiVmLvt/Case-Study-Support-Copilot?page-id=0%3A1&node-id=1-87291&p=f&viewport=60%2C-823%2C0.4&t=nDYxHSxjgk5L9C9r-1&scaling=contain&content-scaling=responsive&starting-point-node-id=1%3A87291',
+      href: 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291',
       external: true,
     },
     // Wonder - Password Protected
