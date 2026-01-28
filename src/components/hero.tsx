@@ -327,12 +327,12 @@ export function Hero() {
     {
       id: 'disc-ai-1b',
       title: 'AI Whiteboard Interview',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, 'https://design-coach.pages.dev/', true),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, 'https://whiteboarding-mock.pages.dev/', true),
       discSrc: '/images/whiteboard-disc.png',
       sleeveTitle: 'AI Whiteboard Interview',
       sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://design-coach.pages.dev/',
+      href: 'https://whiteboarding-mock.pages.dev/',
       external: true,
     },
     // Spotify GenAI Covers
