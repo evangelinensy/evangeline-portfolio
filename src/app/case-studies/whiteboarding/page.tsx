@@ -18,13 +18,13 @@ export default function WhiteboardingCaseStudy() {
       width: 350,
       height: 350,
     },
-    // Mic - below sharpie
+    // Mic - below sharpie (reduced by half: 140 → 70)
     {
       src: "/images/whiteboardingproject/asset1mic.png",
       alt: "Microphone",
-      className: "absolute top-44 left-[12%] rotate-[0deg]",
-      width: 140,
-      height: 140,
+      className: "absolute top-44 left-[5%] rotate-[0deg]",
+      width: 70,
+      height: 70,
     },
     // Big sticky note with text - bottom left
     {
@@ -42,21 +42,29 @@ export default function WhiteboardingCaseStudy() {
       width: 280,
       height: 280,
     },
-    // Eraser - right side, middle
+    // Eraser - right side, middle (reduced by half: 280 → 140)
     {
       src: "/images/whiteboardingproject/eraser.png",
       alt: "Eraser",
-      className: "absolute top-[40%] right-[-5%] rotate-[35deg]",
-      width: 280,
-      height: 280,
+      className: "absolute top-[25%] right-[-3%] rotate-[35deg]",
+      width: 140,
+      height: 140,
     },
-    // Highlighter - bottom area
+    // Highlighter - bottom right (1.5x: 200 → 300)
     {
       src: "/images/whiteboardingproject/highlighter.png",
       alt: "Highlighter",
-      className: "absolute bottom-[15%] right-[25%] rotate-[-30deg]",
-      width: 200,
-      height: 200,
+      className: "absolute bottom-[5%] right-[15%] rotate-[-30deg]",
+      width: 300,
+      height: 300,
+    },
+    // Pencil - bottom right area
+    {
+      src: "/images/whiteboardingproject/pencil1.png",
+      alt: "Pencil",
+      className: "absolute bottom-[10%] right-[30%] rotate-[-45deg]",
+      width: 250,
+      height: 250,
     },
     // Star - bottom left area
     {
