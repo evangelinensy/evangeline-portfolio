@@ -42,13 +42,13 @@ export default function WhiteboardingCaseStudy() {
       width: 280,
       height: 280,
     },
-    // Eraser - right side, middle (reduced by half: 280 → 140)
+    // Eraser - right side, middle (reduced: 140 → 70)
     {
       src: "/images/whiteboardingproject/eraser.png",
       alt: "Eraser",
       className: "absolute top-[25%] right-[-3%] rotate-[35deg]",
-      width: 140,
-      height: 140,
+      width: 70,
+      height: 70,
     },
     // Highlighter - bottom right (1.5x: 200 → 300)
     {
@@ -66,13 +66,13 @@ export default function WhiteboardingCaseStudy() {
       width: 250,
       height: 250,
     },
-    // Star - bottom left area
+    // Star - bottom left area (tripled: 100 → 300)
     {
       src: "/images/whiteboardingproject/star.png",
       alt: "Star",
       className: "absolute bottom-[20%] left-[15%] rotate-[-10deg]",
-      width: 100,
-      height: 100,
+      width: 300,
+      height: 300,
     },
   ];
 
@@ -145,7 +145,7 @@ export default function WhiteboardingCaseStudy() {
         {/* Center Text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-neutral-800 mb-4 pointer-events-none">
-            AI Whiteboard Interview
+            Whiteboarding Interviewer
           </h1>
           <p className="text-lg md:text-xl text-neutral-500 max-w-md mx-auto mb-8 pointer-events-none">
             Practice whiteboarding with an AI coach that gives real-time feedback
