@@ -42,13 +42,13 @@ export default function WhiteboardingCaseStudy() {
       width: 280,
       height: 280,
     },
-    // Eraser - right side, middle (reduced: 140 → 70)
+    // Eraser - right side, middle (doubled: 70 → 140)
     {
       src: "/images/whiteboardingproject/eraser.png",
       alt: "Eraser",
       className: "absolute top-[25%] right-[-3%] rotate-[35deg]",
-      width: 70,
-      height: 70,
+      width: 140,
+      height: 140,
     },
     // Highlighter - bottom right (1.5x: 200 → 300)
     {
@@ -66,13 +66,13 @@ export default function WhiteboardingCaseStudy() {
       width: 250,
       height: 250,
     },
-    // Star - bottom left area (tripled: 100 → 300)
+    // Star - bottom left area (doubled: 300 → 600)
     {
       src: "/images/whiteboardingproject/star.png",
       alt: "Star",
       className: "absolute bottom-[20%] left-[15%] rotate-[-10deg]",
-      width: 300,
-      height: 300,
+      width: 600,
+      height: 600,
     },
   ];
 
@@ -110,8 +110,8 @@ export default function WhiteboardingCaseStudy() {
         </div>
       ),
       iconSimple: "triangle",
-      title: "Share & replay.",
-      description: "Save sessions, share links, and review your progress easily.",
+      title: "Senior Judgement.",
+      description: "See how you fare against whiteboard interview metrics.",
     },
   ];
 
@@ -201,26 +201,6 @@ export default function WhiteboardingCaseStudy() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="flex flex-col">
-                {/* Icon Card */}
-                <div className="w-full aspect-square bg-[#f5f5f5] rounded-3xl flex items-center justify-center mb-6">
-                  {feature.iconSimple === "square" && (
-                    <div className="w-20 h-20 bg-white rounded-lg shadow-sm" />
-                  )}
-                  {feature.iconSimple === "circle" && (
-                    <div className="w-20 h-20 bg-transparent rounded-full border-[6px] border-white" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }} />
-                  )}
-                  {feature.iconSimple === "triangle" && (
-                    <div
-                      className="w-0 h-0"
-                      style={{
-                        borderLeft: '40px solid transparent',
-                        borderRight: '40px solid transparent',
-                        borderBottom: '70px solid white',
-                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.05))'
-                      }}
-                    />
-                  )}
-                </div>
                 {/* Text */}
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {feature.title}
