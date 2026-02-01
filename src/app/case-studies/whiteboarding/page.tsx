@@ -10,47 +10,53 @@ import {
 
 export default function WhiteboardingCaseStudy() {
   const draggableAssets = [
+    // Sharpie - top left, diagonal
     {
       src: "/images/whiteboardingproject/sharpie.png",
       alt: "Sharpie",
-      className: "absolute top-20 left-[5%] rotate-[-15deg]",
-      width: 400,
-      height: 400,
+      className: "absolute top-8 left-[-2%] rotate-[50deg]",
+      width: 350,
+      height: 350,
     },
-    {
-      src: "/images/whiteboardingproject/assetstickynote.png",
-      alt: "Sticky Note",
-      className: "absolute top-40 left-[12%] rotate-[5deg]",
-      width: 320,
-      height: 320,
-    },
+    // Mic - below sharpie
     {
       src: "/images/whiteboardingproject/asset1mic.png",
       alt: "Microphone",
-      className: "absolute top-16 left-[20%] rotate-[8deg]",
-      width: 120,
-      height: 120,
+      className: "absolute top-44 left-[12%] rotate-[0deg]",
+      width: 140,
+      height: 140,
     },
+    // Big sticky note with text - bottom left
     {
-      src: "/images/whiteboardingproject/eraser.png",
-      alt: "Eraser",
-      className: "absolute top-24 right-[5%] rotate-[12deg]",
-      width: 180,
-      height: 180,
+      src: "/images/whiteboardingproject/assetstickynote.png",
+      alt: "Sticky Note",
+      className: "absolute top-[45%] left-[-3%] rotate-[-2deg]",
+      width: 380,
+      height: 380,
     },
-    {
-      src: "/images/whiteboardingproject/assetcursor.png",
-      alt: "Cursor",
-      className: "absolute top-48 right-[15%] rotate-[-5deg]",
-      width: 100,
-      height: 100,
-    },
+    // Plain yellow sticky note - top right corner
     {
       src: "/images/whiteboardingproject/stickynote3.png",
       alt: "Sticky Note 3",
-      className: "absolute top-12 right-[18%] rotate-[3deg]",
-      width: 260,
-      height: 260,
+      className: "absolute top-[-5%] right-[-3%] rotate-[5deg]",
+      width: 280,
+      height: 280,
+    },
+    // Eraser - right side, middle
+    {
+      src: "/images/whiteboardingproject/eraser.png",
+      alt: "Eraser",
+      className: "absolute top-[40%] right-[-5%] rotate-[35deg]",
+      width: 280,
+      height: 280,
+    },
+    // Highlighter - bottom area
+    {
+      src: "/images/whiteboardingproject/highlighter.png",
+      alt: "Highlighter",
+      className: "absolute bottom-[15%] right-[25%] rotate-[-30deg]",
+      width: 200,
+      height: 200,
     },
   ];
 
