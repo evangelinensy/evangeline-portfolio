@@ -79,7 +79,7 @@ export function PasswordOverlay({
             {projectTitle}
           </h2>
           <p className="text-sm text-gray-600">
-            This case study is under NDA. Please enter the password to view.
+            This case study is under NDA.
           </p>
         </div>
 
