@@ -58,6 +58,14 @@ export default function WhiteboardingCaseStudy() {
       width: 200,
       height: 200,
     },
+    // Star - bottom left area
+    {
+      src: "/images/whiteboardingproject/star.png",
+      alt: "Star",
+      className: "absolute bottom-[20%] left-[15%] rotate-[-10deg]",
+      width: 100,
+      height: 100,
+    },
   ];
 
   const features = [
