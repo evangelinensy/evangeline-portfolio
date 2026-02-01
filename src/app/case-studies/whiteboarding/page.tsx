@@ -14,15 +14,15 @@ export default function WhiteboardingCaseStudy() {
       src: "/images/whiteboardingproject/sharpie.png",
       alt: "Sharpie",
       className: "absolute top-20 left-[5%] rotate-[-15deg]",
-      width: 200,
-      height: 200,
+      width: 400,
+      height: 400,
     },
     {
       src: "/images/whiteboardingproject/assetstickynote.png",
       alt: "Sticky Note",
       className: "absolute top-40 left-[12%] rotate-[5deg]",
-      width: 160,
-      height: 160,
+      width: 320,
+      height: 320,
     },
     {
       src: "/images/whiteboardingproject/asset1mic.png",
@@ -49,8 +49,8 @@ export default function WhiteboardingCaseStudy() {
       src: "/images/whiteboardingproject/stickynote3.png",
       alt: "Sticky Note 3",
       className: "absolute top-12 right-[18%] rotate-[3deg]",
-      width: 130,
-      height: 130,
+      width: 260,
+      height: 260,
     },
   ];
 
