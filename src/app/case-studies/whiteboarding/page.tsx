@@ -156,7 +156,7 @@ export default function WhiteboardingCaseStudy() {
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
-            Try Now
+            Practice now
           </a>
         </div>
 
@@ -229,7 +229,7 @@ export default function WhiteboardingCaseStudy() {
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
-            Try Now
+            Practice now
           </a>
         </div>
       </section>
