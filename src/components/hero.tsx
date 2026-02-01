@@ -177,17 +177,17 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
-    // AI Whiteboard Interview (swapped from designEngineeringItems)
+    // Support Copilot - Password Protected
     {
-      id: 'disc-ai-1b',
-      title: 'AI Whiteboard Interview',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, '/case-studies/whiteboarding', false),
-      discSrc: '/images/whiteboard-disc.png',
-      sleeveTitle: 'AI Whiteboard Interview',
-      sleeveSubtitle: '',
+      id: 'disc-pd-1',
+      title: 'Support Copilot',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/supporthead-disc.png', event, 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291', true, true, 'Support Copilot'),
+      discSrc: '/images/supporthead-disc.png',
+      sleeveTitle: 'Support Copilot',
+      sleeveSubtitle: 'Web',
       sleeveBottomCaption: undefined,
-      href: '/case-studies/whiteboarding',
-      external: false,
+      href: 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291',
+      external: true,
     },
     // Wonder - Password Protected
     {
@@ -287,16 +287,16 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
-    // Product Design Copilot
+    // AI Whiteboard Interview
     {
-      id: 'disc-ai-1',
-      title: 'Product Design Copilot',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1', '/images/disc-designcopilot.png', event, '/product-design-copilot', false),
-      discSrc: '/images/disc-designcopilot.png',
-      sleeveTitle: 'Product Design Copilot',
+      id: 'disc-ai-1b',
+      title: 'AI Whiteboard Interview',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, '/case-studies/whiteboarding', false),
+      discSrc: '/images/whiteboard-disc.png',
+      sleeveTitle: 'AI Whiteboard Interview',
       sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: '/product-design-copilot',
+      href: '/case-studies/whiteboarding',
       external: false,
     },
     // Research Agent
@@ -323,17 +323,17 @@ export function Hero() {
       href: '/ai-copy-plugin',
       external: false,
     },
-    // Support Copilot - Password Protected (swapped from productDesignItems)
+    // Product Design Copilot
     {
-      id: 'disc-pd-1',
-      title: 'Support Copilot',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-1', '/images/supporthead-disc.png', event, 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291', true, true, 'Support Copilot'),
-      discSrc: '/images/supporthead-disc.png',
-      sleeveTitle: 'Support Copilot',
-      sleeveSubtitle: 'Web',
+      id: 'disc-ai-1',
+      title: 'Product Design Copilot',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1', '/images/disc-designcopilot.png', event, '/product-design-copilot', false),
+      discSrc: '/images/disc-designcopilot.png',
+      sleeveTitle: 'Product Design Copilot',
+      sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291',
-      external: true,
+      href: '/product-design-copilot',
+      external: false,
     },
     // Spotify GenAI Covers
     {
