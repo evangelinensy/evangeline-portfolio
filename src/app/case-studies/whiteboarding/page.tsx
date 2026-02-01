@@ -10,69 +10,61 @@ import {
 
 export default function WhiteboardingCaseStudy() {
   const draggableAssets = [
-    // Sharpie - top left, diagonal
+    // Sharpie - top left, horizontal
     {
       src: "/images/whiteboardingproject/sharpie.png",
       alt: "Sharpie",
-      className: "absolute top-8 left-[-2%] rotate-[50deg]",
-      width: 350,
-      height: 350,
+      className: "absolute top-16 left-[-5%] rotate-[15deg]",
+      width: 400,
+      height: 400,
     },
-    // Mic - below sharpie (reduced by half: 140 → 70)
+    // Mic - left side, small
     {
       src: "/images/whiteboardingproject/asset1mic.png",
       alt: "Microphone",
-      className: "absolute top-44 left-[5%] rotate-[0deg]",
-      width: 70,
-      height: 70,
+      className: "absolute top-[28%] left-[2%] rotate-[0deg]",
+      width: 80,
+      height: 80,
+    },
+    // Star - left-center, next to mic
+    {
+      src: "/images/whiteboardingproject/star.png",
+      alt: "Star",
+      className: "absolute top-[30%] left-[12%] rotate-[-10deg]",
+      width: 120,
+      height: 120,
     },
     // Big sticky note with text - bottom left
     {
       src: "/images/whiteboardingproject/assetstickynote.png",
       alt: "Sticky Note",
-      className: "absolute top-[45%] left-[-3%] rotate-[-2deg]",
-      width: 380,
-      height: 380,
+      className: "absolute top-[40%] left-[-5%] rotate-[-2deg]",
+      width: 350,
+      height: 350,
     },
     // Plain yellow sticky note - top right corner
     {
       src: "/images/whiteboardingproject/stickynote3.png",
       alt: "Sticky Note 3",
-      className: "absolute top-[-5%] right-[-3%] rotate-[5deg]",
-      width: 280,
-      height: 280,
-    },
-    // Eraser - right side, middle (doubled: 70 → 140)
-    {
-      src: "/images/whiteboardingproject/eraser.png",
-      alt: "Eraser",
-      className: "absolute top-[25%] right-[-3%] rotate-[35deg]",
-      width: 140,
-      height: 140,
-    },
-    // Highlighter - bottom right (1.5x: 200 → 300)
-    {
-      src: "/images/whiteboardingproject/highlighter.png",
-      alt: "Highlighter",
-      className: "absolute bottom-[5%] right-[15%] rotate-[-30deg]",
+      className: "absolute top-[-8%] right-[-5%] rotate-[5deg]",
       width: 300,
       height: 300,
     },
-    // Pencil - bottom right area
+    // Eraser - right side, upper area
     {
-      src: "/images/whiteboardingproject/pencil1.png",
-      alt: "Pencil",
-      className: "absolute bottom-[10%] right-[30%] rotate-[-45deg]",
-      width: 250,
-      height: 250,
+      src: "/images/whiteboardingproject/eraser.png",
+      alt: "Eraser",
+      className: "absolute top-[22%] right-[5%] rotate-[-25deg]",
+      width: 160,
+      height: 160,
     },
-    // Star - bottom left area (doubled: 300 → 600)
+    // Highlighter - bottom right, large
     {
-      src: "/images/whiteboardingproject/star.png",
-      alt: "Star",
-      className: "absolute bottom-[20%] left-[15%] rotate-[-10deg]",
-      width: 600,
-      height: 600,
+      src: "/images/whiteboardingproject/highlighter.png",
+      alt: "Highlighter",
+      className: "absolute bottom-[0%] right-[-2%] rotate-[-50deg]",
+      width: 400,
+      height: 400,
     },
   ];
 
@@ -156,7 +148,7 @@ export default function WhiteboardingCaseStudy() {
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
-            Practice now
+            Start Whiteboarding Challenge
           </a>
         </div>
 
@@ -229,7 +221,7 @@ export default function WhiteboardingCaseStudy() {
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
           >
-            Practice now
+            Start Whiteboarding Challenge
           </a>
         </div>
       </section>
