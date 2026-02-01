@@ -32,13 +32,6 @@ export default function WhiteboardingCaseStudy() {
       height: 120,
     },
     {
-      src: "/images/whiteboardingproject/stickynote2.png",
-      alt: "Sticky Note 2",
-      className: "absolute top-60 left-[8%] rotate-[-8deg]",
-      width: 140,
-      height: 140,
-    },
-    {
       src: "/images/whiteboardingproject/eraser.png",
       alt: "Eraser",
       className: "absolute top-24 right-[5%] rotate-[12deg]",
