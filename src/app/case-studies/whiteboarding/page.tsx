@@ -156,6 +156,23 @@ export default function WhiteboardingCaseStudy() {
         ))}
       </DraggableCardContainer>
 
+      {/* Demo Video Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <video
+            className="w-full rounded-2xl shadow-lg"
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/images/whiteboardingproject/demo-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
