@@ -26,14 +26,6 @@ export default function WhiteboardingCaseStudy() {
       width: 80,
       height: 80,
     },
-    // Star - left-center, next to mic
-    {
-      src: "/images/whiteboardingproject/star.png",
-      alt: "Star",
-      className: "absolute top-[30%] left-[12%] rotate-[-10deg]",
-      width: 120,
-      height: 120,
-    },
     // Big sticky note with text - bottom left
     {
       src: "/images/whiteboardingproject/assetstickynote.png",
@@ -58,13 +50,13 @@ export default function WhiteboardingCaseStudy() {
       width: 160,
       height: 160,
     },
-    // Highlighter - bottom right, large
+    // Highlighter - bottom right
     {
       src: "/images/whiteboardingproject/highlighter.png",
       alt: "Highlighter",
       className: "absolute bottom-[0%] right-[-2%] rotate-[-50deg]",
-      width: 400,
-      height: 400,
+      width: 200,
+      height: 200,
     },
   ];
 
