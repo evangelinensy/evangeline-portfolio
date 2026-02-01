@@ -14,49 +14,49 @@ export default function WhiteboardingCaseStudy() {
     {
       src: "/images/whiteboardingproject/sharpie.png",
       alt: "Sharpie",
-      className: "absolute top-16 left-[-5%] rotate-[15deg]",
-      width: 400,
-      height: 400,
+      className: "absolute top-4 left-[2%] rotate-[15deg]",
+      width: 380,
+      height: 380,
     },
     // Mic - left side, small
     {
       src: "/images/whiteboardingproject/asset1mic.png",
       alt: "Microphone",
-      className: "absolute top-[28%] left-[2%] rotate-[0deg]",
-      width: 80,
-      height: 80,
+      className: "absolute top-[28%] left-[1%] rotate-[0deg]",
+      width: 90,
+      height: 90,
     },
     // Big sticky note with text - bottom left
     {
       src: "/images/whiteboardingproject/assetstickynote.png",
       alt: "Sticky Note",
-      className: "absolute top-[40%] left-[-5%] rotate-[-2deg]",
-      width: 350,
-      height: 350,
+      className: "absolute top-[42%] left-[-8%] rotate-[-2deg]",
+      width: 380,
+      height: 380,
     },
     // Plain yellow sticky note - top right corner
     {
       src: "/images/whiteboardingproject/stickynote3.png",
       alt: "Sticky Note 3",
-      className: "absolute top-[-8%] right-[-5%] rotate-[5deg]",
-      width: 300,
-      height: 300,
+      className: "absolute top-[-10%] right-[-8%] rotate-[5deg]",
+      width: 320,
+      height: 320,
     },
-    // Eraser - right side, upper area
+    // Eraser - right side, below sticky note
     {
       src: "/images/whiteboardingproject/eraser.png",
       alt: "Eraser",
-      className: "absolute top-[22%] right-[5%] rotate-[-25deg]",
-      width: 160,
-      height: 160,
+      className: "absolute top-[18%] right-[-2%] rotate-[-30deg]",
+      width: 220,
+      height: 220,
     },
-    // Highlighter - bottom right
+    // Highlighter - bottom right, more vertical
     {
       src: "/images/whiteboardingproject/highlighter.png",
       alt: "Highlighter",
-      className: "absolute bottom-[0%] right-[-2%] rotate-[-50deg]",
-      width: 200,
-      height: 200,
+      className: "absolute bottom-[5%] right-[3%] rotate-[-70deg]",
+      width: 280,
+      height: 280,
     },
   ];
 
