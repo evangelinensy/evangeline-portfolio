@@ -128,13 +128,21 @@ export default function WhiteboardingCaseStudy() {
       {/* Hero Section with Draggable Assets */}
       <DraggableCardContainer className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gray-50">
         {/* Center Text */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 pointer-events-none px-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-neutral-800 mb-4">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 px-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-neutral-800 mb-4 pointer-events-none">
             AI Whiteboard Interview
           </h1>
-          <p className="text-lg md:text-xl text-neutral-500 max-w-md mx-auto">
+          <p className="text-lg md:text-xl text-neutral-500 max-w-md mx-auto mb-8 pointer-events-none">
             Practice whiteboarding with an AI coach that gives real-time feedback
           </p>
+          <a
+            href="https://whiteboarding-mock.pages.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
+          >
+            Try Now
+          </a>
         </div>
 
         {/* Draggable Assets */}
