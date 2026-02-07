@@ -30,7 +30,7 @@ const cards: [string | React.ReactNode, string][] = [
             >
                 Megaphone
             </a>{' '}
-            I helped brands reward their community and go onchain at Megaphone as their Founding Product Designer.
+            I helped brands reward their community and go onchain as their Founding Product Designer.
             <br /><br />
             At{' '}
             <a
@@ -41,7 +41,39 @@ const cards: [string | React.ReactNode, string][] = [
             >
                 Pomelo
             </a>{' '}
-            I worked on helping immigrants like myself to remit money fee-free, on credit, as their Second Product Designer.
+            I worked on helping immigrants like myself to remit money fee-free, on credit.
+        </>,
+        "/images/aboutme-2-image/Card background 6.png"
+    ],
+    [
+        <>
+            <div style={{ position: "relative", marginBottom: "16px" }}>
+                <a
+                    href="https://substack.com/@eggsvans"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ display: "inline-block" }}
+                >
+                    <Image
+                        src="/images/aboutme-2-image/substack-app-icon.webp"
+                        alt="Substack"
+                        width={32}
+                        height={32}
+                        style={{ display: "block" }}
+                    />
+                </a>
+            </div>
+            <span style={{ fontSize: "19px", fontWeight: 500, fontFamily: "Bricolage Grotesque, sans-serif", display: "block", marginBottom: "12px" }}>AI Design Guides</span>
+            <br />
+            I love bringing my ideas to live with AI coding and I share how I do it by writing AI Design guides on{' '}
+            <a
+                href="https://substack.com/@eggsvans"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-gray-900 underline"
+            >
+                Substack
+            </a>.
         </>,
         "/images/aboutme-2-image/Card background 6.png"
     ],
@@ -87,38 +119,6 @@ const cards: [string | React.ReactNode, string][] = [
         </>,
         "/images/aboutme-2-image/Card background 4.png"
     ],
-    [
-        <>
-            <div style={{ position: "relative", marginBottom: "16px" }}>
-                <a 
-                    href="https://substack.com/@eggsvans" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style={{ display: "inline-block" }}
-                >
-                    <Image
-                        src="/images/aboutme-2-image/substack-app-icon.webp"
-                        alt="Substack"
-                        width={32}
-                        height={32}
-                        style={{ display: "block" }}
-                    />
-                </a>
-            </div>
-            <span style={{ fontSize: "19px", fontWeight: 500, fontFamily: "Bricolage Grotesque, sans-serif", display: "block", marginBottom: "12px" }}>AI Design Guides</span>
-            <br />
-            I love bringing my ideas to live with AI coding and I share how I do it by writing AI Design guides on{' '}
-            <a 
-                href="https://substack.com/@eggsvans" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-gray-900 underline"
-            >
-                Substack
-            </a>.
-        </>,
-        "/images/aboutme-2-image/Card background 6.png"
-    ],
     ["Thank you for stopping by! Feel free to drop me a hello at eggsvans@gmail.com", "/images/aboutme-2-image/Card background 7.png"],
 ]
 
@@ -127,7 +127,7 @@ export function ScrollTriggered() {
         <div className="w-full" style={container}>
             {cards.map(([content, backgroundImage], i) => (
                 <React.Fragment key={i}>
-                    {i === 2 && (
+                    {i === 3 && (
                         <div style={headerStyle}>
                             <h2 style={headerTextStyle}>My Design Principles</h2>
                         </div>
@@ -196,7 +196,7 @@ function Card({ content, backgroundImage, i, isLastCard = false }: CardProps) {
                             </div>
                         </div>
                         <p style={mapTextStyle}>
-                          Born and raised in Singapore, moved to the US because I love the culture.
+                          Hi, I&apos;m Evangeline. Staff Product Designer tinkering with design engineer in SF.
                         </p>
                     </div>
                 ) : (
@@ -242,6 +242,9 @@ const container: React.CSSProperties = {
     maxWidth: 500,
     paddingBottom: 100,
     width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    gap: 80,
 }
 
 const headerStyle: React.CSSProperties = {
