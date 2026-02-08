@@ -108,7 +108,7 @@ export default function WebAgentCaseStudy() {
             </button>
 
             {/* CNN Article Preview */}
-            <div className="relative">
+            <div className="relative h-[420px]">
               {/* Fake CNN Header */}
               <div className="bg-[#cc0000] text-white px-6 py-2">
                 <div className="flex items-center gap-4">
@@ -123,7 +123,7 @@ export default function WebAgentCaseStudy() {
               </div>
 
               {/* Article Preview Content */}
-              <div className="px-6 py-6 max-w-3xl mx-auto">
+              <div className="px-6 py-6 max-w-3xl mx-auto pb-24">
                 {/* Breadcrumb */}
                 <div className="text-xs text-gray-500 mb-3 flex items-center gap-2">
                   <span>Health</span>
@@ -156,11 +156,9 @@ export default function WebAgentCaseStudy() {
 
               {/* Fade overlay at bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-            </div>
 
-            {/* Chat Demo at bottom */}
-            <div className="relative bg-white p-6 pt-2">
-              <div className="relative w-full max-w-xl mx-auto">
+              {/* Chat Demo - overlaid at bottom */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
                 <TestMorphChat />
               </div>
             </div>
