@@ -143,7 +143,7 @@ export function DiscCard({
         playClickSound();
         onClick?.(e);
       }}
-      className={`relative w-full aspect-square rounded-[8px] overflow-visible ${className}`}
+      className={`relative w-full aspect-square rounded-[8px] overflow-visible cursor-none ${className}`}
       style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.20)' }}
     >
       {/* Base: plastic tray background image at 40% */}
