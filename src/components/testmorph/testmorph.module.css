@@ -175,14 +175,20 @@
 /* Feedback Icons */
 .feedbackIcons {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   margin-top: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.aiThinking:hover .feedbackIcons {
+  opacity: 1;
 }
 
 .feedbackIcon {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -191,7 +197,7 @@
   justify-content: center;
   color: #737373;
   transition: all 0.2s ease;
-  padding: 4px;
+  padding: 2px;
 }
 
 .feedbackIcon:hover {
@@ -204,8 +210,8 @@
 }
 
 .feedbackIcon svg {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
 }
 
 /* Chat Input Wrapper */

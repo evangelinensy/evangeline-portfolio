@@ -95,8 +95,7 @@ export default function WebAgentCaseStudy() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           {/* Demo Container */}
-          <div className="relative bg-white rounded-2xl shadow-xl p-8 min-h-[400px] flex items-end justify-center group">
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-100/50 to-transparent rounded-2xl pointer-events-none" />
+          <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden group">
             {/* "Try it out" button - appears on hover in top area */}
             <button
               onClick={() => setIsModalOpen(true)}
@@ -107,8 +106,63 @@ export default function WebAgentCaseStudy() {
               </svg>
               Try it out
             </button>
-            <div className="relative w-full max-w-xl">
-              <TestMorphChat />
+
+            {/* CNN Article Preview */}
+            <div className="relative">
+              {/* Fake CNN Header */}
+              <div className="bg-[#cc0000] text-white px-6 py-2">
+                <div className="flex items-center gap-4">
+                  <span className="text-xl font-bold tracking-tight">CNN</span>
+                  <nav className="hidden md:flex items-center gap-3 text-xs">
+                    <span className="opacity-80">World</span>
+                    <span className="opacity-80">U.S.</span>
+                    <span className="font-semibold border-b border-white pb-0.5">Health</span>
+                    <span className="opacity-80">Politics</span>
+                  </nav>
+                </div>
+              </div>
+
+              {/* Article Preview Content */}
+              <div className="px-6 py-6 max-w-3xl mx-auto">
+                {/* Breadcrumb */}
+                <div className="text-xs text-gray-500 mb-3 flex items-center gap-2">
+                  <span>Health</span>
+                  <span>›</span>
+                  <span>Disease and Conditions</span>
+                </div>
+
+                {/* Headline */}
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight mb-3">
+                  Pediatric flu deaths this season reach highest level in years, CDC reports
+                </h1>
+
+                {/* Byline */}
+                <div className="flex items-center gap-3 text-xs text-gray-600 mb-4 pb-4 border-b border-gray-200">
+                  <span>By <span className="font-medium text-gray-900">Jen Christensen, CNN</span></span>
+                  <span className="text-gray-400">|</span>
+                  <span>Updated 2:34 PM EST, Thu January 16, 2026</span>
+                </div>
+
+                {/* Article Preview */}
+                <div className="prose prose-sm max-w-none text-gray-800">
+                  <p className="text-base leading-relaxed mb-4">
+                    The number of flu-related deaths among children this season has surpassed last year&apos;s total, health officials announced Thursday, as the country grapples with a particularly severe influenza season.
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    According to the Centers for Disease Control and Prevention, <strong>32 children have died from flu-related complications</strong> since the season began in October...
+                  </p>
+                </div>
+              </div>
+
+              {/* Fade overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+            </div>
+
+            {/* Chat Demo at bottom */}
+            <div className="relative bg-white p-6 pt-2">
+              <div className="relative w-full max-w-xl mx-auto">
+                <TestMorphChat />
+              </div>
             </div>
           </div>
         </div>
@@ -280,63 +334,157 @@ export default function WebAgentCaseStudy() {
 
             {/* Travel Demo with Fake Flight UI */}
             <div className="relative bg-slate-100 rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-              {/* Fake Flight Search Result */}
-              <div className="p-6 pb-4">
+              {/* Fake Flight Search Results */}
+              <div className="p-6 pb-24 space-y-3">
+                {/* Search Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">SFO → NRT</p>
+                    <p className="text-xs text-gray-500">Round trip · 1 passenger · Economy</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <span className="px-2 py-1 bg-white rounded border border-gray-200">Price</span>
+                    <span className="px-2 py-1 bg-white rounded border border-gray-200">Duration</span>
+                  </div>
+                </div>
+
+                {/* Flight 1 - Cheapest */}
                 <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-                  {/* Flight Header */}
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <span className="bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded">Cheapest</span>
                       <span className="text-gray-400 text-xs">2 bookings required</span>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-bold text-gray-900">$847</p>
+                      <p className="text-xl font-bold text-gray-900">$847</p>
                       <p className="text-xs text-gray-500">round trip</p>
                     </div>
                   </div>
-
-                  {/* Flight Details */}
-                  <div className="flex items-center gap-4">
-                    {/* Outbound */}
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div>
-                          <p className="font-semibold text-gray-900">SFO</p>
-                          <p className="text-xs text-gray-500">6:00 AM</p>
-                        </div>
-                        <div className="flex-1 mx-4 flex flex-col items-center">
-                          <p className="text-xs text-gray-400 mb-1">1 stop · 18h 45m</p>
-                          <div className="w-full h-px bg-gray-300 relative">
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-400 rounded-full"></div>
-                          </div>
-                          <p className="text-xs text-gray-400 mt-1">ICN</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-semibold text-gray-900">NRT</p>
-                          <p className="text-xs text-gray-500">+1 day</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <span className="w-4 h-4 bg-blue-100 rounded text-blue-700 flex items-center justify-center text-[10px] font-bold">UA</span>
-                          United
-                        </span>
-                        <span>→</span>
-                        <span className="flex items-center gap-1">
-                          <span className="w-4 h-4 bg-sky-100 rounded text-sky-700 flex items-center justify-center text-[10px] font-bold">KE</span>
-                          Korean Air
-                        </span>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900 text-sm">SFO</p>
+                      <p className="text-xs text-gray-500">6:00 AM</p>
+                    </div>
+                    <div className="flex-1 mx-4 flex flex-col items-center">
+                      <p className="text-xs text-gray-400 mb-1">1 stop · 18h 45m</p>
+                      <div className="w-full h-px bg-gray-300 relative">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-400 rounded-full"></div>
                       </div>
                     </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900 text-sm">NRT</p>
+                      <p className="text-xs text-gray-500">+1 day</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                    <span className="w-4 h-4 bg-blue-100 rounded text-blue-700 flex items-center justify-center text-[10px] font-bold">UA</span>
+                    <span>United → Korean Air</span>
+                  </div>
+                </div>
+
+                {/* Flight 2 - Best */}
+                <div className="bg-white rounded-xl border-2 border-blue-200 p-4 shadow-sm">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-blue-100 text-blue-700 text-xs font-medium px-2 py-1 rounded">Best</span>
+                      <span className="text-gray-400 text-xs">Direct flight</span>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-bold text-gray-900">$1,247</p>
+                      <p className="text-xs text-gray-500">round trip</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900 text-sm">SFO</p>
+                      <p className="text-xs text-gray-500">11:30 AM</p>
+                    </div>
+                    <div className="flex-1 mx-4 flex flex-col items-center">
+                      <p className="text-xs text-gray-400 mb-1">Nonstop · 11h 15m</p>
+                      <div className="w-full h-px bg-blue-300"></div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900 text-sm">NRT</p>
+                      <p className="text-xs text-gray-500">+1 day</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                    <span className="w-4 h-4 bg-red-100 rounded text-red-700 flex items-center justify-center text-[10px] font-bold">JL</span>
+                    <span>Japan Airlines</span>
+                  </div>
+                </div>
+
+                {/* Flight 3 */}
+                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-400 text-xs">1 stop · LAX</span>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-bold text-gray-900">$923</p>
+                      <p className="text-xs text-gray-500">round trip</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900 text-sm">SFO</p>
+                      <p className="text-xs text-gray-500">2:45 PM</p>
+                    </div>
+                    <div className="flex-1 mx-4 flex flex-col items-center">
+                      <p className="text-xs text-gray-400 mb-1">1 stop · 14h 30m</p>
+                      <div className="w-full h-px bg-gray-300 relative">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900 text-sm">NRT</p>
+                      <p className="text-xs text-gray-500">+1 day</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                    <span className="w-4 h-4 bg-sky-100 rounded text-sky-700 flex items-center justify-center text-[10px] font-bold">AA</span>
+                    <span>American Airlines</span>
+                  </div>
+                </div>
+
+                {/* Flight 4 */}
+                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm opacity-60">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-400 text-xs">2 stops</span>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-bold text-gray-900">$789</p>
+                      <p className="text-xs text-gray-500">round trip</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900 text-sm">SFO</p>
+                      <p className="text-xs text-gray-500">8:15 PM</p>
+                    </div>
+                    <div className="flex-1 mx-4 flex flex-col items-center">
+                      <p className="text-xs text-gray-400 mb-1">2 stops · 24h 10m</p>
+                      <div className="w-full h-px bg-gray-300 relative">
+                        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-400 rounded-full"></div>
+                        <div className="absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-400 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900 text-sm">NRT</p>
+                      <p className="text-xs text-gray-500">+2 days</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                    <span className="w-4 h-4 bg-orange-100 rounded text-orange-700 flex items-center justify-center text-[10px] font-bold">CX</span>
+                    <span>Cathay Pacific</span>
                   </div>
                 </div>
               </div>
 
-              {/* Chat Demo */}
-              <div className="relative bg-white/50 backdrop-blur p-6 pt-4 min-h-[200px] flex items-end justify-center">
-                <div className="relative w-full max-w-xl">
-                  <TestMorphChat />
-                </div>
+              {/* Chat Demo - overlaid at bottom */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
+                <TestMorphChat />
               </div>
             </div>
           </div>
