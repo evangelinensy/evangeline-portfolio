@@ -53,7 +53,7 @@ async function callGemini(message: string, conversationHistory: Array<{ role: st
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error("Gemini API key not configured");
 
-  const models = ["gemini-2.0-flash-exp", "gemini-1.5-flash", "gemini-1.5-pro"];
+  const models = ["gemini-2.0-flash", "gemini-2.5-flash", "gemini-2.0-flash-lite"];
   let lastError: Error | null = null;
 
   for (const model of models) {
