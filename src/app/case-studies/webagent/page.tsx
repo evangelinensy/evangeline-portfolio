@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { TestMorphChat } from "@/components/testmorph";
+import { SubstackLinkCard } from "@/components/ui/substack-link-card";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { Agentation } from "agentation";
 
 export default function WebAgentCaseStudy() {
@@ -23,6 +25,11 @@ export default function WebAgentCaseStudy() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-100">
+        <ScrollProgress />
+      </div>
+
       {/* Back Button */}
       <div className="fixed top-6 left-6 z-50">
         <Link
@@ -73,7 +80,7 @@ export default function WebAgentCaseStudy() {
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
                 Timeline
               </h3>
-              <p className="text-gray-900">2025 — Hackathon prototype → exploratory concept</p>
+              <p className="text-gray-900">Hackathon prototype → exploratory concept</p>
             </div>
             <div>
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
@@ -166,36 +173,6 @@ export default function WebAgentCaseStudy() {
         </div>
       </section>
 
-      {/* Context Section */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Context</h2>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-xl text-gray-700 leading-relaxed mb-6">
-              You&apos;re reading, not researching.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              You see a line: <em>&quot;32 children have died.&quot;</em>
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              To verify it, today you usually have to: copy → new tab → paste into an AI chat → read paragraphs → tab back → find your place again.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              AI UX today assumes you&apos;re happy to open a separate workspace and read a wall of text. They&apos;re built for deep research, not for the tiny but critical trust decisions you make dozens of times a day.
-            </p>
-
-            <div className="bg-slate-50 border-l-4 border-slate-500 p-6 my-8 rounded-r-lg">
-              <p className="text-slate-800 text-lg font-medium">
-                This project asks a smaller question: What would an agent look like if it were designed only for those five‑second decisions?
-              </p>
-            </div>
-
-            <p className="text-gray-500 text-sm italic">
-              The following are small parts of what this agent could look like.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Problem Section */}
       <section className="py-16 px-6 bg-gray-50">
@@ -212,16 +189,13 @@ export default function WebAgentCaseStudy() {
             </p>
 
             <div className="bg-white border border-gray-200 rounded-xl p-8 my-8">
-              <p className="text-gray-900 text-lg leading-relaxed">
-                <strong>Web Agent</strong> is a concept for an inline web agent that sits on top of any page and answers a narrow question:
-              </p>
-              <p className="text-2xl font-medium text-gray-900 mt-4">
-                &quot;Can I trust what I&apos;m looking at right now?&quot;
+              <p className="text-gray-900 text-base leading-relaxed">
+                Web Agent is a concept for an inline web agent that sits on top of any page and answers a narrow question: &quot;Can I trust what I&apos;m looking at right now?&quot;
               </p>
             </div>
 
             <p className="text-gray-700 leading-relaxed">
-              It doesn&apos;t replace research tools. It gives you a quick verdict first, then gets out of the way.
+              It doesn&apos;t replace research tools. It gives you a quick verdict first, allowing you to follow up with research if you want.
             </p>
           </div>
         </div>
@@ -264,17 +238,17 @@ export default function WebAgentCaseStudy() {
         <div className="max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-gray-900 mb-6">From the Hackathon</h3>
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700 leading-relaxed mb-4">
-              This pattern came from watching people use the first version of the agent at a hackathon.{" "}
-              <a
-                href="https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-900 underline hover:text-gray-600"
-              >
-                Read about how I built a research agent in 5 hours →
-              </a>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              This pattern came from watching people use the first version of the agent at a hackathon.
             </p>
+
+            <SubstackLinkCard
+              title="Web Agent that won in a Hackathon"
+              articleTitle="How I Built A Research Agent in 5 Hours"
+              href="https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5"
+              className="my-6 not-prose"
+            />
+
             <p className="text-gray-700 leading-relaxed mb-4">
               The prototype returned verdicts like &quot;FACTS,&quot; plus citations on tap. In practice, almost no one opened details unless it contradicted what they already believed.
             </p>
