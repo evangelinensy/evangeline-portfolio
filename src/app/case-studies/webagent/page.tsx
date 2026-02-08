@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { TestMorphChat } from "@/components/testmorph";
+import { Agentation } from "agentation";
 
 export default function WebAgentCaseStudy() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -345,18 +346,20 @@ export default function WebAgentCaseStudy() {
             <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <span className="text-2xl">💳</span> Personal finance
             </h3>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              You&apos;re reviewing your bank statement and notice five subscriptions you forgot about. Instead of opening a spreadsheet or calculator, you ask the agent: &quot;How much am I spending on subscriptions monthly?&quot; It scans the page and returns a total in seconds, right where you&apos;re looking.
-            </p>
+            <div className="text-gray-700 leading-relaxed mb-6 space-y-2">
+              <p>This is your bank statement (or a list of your transactions).</p>
+              <p>Ask the agent: &quot;How much am I spending on subscriptions monthly?&quot;</p>
+              <p>Get your answer: The agent scans the page and gives you the total immediately.</p>
+            </div>
 
             {/* Finance Demo with Fake Bank UI */}
-            <div className="relative bg-slate-100 rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-              {/* Fake Bank Transaction List */}
-              <div className="p-6 pb-4">
+            <div className="relative rounded-2xl shadow-lg overflow-hidden border border-gray-200" style={{ backgroundColor: '#062655' }}>
+              {/* Fake Bank Transaction List - scrollable container */}
+              <div className="p-6 pb-4 h-[300px] overflow-y-auto">
                 <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
                   {/* Header */}
-                  <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
-                    <p className="font-medium text-gray-900">Recent Transactions</p>
+                  <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between" style={{ backgroundColor: '#EAEDF2' }}>
+                    <p className="font-medium text-gray-900 uppercase">Recent Transactions</p>
                     <p className="text-sm text-gray-500">This month</p>
                   </div>
 
@@ -436,11 +439,9 @@ export default function WebAgentCaseStudy() {
                 </div>
               </div>
 
-              {/* Chat Demo */}
-              <div className="relative bg-white/50 backdrop-blur p-6 pt-4 min-h-[200px] flex items-end justify-center">
-                <div className="relative w-full max-w-xl">
-                  <TestMorphChat />
-                </div>
+              {/* Chat Demo - overlaid at bottom center */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
+                <TestMorphChat />
               </div>
             </div>
           </div>
@@ -613,6 +614,9 @@ export default function WebAgentCaseStudy() {
           </div>
         </div>
       )}
+
+      {/* Agentation - dev tool for UI annotations */}
+      {process.env.NODE_ENV === "development" && <Agentation />}
     </div>
   );
 }
