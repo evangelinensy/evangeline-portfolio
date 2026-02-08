@@ -26,8 +26,8 @@ export default function WebAgentCaseStudy() {
   return (
     <div className="min-h-screen bg-white">
       {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-100">
-        <ScrollProgress />
+      <div className="fixed top-0 left-0 right-0 z-50 h-2 bg-gray-100">
+        <ScrollProgress className="h-2" />
       </div>
 
       {/* Back Button */}

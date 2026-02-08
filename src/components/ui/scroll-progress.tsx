@@ -23,7 +23,7 @@ export function ScrollProgress({ containerRef, className }: ScrollProgressProps)
   return (
     <motion.div
       className={cn(
-        "h-1 origin-left bg-gradient-to-r from-[#79A8FF] via-[#B2DDDA] to-[#F2B7C8]",
+        "h-2 origin-left bg-gradient-to-r from-[#79A8FF] via-[#B2DDDA] to-[#F2B7C8]",
         className
       )}
       style={{ scaleX }}
