@@ -47,13 +47,13 @@ const cards: [string | React.ReactNode, string][] = [
     ],
     [
         <>
-            <div style={{ position: "relative", marginBottom: "16px" }}>
-                <a
-                    href="https://substack.com/@eggsvans"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ display: "inline-block" }}
-                >
+            <a
+                href="https://substack.com/@eggsvans"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "block", textDecoration: "none", color: "inherit" }}
+            >
+                <div style={{ position: "relative", marginBottom: "16px" }}>
                     <Image
                         src="/images/aboutme-2-image/substack-app-icon.webp"
                         alt="Substack"
@@ -61,19 +61,17 @@ const cards: [string | React.ReactNode, string][] = [
                         height={32}
                         style={{ display: "block" }}
                     />
-                </a>
-            </div>
-            <span style={{ fontSize: "19px", fontWeight: 500, fontFamily: "Bricolage Grotesque, sans-serif", display: "block", marginBottom: "12px" }}>AI Design Guides</span>
-            <br />
-            I love bringing my ideas to live with AI coding and I share how I do it by writing AI Design guides on{' '}
-            <a
-                href="https://substack.com/@eggsvans"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-gray-900 underline"
-            >
-                Substack
-            </a>.
+                </div>
+                <span style={{ fontSize: "19px", fontWeight: 500, fontFamily: "Bricolage Grotesque, sans-serif", display: "block", marginBottom: "12px" }}>AI Design Garden &amp; Guides</span>
+                <br />
+                I help designers navigate AI through experiments, tools, and real workflows from my own practice. Follow my newsletter AI Design Weekly Wins on{' '}
+                <span
+                    className="text-gray-700 hover:text-gray-900 underline"
+                    style={{ textDecoration: "underline" }}
+                >
+                    Substack
+                </span>!
+            </a>
         </>,
         "/images/aboutme-2-image/Card background 6.png"
     ],
