@@ -48,7 +48,7 @@ const cards: [string | React.ReactNode, string][] = [
     [
         <>
             <a
-                href="https://substack.com/@eggsvans"
+                href="https://evangelineng.substack.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: "block", textDecoration: "none", color: "inherit" }}
