@@ -5,28 +5,31 @@
 /* Register Sequel Sans Head Semi Bold */
 @font-face {
   font-family: 'Sequel Sans Head';
-  src: url('/fonts/Sequel Sans Semi Bold Head.ttf') format('truetype');
+  src: url('/fonts/Sequel Sans Semi Bold Head.woff2') format('woff2'),
+       url('/fonts/Sequel Sans Semi Bold Head.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* Register Bricolage Grotesque for hero title */
 @font-face {
   font-family: 'Bricolage Grotesque';
-  src: url('/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
+  src: url('/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.woff2') format('woff2'),
+       url('/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
   font-weight: 200 800;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* Register Sequel Sans Medium Disp for card titles */
 @font-face {
   font-family: 'Sequel Sans Medium Disp';
-  src: url('/fonts/Sequel Sans Medium Disp.ttf') format('truetype');
+  src: url('/fonts/Sequel Sans Medium Disp.woff2') format('woff2'),
+       url('/fonts/Sequel Sans Medium Disp.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @theme inline {

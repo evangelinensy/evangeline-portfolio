@@ -59,11 +59,59 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/images/evan favicon.png?v=2" type="image/png" />
         <link rel="shortcut icon" href="/favicon.ico" />
+        {/* Preload custom fonts for faster loading */}
+        <link
+          rel="preload"
+          href="/fonts/Sequel Sans Semi Bold Head.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Sequel Sans Medium Disp.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        {/* Prevent FOUC: hide page until fonts + styles are ready */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              html { opacity: 0; }
+              html.ready { opacity: 1; transition: opacity 0.2s ease-in; }
+            `,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (document.fonts && document.fonts.ready) {
+                  document.fonts.ready.then(function() {
+                    document.documentElement.classList.add('ready');
+                  });
+                }
+                // Fallback: always show after 2s even if fonts fail
+                setTimeout(function() {
+                  document.documentElement.classList.add('ready');
+                }, 2000);
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} antialiased font-sans`}
