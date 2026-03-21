@@ -44,7 +44,11 @@ export function ConversationBubble({
     <div className={styles.aiThinking}>
       {isLoading ? (
         <div className={styles.aiLoadingAnimation}>
-          <div className={styles.classicLoader} />
+          <div className={styles.dotsLoader}>
+            <div className={styles.dot} />
+            <div className={styles.dot} />
+            <div className={styles.dot} />
+          </div>
         </div>
       ) : (
         <>

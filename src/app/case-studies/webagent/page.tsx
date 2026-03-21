@@ -34,7 +34,7 @@ export default function WebAgentCaseStudy() {
       <div className="fixed top-6 left-6 z-50">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-sm text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-sm text-gray-700 hover:bg-gray-50 transition-all duration-150 shadow-sm hover:-translate-x-0.5 active:scale-95"
         >
           <svg
             className="w-4 h-4"
@@ -74,13 +74,13 @@ export default function WebAgentCaseStudy() {
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
                 My Role
               </h3>
-              <p className="text-gray-900">Product Designer, solo</p>
+              <p className="text-gray-900">Product Owner</p>
             </div>
             <div>
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
                 Timeline
               </h3>
-              <p className="text-gray-900">Hackathon prototype → exploratory concept</p>
+              <p className="text-gray-900">Hackathon Win<br />↓<br />Live Project</p>
             </div>
             <div>
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
@@ -106,7 +106,7 @@ export default function WebAgentCaseStudy() {
             {/* "Try it out" button - appears on hover in top area */}
             <button
               onClick={() => setIsModalOpen(true)}
-              className="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-900 text-white text-sm font-medium rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 hover:bg-slate-800 z-10"
+              className="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-900 text-white text-sm font-medium rounded-full opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] flex items-center gap-2 hover:bg-slate-800 active:scale-95 z-10"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -178,24 +178,19 @@ export default function WebAgentCaseStudy() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg max-w-none">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Problem</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
-              We scroll feeds, and absorb claims. If we want to sanity‑check something, the burden is on us to break flow: open tools, run searches, read long explanations.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              AI has made it easier to ask questions, but the interface hasn&apos;t changed much: it&apos;s still a big text box in another tab.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-6">
-              The experience is broken for fast judgment calls. You either trust by default, or you pay a heavy tax in time and attention to verify.
+              We see 100,000 words daily and believe them by default because doubting is hard work.
             </p>
 
             <div className="bg-white border border-gray-200 rounded-xl p-8 my-8">
               <p className="text-gray-900 text-base leading-relaxed">
-                Web Agent is a concept for an inline web agent that sits on top of any page and answers a narrow question: &quot;Can I trust what I&apos;m looking at right now?&quot;
+                Verifying claims is a &quot;mental tax&quot; that forces you to break flow and open separate tabs.
               </p>
             </div>
 
             <p className="text-gray-700 leading-relaxed">
-              It doesn&apos;t replace research tools. It gives you a quick verdict first, allowing you to follow up with research if you want.
+              Web Agent gives you a trust verdict in 5 seconds, right on the page you&apos;re reading.
             </p>
           </div>
         </div>

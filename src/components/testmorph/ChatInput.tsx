@@ -60,17 +60,19 @@ export function ChatInput({
     >
       {/* Top Row - LLM Dropdown and Close hint */}
       <div className={styles.chatTopRow}>
-        <div className={styles.chatLeftControls}>{leftSlot}</div>
-        <div className={styles.chatCloseSection}>
-          {hasMessages && !isExpanded && (
-            <button
-              className={styles.recentButton}
-              onClick={onExpand}
-              type="button"
-            >
-              Recent
-            </button>
-          )}
+        <div className={styles.chatTopRowInner}>
+          <div className={styles.chatLeftControls}>{leftSlot}</div>
+          <div className={styles.chatCloseSection}>
+            {hasMessages && !isExpanded && (
+              <button
+                className={styles.recentButton}
+                onClick={onExpand}
+                type="button"
+              >
+                Recent
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -113,6 +115,7 @@ export function ChatInput({
 
       {/* Bottom Row - Attach and Send buttons */}
       <div className={styles.chatBottomRow}>
+        <div className={styles.chatBottomRowInner}>
         <div className={styles.chatLeftControls}>
           <button
             type="button"
@@ -157,6 +160,7 @@ export function ChatInput({
               />
             </svg>
           </button>
+        </div>
         </div>
       </div>
     </div>
