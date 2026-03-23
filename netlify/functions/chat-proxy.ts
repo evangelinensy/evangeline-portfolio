@@ -275,7 +275,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   try {
     const body = JSON.parse(event.body || "{}");
-    const { provider, message, conversationHistory = [] } = body;
+    const { provider, message, conversationHistory = [], systemPrompt } = body;
 
     if (!message || typeof message !== "string") {
       return {
@@ -288,14 +288,11 @@ const handler: Handler = async (event: HandlerEvent) => {
     // Basic input sanitization
     const sanitizedMessage = message.slice(0, 4000); // Limit message length
 
-    const systemInstruction = `You are TestMorph, a friendly AI assistant embedded in Evangeline's portfolio.
-You help visitors learn about her work and answer questions about design, development, and AI.
-Keep responses concise and helpful (2-3 sentences when possible).
-You can discuss the TestMorph project itself - it's an AI chat interface that demonstrates:
-- Multi-provider AI support (Gemini, Groq, Hugging Face, Cerebras)
-- Beautiful morphing animations
-- A clean, professional chat interface
-Be helpful, friendly, and professional.`;
+    const defaultSystemInstruction = `You are a helpful AI assistant embedded in a web page. Answer questions concisely and helpfully in 1-3 sentences.`;
+
+    const systemInstruction = (typeof systemPrompt === "string" && systemPrompt.trim())
+      ? systemPrompt.trim()
+      : defaultSystemInstruction;
 
     let response: string;
 
