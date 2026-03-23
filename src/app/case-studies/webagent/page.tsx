@@ -552,7 +552,7 @@ export default function WebAgentCaseStudy() {
 
               {/* Chat Demo - overlaid at bottom center */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
-                <TestMorphChat loaderVariant="eyes" systemPrompt="You are a web agent analyzing a personal bank statement. Transactions this month: Whole Foods $87.34, Spotify $9.99, Shell Gas $52.18, Netflix $15.99, Uber Eats $28.45, Figma $12.00, Amazon $34.99, Disney+ $7.99, Starbucks $6.75, Adobe CC $54.99. Total subscriptions: Spotify + Netflix + Figma + Disney+ + Adobe CC = $100.96/month. Answer questions about spending patterns in 1-2 sentences." />
+                <TestMorphChat loaderVariant="eyes" systemPrompt="You are a web agent with access to this month's bank statement. Use ONLY this data to answer — do not say you cannot access bank data. Transactions: Whole Foods $87.34 (groceries), Spotify $9.99 (subscription), Shell Gas $52.18 (transport), Netflix $15.99 (subscription), Uber Eats $28.45 (food), Figma $12.00 (subscription), Amazon $34.99 (shopping), Disney+ $7.99 (subscription), Starbucks $6.75 (food), Adobe CC $54.99 (subscription). Subscriptions total: $100.96/month. Total spending: $311.67. Answer questions about these transactions in 1-2 sentences." />
               </div>
             </div>
           </div>
