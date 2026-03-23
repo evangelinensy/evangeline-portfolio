@@ -1,0 +1,44 @@
+.eye {
+  background: white;
+  border-radius: 50%;
+  border: 1.5px solid #1a1a1a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.pupil {
+  border-radius: 50%;
+  background: #1a1a1a;
+  position: absolute;
+  transition: transform 0.06s ease-out;
+  will-change: transform;
+}
+
+.pupil.scanning {
+  transition: none;
+  animation: eyeScan 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* The keyframe values use CSS vars set inline per-instance */
+@keyframes eyeScan {
+  0%   { transform: translate(var(--scan-left), 0); }
+  18%  { transform: translate(var(--scan-right), 0); }
+  36%  { transform: translate(0, var(--scan-up)); }
+  54%  { transform: translate(0, var(--scan-down)); }
+  72%  { transform: translate(var(--scan-left), 0); }
+  100% { transform: translate(var(--scan-left), 0); }
+}
+
+/* Blink animation */
+.eye.blink {
+  animation: blink 4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.08); }
+}

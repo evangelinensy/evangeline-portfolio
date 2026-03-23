@@ -24,9 +24,10 @@ interface TestMorphChatProps {
   placeholder?: string;
   selectedText?: string;
   onClearSelectedText?: () => void;
+  loaderVariant?: "dots" | "eyes";
 }
 
-export function TestMorphChat({ placeholder = "Ask AI", selectedText, onClearSelectedText }: TestMorphChatProps) {
+export function TestMorphChat({ placeholder = "Ask AI", selectedText, onClearSelectedText, loaderVariant = "dots" }: TestMorphChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedLLM, setSelectedLLM] = useState<LLMProvider>("gemini");
@@ -181,6 +182,7 @@ export function TestMorphChat({ placeholder = "Ask AI", selectedText, onClearSel
                 role={message.role}
                 content={message.content}
                 isLoading={message.isLoading}
+                loaderVariant={loaderVariant}
               />
             ))}
           </div>

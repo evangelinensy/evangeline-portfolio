@@ -1,18 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { GooglyEyes } from "@/components/ui/googly-eyes";
 import styles from "./testmorph.module.css";
 
 interface ConversationBubbleProps {
   role: "user" | "assistant";
   content: string;
   isLoading?: boolean;
+  loaderVariant?: "dots" | "eyes";
 }
 
 export function ConversationBubble({
   role,
   content,
   isLoading,
+  loaderVariant = "dots",
 }: ConversationBubbleProps) {
   const [copied, setCopied] = useState(false);
   const [feedback, setFeedback] = useState<"up" | "down" | null>(null);
@@ -44,11 +47,15 @@ export function ConversationBubble({
     <div className={styles.aiThinking}>
       {isLoading ? (
         <div className={styles.aiLoadingAnimation}>
-          <div className={styles.dotsLoader}>
-            <div className={styles.dot} />
-            <div className={styles.dot} />
-            <div className={styles.dot} />
-          </div>
+          {loaderVariant === "eyes" ? (
+            <GooglyEyes scanning size={22} gap={5} blink={false} />
+          ) : (
+            <div className={styles.dotsLoader}>
+              <div className={styles.dot} />
+              <div className={styles.dot} />
+              <div className={styles.dot} />
+            </div>
+          )}
         </div>
       ) : (
         <>
