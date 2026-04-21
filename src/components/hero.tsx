@@ -177,6 +177,18 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
+    // Wonder
+    {
+      id: 'disc-pd-2',
+      title: 'Wonder',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/wonder-disc.png', event, 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918', true),
+      discSrc: '/images/wonder-disc.png',
+      sleeveTitle: 'Wonder',
+      sleeveSubtitle: 'AI Design Tool',
+      sleeveBottomCaption: undefined,
+      href: 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918',
+      external: true,
+    },
     // Support Copilot - Password Protected
     {
       id: 'disc-pd-1',
@@ -187,18 +199,6 @@ export function Hero() {
       sleeveSubtitle: 'Web',
       sleeveBottomCaption: undefined,
       href: 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291',
-      external: true,
-    },
-    // Wonder - Password Protected
-    {
-      id: 'disc-pd-2',
-      title: 'Wonder',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/wonder-disc.png', event, 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918', true, true, 'AI Design Tool'),
-      discSrc: '/images/wonder-disc.png',
-      sleeveTitle: 'Wonder',
-      sleeveSubtitle: 'AI Design Tool',
-      sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918',
       external: true,
     },
     // Pomelo
