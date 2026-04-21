@@ -33,9 +33,9 @@ export function ChatInput({
   const hasText = value.trim().length > 0;
   const showExpanded = isFocused || hasText;
 
-  // Focus input on mount
+  // Focus input on mount, but don't scroll the page to it
   useEffect(() => {
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
   }, []);
 
   const handleSend = () => {

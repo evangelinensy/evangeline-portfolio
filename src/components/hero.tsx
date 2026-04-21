@@ -287,16 +287,28 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
-    // AI Whiteboard Interview
+    // Portfolio Pal
     {
-      id: 'disc-ai-1b',
-      title: 'AI Whiteboard Interview',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, '/case-studies/whiteboarding', false),
-      discSrc: '/images/whiteboard-disc.png',
-      sleeveTitle: 'AI Whiteboard Interview',
+      id: 'disc-ai-popa',
+      title: 'Portfolio Pal',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-popa', '/images/popa-disc.png', event, 'https://www.portfoliopal.co', true),
+      discSrc: '/images/popa-disc.png',
+      sleeveTitle: 'Portfolio Pal',
       sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: '/case-studies/whiteboarding',
+      href: 'https://www.portfoliopal.co',
+      external: true,
+    },
+    // Web Agent v2
+    {
+      id: 'disc-ai-webagent',
+      title: 'Web Agent v2',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-webagent', '/images/disc-researchagent2.png', event, '/case-studies/webagent', false),
+      discSrc: '/images/disc-researchagent2.png',
+      sleeveTitle: 'Web Agent v2',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: '/case-studies/webagent',
       external: false,
     },
     // Research Agent
@@ -310,6 +322,18 @@ export function Hero() {
       sleeveBottomCaption: undefined,
       href: 'https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5',
       external: true,
+    },
+    // AI Whiteboard Interview
+    {
+      id: 'disc-ai-1b',
+      title: 'AI Whiteboard Interview',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-1b', '/images/whiteboard-disc.png', event, '/case-studies/whiteboarding', false),
+      discSrc: '/images/whiteboard-disc.png',
+      sleeveTitle: 'AI Whiteboard Interview',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: '/case-studies/whiteboarding',
+      external: false,
     },
     // AI Copy Plugin
     {
@@ -346,6 +370,18 @@ export function Hero() {
       sleeveBottomCaption: undefined,
       href: '/spotifyplaylist',
       external: false,
+    },
+    // Party Game
+    {
+      id: 'disc-ai-partygame',
+      title: 'Party Game',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-ai-partygame', '/images/facecard-disc.png', event, 'https://facecard.pages.dev/', true),
+      discSrc: '/images/facecard-disc.png',
+      sleeveTitle: 'Party Game',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: 'https://facecard.pages.dev/',
+      external: true,
     },
     // Timer
     {

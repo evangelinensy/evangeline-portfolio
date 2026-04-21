@@ -76,7 +76,7 @@ export default function WebAgentCaseStudy() {
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
                 My Role
               </h3>
-              <p className="text-gray-900">Product Owner</p>
+              <p className="text-gray-900">Builder</p>
             </div>
             <div>
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
@@ -182,10 +182,10 @@ export default function WebAgentCaseStudy() {
           <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Problem</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
-              We see 100,000 words daily and believe them by default because doubting is hard work.
+              We see 100,000 words daily and believe what we read by default because doubting is hard work.
             </p>
 
-            <div className="bg-white border border-gray-200 rounded-xl p-8 my-8">
+            <div className="bg-white border border-gray-200 rounded-xl px-8 py-4 my-8">
               <p className="text-gray-900 text-base leading-relaxed">
                 Verifying claims is a &quot;mental tax&quot; that forces you to break flow and open separate tabs.
               </p>
@@ -239,20 +239,12 @@ export default function WebAgentCaseStudy() {
               This pattern came from watching people use the first version of the agent at a hackathon.
             </p>
 
-            <div className="my-6 not-prose flex gap-3 items-stretch">
+            <div className="my-6 not-prose">
               <SubstackLinkCard
                 title="Web Agent that won in a Hackathon"
                 articleTitle="How I Built A Research Agent in 5 Hours"
                 href="https://evangelineng.substack.com/p/how-i-built-a-research-agent-in-5"
-                className="flex-1"
               />
-              <div className="w-72 shrink-0 rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white">
-                <img
-                  src="/webagent-hackathon-demo.png"
-                  alt="Hackathon demo showing the web agent popup on The San Francisco Standard"
-                  className="w-full h-full object-cover"
-                />
-              </div>
             </div>
 
             <p className="text-gray-700 leading-relaxed mb-4">
@@ -290,7 +282,7 @@ export default function WebAgentCaseStudy() {
           </p>
 
           {/* Travel Example */}
-          <div className="mb-12">
+          <div className="mb-12 mt-[100px]">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Travel
             </h3>
@@ -314,7 +306,7 @@ export default function WebAgentCaseStudy() {
                 </div>
               </div>
               {/* Fake Flight Search Results */}
-              <div className="p-6 pb-24 space-y-3">
+              <div className="p-6 pb-4 h-[300px] overflow-y-auto space-y-3">
                 {/* Search Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -453,7 +445,7 @@ export default function WebAgentCaseStudy() {
           </div>
 
           {/* Personal Finance Example */}
-          <div style={{ marginTop: "20px" }}>
+          <div style={{ marginTop: "120px" }}>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Personal Finance
             </h3>

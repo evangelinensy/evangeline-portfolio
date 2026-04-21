@@ -40,21 +40,21 @@ export const SubstackLinkCard = ({
       animate="visible"
       variants={itemVariants}
       className={cn(
-        "w-full max-w-md rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm",
+        "w-full rounded-2xl border border-border bg-card px-6 pt-1 pb-6 text-card-foreground shadow-sm",
         className
       )}
     >
       {/* Card Header */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center gap-2">
         <h2 className="text-base font-semibold text-gray-900">{title}</h2>
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View article"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-muted/50 text-muted-foreground transition-colors hover:bg-muted"
+          className="inline-flex items-center justify-center text-gray-500 transition-colors hover:text-gray-900"
         >
-          <ArrowUpRight className="h-5 w-5" />
+          <ArrowUpRight className="h-3 w-3" />
         </a>
       </div>
 
