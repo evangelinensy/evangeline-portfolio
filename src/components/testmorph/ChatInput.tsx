@@ -28,7 +28,7 @@ export function ChatInput({
 }: ChatInputProps) {
   const [value, setValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const hasText = value.trim().length > 0;
   const showExpanded = isFocused || hasText;
@@ -38,6 +38,14 @@ export function ChatInput({
     inputRef.current?.focus({ preventScroll: true });
   }, []);
 
+  // Auto-resize textarea to fit content
+  useEffect(() => {
+    const el = inputRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, 60)}px`;
+  }, [value]);
+
   const handleSend = () => {
     if (!value.trim() || isLoading) return;
     onSend(value.trim(), selectedText);
@@ -45,7 +53,7 @@ export function ChatInput({
     onClearSelectedText?.();
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -99,9 +107,8 @@ export function ChatInput({
 
       {/* Input Row */}
       <div className={styles.chatInputWrapper}>
-        <input
+        <textarea
           ref={inputRef}
-          type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -110,6 +117,7 @@ export function ChatInput({
           placeholder={placeholder}
           className={styles.chatInput}
           disabled={isLoading}
+          rows={1}
         />
       </div>
 

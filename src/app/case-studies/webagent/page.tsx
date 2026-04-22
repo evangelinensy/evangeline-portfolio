@@ -168,7 +168,7 @@ export default function WebAgentCaseStudy() {
 
               {/* Chat Demo - overlaid at bottom */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
-                <TestMorphChat loaderVariant="eyes" systemPrompt="You are a web agent fact-checking a CNN health article about pediatric flu deaths this season. Key claims in the article: 32 children have died from flu-related complications since October, vaccination rates are at ~40% vs pre-pandemic ~60%, and H1N1 strains are dominant this season. Answer questions about the article's claims concisely in 1-2 sentences. If asked whether to trust the article, give a quick verdict." />
+                <TestMorphChat placeholder="Fact-check this article..." loaderVariant="eyes" systemPrompt="You are a web agent fact-checking a CNN health article about pediatric flu deaths this season. Key claims in the article: 32 children have died from flu-related complications since October, vaccination rates are at ~40% vs pre-pandemic ~60%, and H1N1 strains are dominant this season. Answer questions about the article's claims concisely in 1-2 sentences. If asked whether to trust the article, give a quick verdict." />
               </div>
             </div>
           </div>
@@ -288,6 +288,9 @@ export default function WebAgentCaseStudy() {
             </h3>
             <p className="text-gray-700 leading-relaxed mb-6">
               You&apos;re comparing flights. One option looks cheap, but something feels off.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Ask the agent: &quot;Why is the $847 flight so cheap?&quot;
             </p>
 
             {/* Travel Demo with Fake Flight UI */}
@@ -439,7 +442,7 @@ export default function WebAgentCaseStudy() {
 
               {/* Chat Demo - overlaid at bottom */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
-                <TestMorphChat loaderVariant="eyes" systemPrompt="You are a web agent helping analyze flight search results for SFO to NRT (San Francisco to Tokyo). Flights shown: $847 cheapest but requires 2 separate bookings, 1 stop, 18h45m. $1,247 best option, direct nonstop, 11h15m. $923 mid-range, 1 stop via LAX, 14h30m. $789 cheapest overall but 2 stops, 24h10m. Answer questions about these flights in 1-2 sentences — explain trade-offs, flag anything suspicious, help the user decide." />
+                <TestMorphChat placeholder="Ask about these flights..." loaderVariant="eyes" systemPrompt="You are a web agent helping analyze flight search results for SFO to NRT (San Francisco to Tokyo). Flights shown: $847 cheapest but requires 2 separate bookings, 1 stop, 18h45m. $1,247 best option, direct nonstop, 11h15m. $923 mid-range, 1 stop via LAX, 14h30m. $789 cheapest overall but 2 stops, 24h10m. Answer questions about these flights in 1-2 sentences — explain trade-offs, flag anything suspicious, help the user decide." />
               </div>
             </div>
           </div>
@@ -544,7 +547,7 @@ export default function WebAgentCaseStudy() {
 
               {/* Chat Demo - overlaid at bottom center */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
-                <TestMorphChat loaderVariant="eyes" systemPrompt="You are a web agent with access to this month's bank statement. Use ONLY this data to answer — do not say you cannot access bank data. Transactions: Whole Foods $87.34 (groceries), Spotify $9.99 (subscription), Shell Gas $52.18 (transport), Netflix $15.99 (subscription), Uber Eats $28.45 (food), Figma $12.00 (subscription), Amazon $34.99 (shopping), Disney+ $7.99 (subscription), Starbucks $6.75 (food), Adobe CC $54.99 (subscription). Subscriptions total: $100.96/month. Total spending: $311.67. Answer questions about these transactions in 1-2 sentences." />
+                <TestMorphChat placeholder="Ask about your spending..." loaderVariant="eyes" systemPrompt="You are a web agent with access to this month's bank statement. Use ONLY this data to answer — do not say you cannot access bank data. Transactions: Whole Foods $87.34 (groceries), Spotify $9.99 (subscription), Shell Gas $52.18 (transport), Netflix $15.99 (subscription), Uber Eats $28.45 (food), Figma $12.00 (subscription), Amazon $34.99 (shopping), Disney+ $7.99 (subscription), Starbucks $6.75 (food), Adobe CC $54.99 (subscription). Subscriptions total: $100.96/month. Total spending: $311.67. Answer questions about these transactions in 1-2 sentences." />
               </div>
             </div>
           </div>
