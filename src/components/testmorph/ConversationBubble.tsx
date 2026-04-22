@@ -48,7 +48,7 @@ export function ConversationBubble({
       {isLoading ? (
         <div className={styles.aiLoadingAnimation}>
           {loaderVariant === "eyes" ? (
-            <GooglyEyes scanning size={22} gap={5} blink={false} />
+            <GooglyEyes scanning size={11} gap={1} blink={false} noStroke />
           ) : (
             <div className={styles.dotsLoader}>
               <div className={styles.dot} />

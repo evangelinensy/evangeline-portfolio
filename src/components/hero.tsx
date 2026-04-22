@@ -201,6 +201,18 @@ export function Hero() {
       href: 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291',
       external: true,
     },
+    // AI Customer Insights
+    {
+      id: 'disc-pd-ai-insights',
+      title: 'AI Customer Insights',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, 'https://evangelineng.substack.com/p/i-experimented-with-ai-design-tools', true),
+      discSrc: '/images/disc-pogosubstack1.png',
+      sleeveTitle: 'AI Customer Insights',
+      sleeveSubtitle: '',
+      sleeveBottomCaption: undefined,
+      href: 'https://evangelineng.substack.com/p/i-experimented-with-ai-design-tools',
+      external: true,
+    },
     // Pomelo
     {
       id: 'disc-pd-3',

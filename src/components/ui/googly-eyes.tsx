@@ -9,16 +9,19 @@ interface GooglyEyesProps {
   gap?: number;
   className?: string;
   blink?: boolean;
+  noStroke?: boolean;
 }
 
 function Eye({
   size,
   scanning,
   blink: doBlink,
+  noStroke,
 }: {
   size: number;
   scanning: boolean;
   blink: boolean;
+  noStroke: boolean;
 }) {
   const eyeRef = useRef<HTMLDivElement>(null);
   const [pupilTransform, setPupilTransform] = useState({ x: 0, y: 0 });
@@ -54,7 +57,7 @@ function Eye({
     <div
       ref={eyeRef}
       className={`${styles.eye} ${doBlink ? styles.blink : ""}`}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, ...(noStroke ? { border: "none" } : {}) }}
     >
       <div
         className={`${styles.pupil} ${scanning ? styles.scanning : ""}`}
@@ -81,14 +84,15 @@ export function GooglyEyes({
   gap = 6,
   className = "",
   blink = true,
+  noStroke = false,
 }: GooglyEyesProps) {
   return (
     <div
       className={className}
       style={{ display: "inline-flex", alignItems: "center", gap }}
     >
-      <Eye size={size} scanning={scanning} blink={blink} />
-      <Eye size={size} scanning={scanning} blink={blink} />
+      <Eye size={size} scanning={scanning} blink={blink} noStroke={noStroke} />
+      <Eye size={size} scanning={scanning} blink={blink} noStroke={noStroke} />
     </div>
   );
 }
