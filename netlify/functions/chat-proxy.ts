@@ -125,7 +125,7 @@ async function callGroq(message: string, conversationHistory: Array<{ role: stri
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: "llama-3.1-70b-versatile",
+      model: "llama-3.3-70b-versatile",
       messages,
       temperature: 0.7,
       max_tokens: 500,
@@ -143,6 +143,54 @@ async function callGroq(message: string, conversationHistory: Array<{ role: stri
   }
 
   throw new Error("Invalid response format from Groq");
+}
+
+// Cohere API
+interface CohereResponse {
+  message?: {
+    content?: Array<{ type: string; text?: string }>;
+  };
+  text?: string;
+  message_type?: string;
+}
+
+async function callCohere(message: string, conversationHistory: Array<{ role: string; parts: Array<{ text: string }> }>, systemInstruction: string): Promise<string> {
+  const apiKey = process.env.COHERE_API_KEY;
+  if (!apiKey) throw new Error("Cohere API key not configured");
+
+  const messages = [
+    { role: "system", content: systemInstruction },
+    ...conversationHistory.map((msg) => ({
+      role: msg.role === "model" ? "assistant" : msg.role,
+      content: msg.parts[0].text,
+    })),
+    { role: "user", content: message },
+  ];
+
+  const response = await fetch("https://api.cohere.com/v2/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "command-r-plus",
+      messages,
+      temperature: 0.3,
+      max_tokens: 500,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Cohere API error: ${response.status} - ${errorText}`);
+  }
+
+  const data: CohereResponse = await response.json();
+  const text = data.message?.content?.find((c) => c.type === "text")?.text;
+  if (text) return text;
+
+  throw new Error("Invalid response format from Cohere");
 }
 
 // Hugging Face API
@@ -294,22 +342,54 @@ const handler: Handler = async (event: HandlerEvent) => {
       ? systemPrompt.trim()
       : defaultSystemInstruction;
 
-    let response: string;
+    type ProviderFn = (m: string, h: typeof conversationHistory, s: string) => Promise<string>;
+    const providers: Record<string, ProviderFn> = {
+      gemini: callGemini,
+      groq: callGroq,
+      cohere: callCohere,
+      huggingface: callHuggingFace,
+      cerebras: callCerebras,
+    };
 
-    switch (provider) {
-      case "groq":
-        response = await callGroq(sanitizedMessage, conversationHistory, systemInstruction);
+    // Build fallback chain: selected provider first, then the rest in a sensible order.
+    const fallbackOrder = ["gemini", "groq", "cohere", "huggingface", "cerebras"];
+    const primary = providers[provider] ? provider : "gemini";
+    const chain = [primary, ...fallbackOrder.filter((p) => p !== primary)];
+
+    const isRecoverable = (err: unknown): boolean => {
+      const msg = err instanceof Error ? err.message.toLowerCase() : String(err).toLowerCase();
+      return (
+        msg.includes("429") ||
+        msg.includes("rate limit") ||
+        msg.includes("resource_exhausted") ||
+        msg.includes("quota") ||
+        msg.includes("overloaded") ||
+        msg.includes("not configured") ||
+        msg.includes("decommissioned") ||
+        msg.includes("not found") ||
+        msg.includes("500") ||
+        msg.includes("502") ||
+        msg.includes("503")
+      );
+    };
+
+    let response: string | null = null;
+    let lastError: unknown = null;
+    for (const name of chain) {
+      const fn = providers[name];
+      if (!fn) continue;
+      try {
+        response = await fn(sanitizedMessage, conversationHistory, systemInstruction);
         break;
-      case "huggingface":
-        response = await callHuggingFace(sanitizedMessage, conversationHistory, systemInstruction);
-        break;
-      case "cerebras":
-        response = await callCerebras(sanitizedMessage, conversationHistory, systemInstruction);
-        break;
-      case "gemini":
-      default:
-        response = await callGemini(sanitizedMessage, conversationHistory, systemInstruction);
-        break;
+      } catch (err) {
+        lastError = err;
+        console.warn(`Provider ${name} failed:`, err instanceof Error ? err.message : err);
+        if (!isRecoverable(err)) break;
+      }
+    }
+
+    if (response === null) {
+      throw lastError || new Error("All providers failed");
     }
 
     return {
