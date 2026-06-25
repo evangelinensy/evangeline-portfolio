@@ -869,7 +869,7 @@ function StepLabel({ n, title }: { n: string; title: string }) {
   );
 }
 
-function CaseStudyContent() {
+export default function PogoB2BCaseStudy() {
   return (
     <div className="min-h-screen" style={{ background: PAGE_BG }}>
       <WebScrollPill />
@@ -1648,83 +1648,6 @@ function CaseStudyContent() {
 
       {/* Footer fade — eases the page's purple gently into the footer color */}
       <div style={{ height: 420, background: "linear-gradient(180deg, rgba(242,242,242,0) 0%, rgba(242,242,242,0.55) 55%, #F2F2F2 100%)" }} />
-    </div>
-  );
-}
-
-/* ─── Password gate — case study is under NDA ─── */
-const CASE_STUDY_PASSWORD = "shownottell";
-const UNLOCK_KEY = "pogoaiagent-unlocked";
-
-export default function PogoB2BCaseStudy() {
-  const [unlocked, setUnlocked] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage.getItem(UNLOCK_KEY) === "true") {
-      setUnlocked(true);
-    }
-    setReady(true);
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === CASE_STUDY_PASSWORD) {
-      window.localStorage.setItem(UNLOCK_KEY, "true");
-      setError("");
-      setUnlocked(true);
-    } else {
-      setError("Incorrect password. Please try again.");
-    }
-  };
-
-  // Avoid a flash of the gate before localStorage is read
-  if (!ready) return <div className="min-h-screen" style={{ background: PAGE_BG }} />;
-
-  if (unlocked) return <CaseStudyContent />;
-
-  return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: PAGE_BG }}>
-      <div className="fixed top-6 left-6 z-50">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-xs hover:opacity-60 transition-opacity" style={{ fontFamily: GTA, color: "#666" }}>
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ flexShrink: 0 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Portfolio
-        </Link>
-      </div>
-      <div className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
-        <div className="mb-6">
-          <h2 style={{ fontFamily: GTA, fontSize: 24, fontWeight: 600, color: "#111", marginBottom: 8 }}>AI Customer Insights</h2>
-          <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 300, color: "#666" }}>This case study is under NDA.</p>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="cs-password" style={{ fontFamily: GTA, fontSize: 14, fontWeight: 500, color: "#444", display: "block", marginBottom: 8 }}>Password</label>
-            <input
-              type="text"
-              id="cs-password"
-              value={password}
-              onChange={(e) => { setPassword(e.target.value); setError(""); }}
-              placeholder="Enter password"
-              autoFocus
-              className="w-full outline-none focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/20 rounded-lg p-3 border-2 border-gray-200 transition-all"
-              style={{ fontFamily: GTA }}
-            />
-            {error && <p style={{ fontFamily: GTA, fontSize: 14, color: "#dc2626", marginTop: 8 }}>{error}</p>}
-          </div>
-          <button type="submit" className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-lg transition-colors" style={{ fontFamily: GTA, fontWeight: 500 }}>
-            Submit
-          </button>
-        </form>
-        <div className="mt-6 pt-6 border-t border-gray-100">
-          <p style={{ fontFamily: GTA, fontSize: 12, color: "#888", textAlign: "center" }}>
-            Need access? Contact <span style={{ color: "#2563eb", fontWeight: 500 }}>eggsvans@gmail.com</span>
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
