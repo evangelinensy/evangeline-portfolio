@@ -32,6 +32,57 @@
   font-display: block;
 }
 
+/* GT America Trial — for Pogo case study */
+@font-face {
+  font-family: 'GT America';
+  src: url('/fonts/GTAmerica-UltraLight.otf') format('opentype');
+  font-weight: 275;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT America';
+  src: url('/fonts/GTAmerica-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT America';
+  src: url('/fonts/GTAmerica-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT America';
+  src: url('/fonts/GTAmerica-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT America';
+  src: url('/fonts/GTAmerica-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT America Mono';
+  src: url('/fonts/GTAmericaMono-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT America Mono';
+  src: url('/fonts/GTAmericaMono-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -71,6 +122,17 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Scrollbar hidden — scroll position is indicated by the left pill */
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
 }
 
 :root {

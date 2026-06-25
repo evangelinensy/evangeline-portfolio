@@ -205,13 +205,13 @@ export function Hero() {
     {
       id: 'disc-pd-ai-insights',
       title: 'AI Customer Insights',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, 'https://evangelineng.substack.com/p/i-experimented-with-ai-design-tools', true),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, '/case-studies/pogoaiagent', false, true, 'AI Customer Insights'),
       discSrc: '/images/disc-pogosubstack1.png',
       sleeveTitle: 'AI Customer Insights',
       sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://evangelineng.substack.com/p/i-experimented-with-ai-design-tools',
-      external: true,
+      href: '/case-studies/pogoaiagent',
+      external: false,
     },
     // Pomelo
     {

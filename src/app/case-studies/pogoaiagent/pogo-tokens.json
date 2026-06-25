@@ -1,0 +1,119 @@
+{
+  "brand": "Pogo — AI Research Agent",
+  "source": "Extracted from Figma (pfTRlUu4ejdeVylbXGqftV) + joinpogo.com",
+  "colors": {
+    "brand": {
+      "deepPurple": "#2E145A",
+      "purpleAccent": "#AA84EC",
+      "purpleLight": "#E3D6F9",
+      "purpleLighter": "#EDE9FF"
+    },
+    "backgrounds": {
+      "white": "#FFFFFF",
+      "lavender": "#F6F5FF",
+      "lavenderMid": "#EDE9FF",
+      "subtle": "#F3F3F3"
+    },
+    "text": {
+      "primary": "#1B1B1B",
+      "secondary": "#737373",
+      "muted": "#AAAAAA",
+      "inverse": "#FFFFFF"
+    },
+    "borders": {
+      "default": "#DDDDDD",
+      "card": "#E8E4F0",
+      "section": "#F0F0F0"
+    },
+    "sources": {
+      "study": "#AA84EC",
+      "cohort": "#34D399",
+      "web": "#60A5FA"
+    },
+    "states": {
+      "working": "#F59E0B",
+      "broken": "#FCA5A5",
+      "ok": "#A7F3D0"
+    }
+  },
+  "typography": {
+    "fontFamily": "Inter, system-ui, -apple-system, sans-serif",
+    "scale": {
+      "eyebrow": { "size": "11px", "weight": "500", "tracking": "0.1em", "transform": "uppercase", "color": "#737373" },
+      "sectionLabel": { "size": "11px", "weight": "600", "tracking": "0.12em", "transform": "uppercase", "color": "#AAAAAA" },
+      "heroTitle": { "size": "48px", "weight": "700", "lineHeight": "1.1", "color": "#1B1B1B" },
+      "h2": { "size": "32px", "weight": "700", "lineHeight": "1.2", "color": "#1B1B1B" },
+      "h3": { "size": "18px", "weight": "600", "lineHeight": "1.3", "color": "#1B1B1B" },
+      "body": { "size": "15px", "weight": "400", "lineHeight": "1.65", "color": "#737373" },
+      "bodyStrong": { "size": "15px", "weight": "500", "lineHeight": "1.65", "color": "#1B1B1B" },
+      "caption": { "size": "12px", "weight": "400", "color": "#AAAAAA" },
+      "mono": { "family": "JetBrains Mono, Menlo, monospace", "size": "12px" }
+    }
+  },
+  "spacing": {
+    "sectionPaddingY": "80px",
+    "containerMaxWidth": "960px",
+    "cardPadding": "24px",
+    "cardGap": "20px",
+    "gridGap": "24px"
+  },
+  "radii": {
+    "pill": "9999px",
+    "card": "16px",
+    "cardInner": "12px",
+    "badge": "9999px"
+  },
+  "components": {
+    "sectionPill": {
+      "bg": "#EDE9FF",
+      "color": "#6B2FA0",
+      "dotColor": "#AA84EC",
+      "fontSize": "12px",
+      "fontWeight": "500",
+      "padding": "4px 12px",
+      "borderRadius": "9999px"
+    },
+    "card": {
+      "bg": "#FFFFFF",
+      "border": "1px solid #E8E4F0",
+      "borderRadius": "16px",
+      "padding": "24px",
+      "shadow": "none"
+    },
+    "hmwCard": {
+      "bg": "#2E145A",
+      "textColor": "#FFFFFF",
+      "borderRadius": "16px",
+      "padding": "48px"
+    },
+    "insightCard": {
+      "borderLeft": "2px solid #AA84EC",
+      "bg": "#F9F7FF",
+      "padding": "16px 20px"
+    },
+    "chip": {
+      "bg": "#F6F5FF",
+      "border": "1px solid #E8E4F0",
+      "color": "#1B1B1B",
+      "padding": "6px 14px",
+      "borderRadius": "9999px",
+      "fontSize": "13px"
+    },
+    "stepNumber": {
+      "color": "#AAAAAA",
+      "fontSize": "11px",
+      "fontWeight": "600",
+      "letterSpacing": "0.1em"
+    },
+    "sourceDot": {
+      "size": "10px",
+      "borderRadius": "50%"
+    }
+  },
+  "patterns": {
+    "alternatingBg": ["#FFFFFF", "#F6F5FF"],
+    "cardGrid3col": "grid-cols-3, gap-5",
+    "cardGrid2col": "grid-cols-2, gap-6",
+    "processStep": "step-number (monospaced, muted) + h3 + body + nested content"
+  }
+}
