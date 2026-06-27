@@ -5,6 +5,9 @@ import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { AudioProvider } from "@/hooks/use-audio";
+import { DialRoot } from "dialkit";
+import "dialkit/styles.css";
+import { DialInspector } from "@/components/dial-inspector";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -121,6 +124,12 @@ export default function RootLayout({
           <Navigation />
           <Footer />
         </AudioProvider>
+        {process.env.NODE_ENV !== "production" && (
+          <>
+            <DialRoot />
+            <DialInspector />
+          </>
+        )}
       </body>
     </html>
   );
