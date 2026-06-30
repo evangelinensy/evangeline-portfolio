@@ -177,17 +177,17 @@ export function Hero() {
     href: string | undefined;
     external: boolean | undefined;
   }> = [
-    // Wonder
+    // AI Customer Insights
     {
-      id: 'disc-pd-2',
-      title: 'Wonder',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/wonder-disc.png', event, 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918', true),
-      discSrc: '/images/wonder-disc.png',
-      sleeveTitle: 'Wonder',
-      sleeveSubtitle: 'AI Design Tool',
+      id: 'disc-pd-ai-insights',
+      title: 'AI Customer Insights',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, '/case-studies/pogoaiagent', false, true, 'AI Customer Insights'),
+      discSrc: '/images/disc-pogosubstack1.png',
+      sleeveTitle: 'AI Customer Insights',
+      sleeveSubtitle: '',
       sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918',
-      external: true,
+      href: '/case-studies/pogoaiagent',
+      external: false,
     },
     // Support Copilot - Password Protected
     {
@@ -201,17 +201,17 @@ export function Hero() {
       href: 'https://www.figma.com/proto/XamWzShV5g6lFqVfi467zm/-Support-Copilot-?page-id=0%3A1&node-id=1-87291&viewport=-12273%2C-1000%2C0.25&t=mfceM1JXgcYyKuCM-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A87291',
       external: true,
     },
-    // AI Customer Insights
+    // Wonder
     {
-      id: 'disc-pd-ai-insights',
-      title: 'AI Customer Insights',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, '/case-studies/pogoaiagent', false, true, 'AI Customer Insights'),
-      discSrc: '/images/disc-pogosubstack1.png',
-      sleeveTitle: 'AI Customer Insights',
-      sleeveSubtitle: '',
+      id: 'disc-pd-2',
+      title: 'Wonder',
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-2', '/images/wonder-disc.png', event, 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918', true),
+      discSrc: '/images/wonder-disc.png',
+      sleeveTitle: 'Wonder',
+      sleeveSubtitle: 'AI Design Tool',
       sleeveBottomCaption: undefined,
-      href: '/case-studies/pogoaiagent',
-      external: false,
+      href: 'https://www.figma.com/proto/zAMqmYJOHvhDsWG6D36jJt/Design-To-Code-Slide-Deck?page-id=0%3A1&node-id=4-6918&viewport=209%2C347%2C0.23&t=h4O0tZWMuSYDGsbk-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A6918',
+      external: true,
     },
     // Pomelo
     {
