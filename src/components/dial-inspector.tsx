@@ -76,22 +76,19 @@ function ElementControls({ el, kind }: { el: HTMLElement; kind: Kind }) {
   }, [el]);
 
   const { config, name } = useMemo<{ name: string; config: DialConfig }>(() => {
-    const { cs, color, bg } = initial;
+    const { cs, bg } = initial;
     if (kind === "text") {
-      const fs = px(cs.fontSize) || 16;
-      const lh =
-        cs.lineHeight === "normal" ? 1.4 : Math.round((px(cs.lineHeight) / fs) * 100) / 100;
       const config: DialConfig = {
-          fontSize: [fs, 8, 160, 1],
-          lineHeight: [lh, 0.8, 3, 0.01],
-          letterSpacing: [cs.letterSpacing === "normal" ? 0 : px(cs.letterSpacing), -5, 20, 0.1],
+          fontSize: [16, 8, 160, 1],
+          lineHeight: [1.4, 0.8, 3, 0.01],
+          letterSpacing: [0, -5, 20, 0.1],
           fontWeight: {
             type: "select" as const,
             options: ["300", "400", "500", "600", "700", "800", "900"],
-            default: String(parseInt(cs.fontWeight, 10) || 400),
+            default: "400",
           },
-          color: { type: "color" as const, default: color.hex },
-          opacity: [parseFloat(cs.opacity) || 1, 0, 1, 0.01],
+          color: { type: "color" as const, default: "#3d3d3d" },
+          opacity: [1, 0, 1, 0.01],
       };
       return { name: `Text · ${elLabel(el)}`, config };
     }

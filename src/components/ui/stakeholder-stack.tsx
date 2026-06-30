@@ -20,9 +20,9 @@ type Card = {
 };
 
 const CARDS: Card[] = [
-  { id: "pms", role: "PMs", quote: "Get users back to the study they started.", rotation: -15, x: -90, y: 10, zIndex: 10 },
+  { id: "pms", role: "PM", quote: "Get users back to the study they started.", rotation: -15, x: -90, y: 10, zIndex: 10 },
   { id: "engineers", role: "Engineers", quote: "Presets limit users. Let them ask freely.", rotation: -3, x: -10, y: -15, zIndex: 20 },
-  { id: "founders", role: "Founders", quote: "CPG clients want their assets front and center.", rotation: 12, x: 75, y: 5, zIndex: 30 },
+  { id: "founders", role: "Teammate", quote: "CPG clients want their assets front and center.", rotation: 12, x: 75, y: 5, zIndex: 30 },
 ];
 
 const transition = {
