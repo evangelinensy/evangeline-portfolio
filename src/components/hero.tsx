@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, useInView } from "framer-motion";
 import { useScreenSize } from "@/hooks/use-screen-size";
 import { PixelTrail } from "@/components/ui/pixel-trail";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -22,6 +22,13 @@ import { PasswordOverlay } from "@/components/ui/password-overlay";
 export function Hero() {
   const screenSize = useScreenSize();
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Perpetual hero-title drift: skip for reduced-motion users, and pause it
+  // when the title scrolls out of view so the compositor can idle (saves battery).
+  const prefersReducedMotion = useReducedMotion();
+  const titleRef = useRef<HTMLDivElement>(null);
+  const titleInView = useInView(titleRef, { once: false });
+  const animateTitle = !prefersReducedMotion && titleInView;
 
   // Animation state management
   const [tvState, setTvState] = useState<'idle' | 'ejecting' | 'moving' | 'inserting' | 'playing' | 'static'>('idle');
@@ -448,14 +455,14 @@ export function Hero() {
       <div className={`relative w-full ${getMaxWidth()} mx-auto z-20`}>
         
         {/* Hero Title - Two-line layout with constrained animation */}
-        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-screen max-w-[100vw] overflow-hidden">
+        <div ref={titleRef} className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-screen max-w-[100vw] overflow-hidden">
           <div className="relative w-full flex flex-col items-center justify-center gap-6">
             {/* "Hello" */}
             <motion.div
               className="w-full flex items-center justify-center"
               initial={{ x: 0, opacity: 0.48 }}
-              animate={{ x: ["-6vw", "6vw", "-6vw"] , opacity: [0.48, 0.43, 0.48] }}
-              transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
+              animate={animateTitle ? { x: ["-6vw", "6vw", "-6vw"] , opacity: [0.48, 0.43, 0.48] } : { x: 0, opacity: 0.46 }}
+              transition={animateTitle ? { duration: 40, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
               style={{
                 fontFamily: 'Bricolage Grotesque',
                 fontSize: '246.4px',
@@ -473,8 +480,8 @@ export function Hero() {
             <motion.div
               className="w-full flex items-center justify-center"
               initial={{ x: 0, opacity: 0.48 }}
-              animate={{ x: ["6vw", "-6vw", "6vw"] , opacity: [0.48, 0.43, 0.48] }}
-              transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
+              animate={animateTitle ? { x: ["6vw", "-6vw", "6vw"] , opacity: [0.48, 0.43, 0.48] } : { x: 0, opacity: 0.46 }}
+              transition={animateTitle ? { duration: 40, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
               style={{
                 fontFamily: 'Bricolage Grotesque',
                 fontSize: '246.4px',

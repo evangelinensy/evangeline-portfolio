@@ -38,7 +38,7 @@ export function AlbumGrid({ items, className = "", animatingDiscId, tvState, tit
   };
 
   return (
-    <div className={`rounded-[60px] bg-white/30 backdrop-blur-[66px] shadow-[0_20px_60px_rgba(0,0,0,0.12)] p-6 sm:p-8 md:p-12 lg:p-16 ${className}`}>
+    <div className={`rounded-[60px] bg-white/30 backdrop-blur-[24px] shadow-[0_20px_60px_rgba(0,0,0,0.12)] p-6 sm:p-8 md:p-12 lg:p-16 ${className}`}>
       {title && (
         <p className="text-sm text-center mb-6 sm:mb-8" style={{ fontFamily: 'Sequel Sans Medium Disp', color: '#838383' }}>
           {title}

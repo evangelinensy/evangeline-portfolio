@@ -79,8 +79,8 @@ function MouseTrackerProvider({
 
     const clearPosition = () => setActive(false);
 
-    window.addEventListener("mousemove", updatePosition);
-    window.addEventListener("mouseout", clearPosition);
+    window.addEventListener("mousemove", updatePosition, { passive: true });
+    window.addEventListener("mouseout", clearPosition, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", updatePosition);
@@ -204,7 +204,7 @@ function PointerFollower({
   style,
   ...rest
 }: PointerFollowerProps) {
-  const { position, active, pointerRef } = useMouseTracker();
+  const { position, active } = useMouseTracker();
   const followerRef = React.useRef<HTMLDivElement>(null);
   React.useImperativeHandle(ref, () => followerRef.current as HTMLDivElement);
 
@@ -238,10 +238,6 @@ function PointerFollower({
   }, [align, gap]);
 
   const offset = getOffset();
-  const pointerBox = pointerRef.current?.getBoundingClientRect();
-  const pw = pointerBox?.width ?? 20;
-  const ph = pointerBox?.height ?? 20;
-
   const x = position.x - offset.x;
   const y = position.y - offset.y;
 
