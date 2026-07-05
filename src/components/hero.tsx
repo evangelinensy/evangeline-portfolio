@@ -445,7 +445,7 @@ export function Hero() {
       {/* Grain Texture Overlay */}
       <div className="absolute inset-0 z-10 mix-blend-soft-light opacity-25 rounded-[24px]"
            style={{ 
-             backgroundImage: 'url("/images/grain-texture.png")',
+             backgroundImage: 'url("/images/grain-texture.webp")',
              backgroundRepeat: 'repeat',
              backgroundSize: screenSize.lessThan('md') ? '256px 256px' : '512px 512px'
            }}>

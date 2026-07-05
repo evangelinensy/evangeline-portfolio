@@ -40,7 +40,7 @@ export function PlaceholderVideo({
       <div 
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'url("/images/grain-texture.png")',
+          backgroundImage: 'url("/images/grain-texture.webp")',
           backgroundRepeat: 'repeat',
           backgroundSize: '32px 32px'
         }}

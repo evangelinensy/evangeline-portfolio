@@ -6,7 +6,7 @@ import type { Variants } from "motion/react"
 import Image from "next/image"
 
 const cards: [string | React.ReactNode, string][] = [
-    ["", "/images/aboutme-2-image/Card background.png"],
+    ["", "/images/aboutme-2-image/Card background.webp"],
     [
         <>
             Over the years, I&apos;ve been delivering impact by improving the businesses through design.
@@ -43,7 +43,7 @@ const cards: [string | React.ReactNode, string][] = [
             </a>{' '}
             I worked on helping immigrants like myself to remit money fee-free, on credit.
         </>,
-        "/images/aboutme-2-image/Card background 6.png"
+        "/images/aboutme-2-image/Card background 6.webp"
     ],
     [
         <>
@@ -73,7 +73,7 @@ const cards: [string | React.ReactNode, string][] = [
                 </span>!
             </a>
         </>,
-        "/images/aboutme-2-image/Card background 6.png"
+        "/images/aboutme-2-image/Card background 6.webp"
     ],
     [
         <>
@@ -87,7 +87,7 @@ const cards: [string | React.ReactNode, string][] = [
             <br />
             ⊹ Design in systems
         </>,
-        "/images/aboutme-2-image/Card background 2.png"
+        "/images/aboutme-2-image/Card background 2.webp"
     ],
     [
         <>
@@ -101,7 +101,7 @@ const cards: [string | React.ReactNode, string][] = [
             <br />
             ⊹ Socializing user stories
         </>,
-        "/images/aboutme-2-image/Card background 3.png"
+        "/images/aboutme-2-image/Card background 3.webp"
     ],
     [
         <>
@@ -115,9 +115,9 @@ const cards: [string | React.ReactNode, string][] = [
             <br />
             ⊹ Intentional joy
         </>,
-        "/images/aboutme-2-image/Card background 4.png"
+        "/images/aboutme-2-image/Card background 4.webp"
     ],
-    ["Thank you for stopping by! Feel free to drop me a hello at eggsvans@gmail.com", "/images/aboutme-2-image/Card background 7.png"],
+    ["Thank you for stopping by! Feel free to drop me a hello at eggsvans@gmail.com", "/images/aboutme-2-image/Card background 7.webp"],
 ]
 
 export function ScrollTriggered() {
@@ -184,11 +184,12 @@ function Card({ content, backgroundImage, i, isLastCard = false }: CardProps) {
                         <div style={mapWrapperStyle}>
                             <div style={mapScaleStyle}>
                                 <video
-                                    src="/images/aboutme-2-image/4db392b218894266869622081a4d6a82 2.MOV"
+                                    src="/images/aboutme-2-image/aboutme-map.mp4"
                                     autoPlay
                                     loop
                                     muted
                                     playsInline
+                                    preload="metadata"
                                     style={videoStyle}
                                 />
                             </div>

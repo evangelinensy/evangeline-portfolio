@@ -60,12 +60,12 @@ export function useMediaQuery(
 }
 
 const localImages = [
-  "/images/newimg1.png",
-  "/images/newimg2.png",
-  "/images/newimg3.png",
-  "/images/newimg4.png",
-  "/images/newimg5.png",
-  "/images/newimg6.png",
+  "/images/newimg1.webp",
+  "/images/newimg2.webp",
+  "/images/newimg3.webp",
+  "/images/newimg4.webp",
+  "/images/newimg5.webp",
+  "/images/newimg6.webp",
 ]
 
 const duration = 0.15
@@ -195,10 +195,6 @@ function ThreeDPhotoCarousel() {
   const [isCarouselActive, setIsCarouselActive] = useState(true)
   const controls = useAnimation()
   const cards = useMemo(() => localImages, [])
-
-  useEffect(() => {
-    console.log("Cards loaded:", cards)
-  }, [cards])
 
   const handleClick = (imgUrl: string) => {
     setActiveImg(imgUrl)

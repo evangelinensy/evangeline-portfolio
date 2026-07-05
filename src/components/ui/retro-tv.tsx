@@ -163,7 +163,7 @@ export function RetroTV({
                 exit={{ opacity: 0 }}
                 className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-400 via-gray-600 to-gray-800"
                 style={{
-                  backgroundImage: 'url("/images/grain-texture.png")',
+                  backgroundImage: 'url("/images/grain-texture.webp")',
                   backgroundRepeat: 'repeat',
                   backgroundSize: '64px 64px',
                   mixBlendMode: 'overlay'
