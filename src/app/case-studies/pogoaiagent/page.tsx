@@ -18,7 +18,7 @@ function FadeUp({ children, delay = 0, className }: { children: React.ReactNode;
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0px)" : `translateY(${reduce ? 0 : 20}px)`,
-        transition: `opacity 0.75s ${EASE} ${delay}s, transform 0.75s ${EASE} ${delay}s`,
+        transition: `opacity 0.5s ${EASE} ${delay}s, transform 0.5s ${EASE} ${delay}s`,
       }}
     >
       {children}
@@ -49,7 +49,7 @@ function HeroFadeIn({ children, delay = 0, as: Tag = "div", className, style, ..
         ...style,
         opacity: mounted ? 1 : 0,
         transform: mounted ? "translateY(0px)" : `translateY(${reduce ? 0 : 20}px)`,
-        transition: `opacity 0.75s ${EASE}, transform 0.75s ${EASE}`,
+        transition: `opacity 0.5s ${EASE}, transform 0.5s ${EASE}`,
       }}
       {...rest}
     >
@@ -69,7 +69,46 @@ function StaggerItem({ children, index = 0, className }: { children: React.React
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0px)" : `translateY(${reduce ? 0 : 16}px)`,
-        transition: `opacity 0.65s ${EASE} ${index * 0.1}s, transform 0.65s ${EASE} ${index * 0.1}s`,
+        transition: `opacity 0.5s ${EASE} ${index * 0.1}s, transform 0.5s ${EASE} ${index * 0.1}s`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * BlurUp — wraps a big standalone mock (<Image> or <video>) and resolves it from a
+ * soft blur to sharp once it loads. Handles cached images (checks .complete on mount),
+ * lazy images, and videos. The parent frame's overflow-hidden clips the blur edges.
+ */
+function BlurUp({ children }: { children: React.ReactNode }) {
+  const [loaded, setLoaded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    const el = ref.current?.querySelector("img, video") as HTMLImageElement | HTMLVideoElement | null;
+    if (!el) { setLoaded(true); return; }
+    const done = () => setLoaded(true);
+    if (el instanceof HTMLImageElement) {
+      if (el.complete && el.naturalWidth > 0) { setLoaded(true); return; }
+      el.addEventListener("load", done, { once: true });
+      el.addEventListener("error", done, { once: true });
+      return () => { el.removeEventListener("load", done); el.removeEventListener("error", done); };
+    }
+    if (el.readyState >= 2) { setLoaded(true); return; }
+    el.addEventListener("loadeddata", done, { once: true });
+    el.addEventListener("error", done, { once: true });
+    return () => { el.removeEventListener("loadeddata", done); el.removeEventListener("error", done); };
+  }, []);
+  return (
+    <div
+      ref={ref}
+      style={{
+        filter: loaded || reduce ? "blur(0px)" : "blur(14px)",
+        transform: loaded || reduce ? "scale(1)" : "scale(1.04)",
+        transition: "filter 0.6s cubic-bezier(0.33,1,0.68,1), transform 0.6s cubic-bezier(0.33,1,0.68,1)",
+        willChange: "filter, transform",
       }}
     >
       {children}
@@ -88,34 +127,34 @@ const GTA = "'GT America', system-ui, -apple-system, sans-serif";
 const GTA_MONO = "'GT America Mono', 'GT America', monospace";
 const SECTION_LABELS = ["Challenge", "Process", "Explorations", "Interaction", "Decisions", "Final Design", "Learnings"];
 
-const PAGE_BG = "linear-gradient(180deg, #E0E8FE 0%, #EAE1E8 15%, #F1E7DE 76%, #ECD7FF 100%)";
+const PAGE_BG = "linear-gradient(180deg, #FFFFFF 0%, #FBFAFE 8%, #F1ECF6 20%, #EAE1E8 36%, #F1E7DE 76%, #ECD7FF 100%)";
 const CARD_BG = "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.65) 100%)";
 
 // Attention line — large, calm one-liner used as an attention-calling caption/headline above body copy.
 const ATTENTION_LINE: React.CSSProperties = {
   fontFamily: GTA,
-  fontSize: 31,
+  fontSize: "clamp(28px,5vw,40px)",
   fontWeight: 400,
-  lineHeight: 1.65,
+  lineHeight: 1.2,
   letterSpacing: 0,
-  color: "#1a1a3a",
+  color: "#111",
 };
 
 // Section/step title — gray, prominent title used to head a step or section.
 const SECTION_TITLE: React.CSSProperties = {
   fontFamily: GTA,
-  fontSize: 32,
-  fontWeight: 600,
-  lineHeight: 1.5,
-  letterSpacing: "1.1px",
-  color: "#757575",
+  fontSize: "clamp(28px,5vw,40px)",
+  fontWeight: 400,
+  lineHeight: 1.2,
+  letterSpacing: 0,
+  color: "#111",
 };
 
 // Numbering — bold, dark, matches the card-title treatment. Used for "01"-style labels.
 const NUMBER_STYLE: React.CSSProperties = {
   fontFamily: GTA,
-  fontSize: 20,
-  fontWeight: 600,
+  fontSize: 16,
+  fontWeight: 400,
   color: "#111",
 };
 
@@ -152,13 +191,13 @@ function HoverGif({ still, gif, size, style }: { still: string; gif: string; siz
 function SectionPill({ color = "#C8C9FF", children }: { color?: string; children: React.ReactNode }) {
   return (
     <div
-      className="inline-flex items-center rounded-full mb-11"
+      className="inline-flex items-center rounded-full mb-12"
       data-section-pill={typeof children === "string" ? children : undefined}
       data-section-dot={color}
       style={{
         height: 26,
         padding: "0 9px 0 8px",
-        gap: 5,
+        gap: 4,
         background: "rgba(255,255,255,0.55)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
@@ -168,7 +207,7 @@ function SectionPill({ color = "#C8C9FF", children }: { color?: string; children
       }}
     >
       <span style={{ width: 6, height: 6, borderRadius: "50%", flexShrink: 0, background: color, display: "inline-block" }} />
-      <span style={{ fontFamily: GTA, fontSize: 12, fontWeight: 400, color: "rgba(40,40,60,0.82)" }}>
+      <span style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "rgba(40,40,60,0.82)" }}>
         {children}
       </span>
     </div>
@@ -179,7 +218,7 @@ function MonoTag({ children, color }: { children: React.ReactNode; color: string
   return (
     <div className="flex items-center gap-2 mb-2">
       <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: color }} />
-      <span style={{ fontFamily: GTA_MONO, fontSize: 13, fontWeight: 300, color: "#111", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+      <span style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#111", letterSpacing: "0.12em", textTransform: "uppercase" }}>
         {children}
       </span>
     </div>
@@ -188,19 +227,20 @@ function MonoTag({ children, color }: { children: React.ReactNode; color: string
 
 function QuestionCard({ dot, tag, question, body }: { dot: string; tag: string; question: string; body: string }) {
   return (
-    <div className="rounded-2xl p-7 mb-4" style={{ background: CARD_BG, border: "1px solid rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
+    <div className="rounded-2xl p-8 mb-4" style={{ background: CARD_BG, border: "1px solid rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
       <MonoTag color={dot}>{tag}</MonoTag>
-      <p style={{ fontFamily: GTA, fontSize: 22, fontWeight: 500, color: "#111", lineHeight: 1.3, marginBottom: 10 }}>{question}</p>
-      <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.6 }}>{body}</p>
+      <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", lineHeight: 1.3, marginBottom: 12 }}>{question}</p>
+      <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.6 }}>{body}</p>
     </div>
   );
 }
 
 function ChallengeCard({ title, children }: { title: string; children: React.ReactNode }) {
+  // h-full makes all 3 cards match the tallest; text flows from the top so they read aligned.
   return (
-    <div className="rounded-2xl p-7" style={{ background: CARD_BG, border: "1px solid rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
-      <p style={{ fontFamily: GTA, fontSize: 19, fontWeight: 500, color: "#111", lineHeight: 1.3, marginBottom: 12 }}>{title}</p>
-      <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 300, color: "#444", lineHeight: 1.65 }}>{children}</p>
+    <div className="rounded-2xl p-8 h-full" style={{ background: CARD_BG, border: "1px solid rgba(255,255,255,0.7)", backdropFilter: "blur(8px)" }}>
+      <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", lineHeight: 1.3, marginBottom: 12 }}>{title}</p>
+      <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65 }}>{children}</p>
     </div>
   );
 }
@@ -256,13 +296,17 @@ function Gallery({ items }: { items: { src: string; label: string; sub: string }
       className="relative"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      // Full-bleed to the right screen edge (left stays aligned with page content),
+      // so the peeking next mock runs off the edge instead of being cut mid-container.
+      style={{ marginRight: "calc(50% - 50vw)" }}
     >
       {/* Cards + edge overlays — wrapped so the gradient/arrow span only the card row, not the dots below */}
       <div className="relative">
-      {/* Right-edge gradient hint — height tracks the active card so it never overshoots */}
+      {/* Right-edge fade — height tracks the active *image* only, so the fade never
+          spills onto the label/gaps where it would sit on the purple page bg */}
       <div
         className="absolute right-0 top-0 w-24 z-10 pointer-events-none rounded-r-xl"
-        style={{ height: cardH ?? "100%", background: "linear-gradient(to right, transparent, #ECE7E9)" }}
+        style={{ height: imgH ?? "100%", background: "linear-gradient(to right, transparent, #ECE7E9)" }}
       />
 
       {/* Next arrow — pinned to the carousel's right edge (over the gradient), centered on the image band */}
@@ -304,7 +348,7 @@ function Gallery({ items }: { items: { src: string; label: string; sub: string }
       >
         {items.map(({ src, label, sub }, i) => (
           <div
-            key={label}
+            key={src}
             className="flex-shrink-0 relative"
             style={{
               width: "calc(66.667% - 8px)",
@@ -313,7 +357,7 @@ function Gallery({ items }: { items: { src: string; label: string; sub: string }
           >
             {/* Image container */}
             <div
-              className="mb-4 relative"
+              className="mb-10 relative"
               style={{
                 background: "rgba(255,255,255,0.7)",
                 border: "1px solid rgba(255,255,255,0.8)",
@@ -334,15 +378,15 @@ function Gallery({ items }: { items: { src: string; label: string; sub: string }
                 />
               )}
             </div>
-            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 500, color: "#111", marginBottom: 6 }}>{label}</p>
-            <p style={{ fontFamily: GTA, fontSize: 12, fontWeight: 300, color: "#555", lineHeight: 1.5 }}>{sub}</p>
+            {label && <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#111", marginBottom: 8 }}>{label}</p>}
+            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", lineHeight: 1.5 }}>{sub}</p>
           </div>
         ))}
       </div>
-      </div>
 
-      {/* Dot pagination */}
-      <div className="flex gap-1.5 mt-4">
+      {/* Dot pagination — pinned right under the image band so it stays near the mocks
+          regardless of how tall each card's caption is */}
+      <div className="flex gap-1.5" style={{ position: "absolute", left: 0, top: (imgH ?? 0) + 16 }}>
         {items.map((_, i) => (
           <button
             key={i}
@@ -351,6 +395,7 @@ function Gallery({ items }: { items: { src: string; label: string; sub: string }
             style={{ width: i === active ? 16 : 6, height: 6, background: i === active ? "#111" : "#C0B8B0" }}
           />
         ))}
+      </div>
       </div>
     </div>
   );
@@ -397,19 +442,16 @@ function LearningsSection() {
   return (
     <section data-label="Learnings" className="px-6 py-[96px] max-w-[1240px] mx-auto">
       <SectionPill color="#C8C9FF">Learnings</SectionPill>
-      <p style={{ fontFamily: GTA_MONO, fontSize: 12, fontWeight: 400, color: "#777", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 24 }}>
-        Three assumptions this project challenged.
-      </p>
-      <h2 style={{ fontFamily: GTA, fontSize: "clamp(26px,3.5vw,40px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 42 }}>
+      <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 40 }}>
         Learnings
       </h2>
 
       {/* Column headers */}
       <div className="hidden md:grid" style={{ gridTemplateColumns: "180px minmax(0,300px) 44px 1fr", gap: "0 48px", paddingBottom: 16, borderBottom: "1px solid rgba(0,0,0,0.08)", marginBottom: 0 }}>
         <span />
-        <span style={{ fontFamily: GTA_MONO, fontSize: 14, fontWeight: 400, color: "#292929", lineHeight: 1.5, letterSpacing: "1.7px", textTransform: "uppercase" }}>Assumption</span>
+        <span style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#292929", lineHeight: 1.5, letterSpacing: "1.7px", textTransform: "uppercase" }}>Assumption</span>
         <span />
-        <span style={{ fontFamily: GTA_MONO, fontSize: 14, fontWeight: 400, color: "#292929", lineHeight: 1.5, letterSpacing: "1.7px", textTransform: "uppercase" }}>Learnings</span>
+        <span style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#292929", lineHeight: 1.5, letterSpacing: "1.7px", textTransform: "uppercase" }}>Learnings</span>
       </div>
 
       {/* Rows */}
@@ -426,17 +468,17 @@ function LearningsSection() {
             <div className="grid grid-cols-1 md:grid-cols-[180px_minmax(0,300px)_44px_1fr]" style={{ gap: "16px 48px", alignItems: "start" }}>
 
               {/* Label */}
-              <p style={{ fontFamily: GTA_MONO, fontSize: 13, fontWeight: 400, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", paddingTop: 6 }}>
+              <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", paddingTop: 8 }}>
                 {row.label}
               </p>
 
               {/* Assumption — one line, muted */}
-              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, fontStyle: row.assumption === "Users understand what the AI can do." ? "normal" : "italic", color: row.assumption === "Users understand what the AI can do." ? "#5a5a5a" : "#9a9a9a", lineHeight: 1.4, paddingTop: 4 }}>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65, paddingTop: 4 }}>
                 {row.assumption}
               </p>
 
               {/* Arrow */}
-              <div className="hidden md:flex justify-center" style={{ paddingTop: 10, opacity: 0.4, color: "#555" }}>
+              <div className="hidden md:flex justify-center" style={{ paddingTop: 12, opacity: 0.4, color: "#555" }}>
                 <svg width="16" height="12" viewBox="0 0 14 10" fill="none">
                   <path d="M0 5H12M12 5L8 1M12 5L8 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -444,20 +486,20 @@ function LearningsSection() {
 
               {/* Learnings — punchy reality line + fuller explanation */}
               <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 600 }}>
-                <p style={{ fontFamily: GTA, fontSize: "clamp(18px,1.7vw,22px)", fontWeight: 400, color: "#111", lineHeight: 1.4 }}>
+                <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", lineHeight: 1.4 }}>
                   {row.reality}
                 </p>
                 {row.bullets ? (
-                  <ul style={{ display: "flex", flexDirection: "column", gap: 10, margin: 0, padding: 0, listStyle: "none" }}>
+                  <ul style={{ display: "flex", flexDirection: "column", gap: 12, margin: 0, padding: 0, listStyle: "none" }}>
                     {row.bullets.map((b) => (
-                      <li key={b.label} style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#4a4a4a", lineHeight: 1.4, display: "flex", gap: 8 }}>
+                      <li key={b.label} style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65, display: "flex", gap: 8 }}>
                         <span aria-hidden style={{ color: "#bbb", flexShrink: 0 }}>•</span>
-                        <span><strong style={{ fontWeight: 600, color: "#212121" }}>{b.label}:</strong> {b.text}</span>
+                        <span><strong style={{ fontWeight: 500, color: "#212121" }}>{b.label}:</strong> {b.text}</span>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#4a4a4a", lineHeight: 1.4, letterSpacing: 0 }}>
+                  <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65 }}>
                     {row.detail}
                   </p>
                 )}
@@ -714,7 +756,7 @@ function WebScrollPill() {
             WebkitBackdropFilter: "blur(16px)",
             border: "1px solid rgba(255,255,255,0.8)",
             borderRadius: 999,
-            display: "flex", alignItems: "center", gap: 5,
+            display: "flex", alignItems: "center", gap: 4,
             boxShadow: "0 1px 8px rgba(0,0,0,0.06)",
             whiteSpace: "nowrap",
             opacity: isHovered ? 0 : 1,
@@ -722,7 +764,7 @@ function WebScrollPill() {
           }}
         >
           <span style={{ width: 6, height: 6, borderRadius: "50%", flexShrink: 0, background: dot, transition: "background 0.4s ease" }} />
-          <span style={{ fontFamily: GTA, fontSize: 12, fontWeight: 400, color: "rgba(40,40,60,0.82)", minWidth: 44 }}>
+          <span style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "rgba(40,40,60,0.82)", minWidth: 44 }}>
             {label}
           </span>
         </div>
@@ -735,7 +777,7 @@ function WebScrollPill() {
           left: 40,
           top: "45%",
           transform: `translateY(calc(-50% + ${isHovered ? navOffset : 0}px))`,
-          gap: 5,
+          gap: 4,
           opacity: isHovered ? 1 : 0,
           pointerEvents: isHovered ? "auto" : "none",
           transition: "opacity 0.15s ease, transform 0.18s cubic-bezier(0.23,1,0.32,1)",
@@ -780,7 +822,7 @@ function WebScrollPill() {
               {active && (
                 <span style={{ width: 6, height: 6, borderRadius: "50%", flexShrink: 0, background: dot }} />
               )}
-              <span style={{ fontFamily: GTA, fontSize: 12, fontWeight: 400, color: "rgba(40,40,60,0.82)" }}>
+              <span style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "rgba(40,40,60,0.82)" }}>
                 {s}
               </span>
             </button>
@@ -912,7 +954,7 @@ function ScrollSectionIndicator() {
           borderRadius: 999,
           display: "flex",
           alignItems: "center",
-          gap: 5,
+          gap: 4,
           boxShadow: "0 1px 8px rgba(0,0,0,0.06)",
           whiteSpace: "nowrap",
           overflow: "hidden",
@@ -924,8 +966,8 @@ function ScrollSectionIndicator() {
         }} />
         <span style={{
           fontFamily: GTA,
-          fontSize: 12,
-          fontWeight: 400,
+          fontSize: 13,
+          fontWeight: 300,
           color: "rgba(40,40,60,0.82)",
           overflow: "hidden",
           textOverflow: "ellipsis",
@@ -940,7 +982,7 @@ function ScrollSectionIndicator() {
 /* Divider */
 function Divider() {
   return (
-    <div style={{ textAlign: "center", padding: "14px 0", fontFamily: "'GT America Mono', monospace", fontSize: 13, color: "rgba(0,0,0,0.18)", letterSpacing: "0.25em" }}>
+    <div style={{ textAlign: "center", padding: "14px 0", fontFamily: "'GT America Mono', monospace", fontSize: 13, fontWeight: 300, color: "rgba(0,0,0,0.18)", letterSpacing: "0.25em" }}>
       ...
     </div>
   );
@@ -958,7 +1000,10 @@ function StepLabel({ n, title }: { n: string; title: string }) {
 
 export default function PogoB2BCaseStudy() {
   return (
-    <div className="min-h-screen" style={{ background: PAGE_BG }}>
+    <div className="min-h-screen" style={{ background: PAGE_BG, overflowX: "clip" }}>
+      {/* Hiring managers need to evaluate the actual mocks — disable the global
+          film-grain overlay on this case study only (restored on navigating away). */}
+      <style>{`body::before { display: none !important; }`}</style>
       <WebScrollPill />
       <ScrollSectionIndicator />
       {/* Back */}
@@ -975,35 +1020,37 @@ export default function PogoB2BCaseStudy() {
       {/* ═══ HERO ═══ */}
       <section data-label="Intro" className="px-6 pt-24 pb-12 max-w-[1240px] mx-auto">
         {/* Hero video */}
-        <HeroFadeIn delay={0} className="rounded-2xl overflow-hidden mb-12" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.8)" }}>
-          <video
-            src="/videos/pogob2b/hero.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full block"
-          />
+        <HeroFadeIn delay={0} className="rounded-2xl overflow-hidden mb-12" style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.8)", position: "relative", zIndex: 11 }}>
+          <BlurUp>
+            <video
+              src="/videos/pogob2b/hero.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full block"
+            />
+          </BlurUp>
         </HeroFadeIn>
         {/* Pill gate, positioned at bottom of video; pills reveal once this scrolls 300px up from viewport bottom */}
         <div id="pill-gate" style={{ height: 0 }} />
 
         {/* Wordmark + Title, side by side */}
         <div className="flex flex-wrap items-center" style={{ columnGap: 32, rowGap: 12, marginBottom: 16 }}>
-          <HeroFadeIn delay={0.4} as="div" style={{ paddingTop: 18 }}>
+          <HeroFadeIn delay={0.4} as="div" style={{ paddingTop: 20 }}>
             <Image src="/images/pogob2b/pogo-logo.png" alt="Pogo" width={140} height={69} priority style={{ width: 140, height: "auto", display: "block" }} />
           </HeroFadeIn>
-          <HeroFadeIn delay={0.48} as="h1" style={{ fontFamily: GTA, fontSize: "clamp(48px,7vw,78px)", fontWeight: 400, color: "#111", lineHeight: 1.08, letterSpacing: "-0.02em", margin: 0 }}>
+          <HeroFadeIn delay={0.48} as="h1" style={{ fontFamily: GTA, fontSize: "clamp(40px,6vw,72px)", fontWeight: 500, color: "#111", lineHeight: 1.08, letterSpacing: "-0.02em", margin: 0 }}>
             AI Research Agent
           </HeroFadeIn>
         </div>
-        <HeroFadeIn delay={0.6} as="p" style={{ fontFamily: GTA, fontSize: "clamp(18px,2.5vw,28px)", fontWeight: 300, color: "#333", lineHeight: 1.45, maxWidth: 860, marginBottom: 24, textWrap: "balance" } as React.CSSProperties}>
+        <HeroFadeIn delay={0.6} as="p" style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#333", lineHeight: 1.45, maxWidth: 860, marginBottom: 24, textWrap: "balance" } as React.CSSProperties}>
           CPG Brands get customer insights through AI-moderated interviews and quant surveys with verified purchases.
         </HeroFadeIn>
         <HeroFadeIn delay={0.72} as="a" href="https://www.joinpogo.com/products/ai-research-agent" target="_blank" rel="noopener noreferrer"
           className="group inline-flex items-center gap-2"
           style={{
-            fontFamily: GTA, fontSize: 13, fontWeight: 400, color: "rgba(40,40,60,0.82)",
+            fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "rgba(40,40,60,0.82)",
             height: 34, padding: "0 13px 0 12px",
             background: "rgba(255,255,255,0.78)",
             backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
@@ -1037,11 +1084,11 @@ export default function PogoB2BCaseStudy() {
       <section data-label="Product" className="px-6 pb-16 max-w-[1240px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <StaggerItem index={0}>
-            <p style={{ fontFamily: GTA, fontSize: 18, fontWeight: 400, color: "#111", marginBottom: 6 }}>My Role & Team</p>
-            <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 400, color: "#444", lineHeight: 1.65 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 8 }}>My Role & Team</p>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65 }}>
               Lead designer on Research Agent (Contract Role)
             </p>
-            <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 400, color: "#444", lineHeight: 1.65 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65 }}>
               Team: Engineer,{" "}
               <a
                 href="https://austlee.com/"
@@ -1055,7 +1102,7 @@ export default function PogoB2BCaseStudy() {
                   color: "inherit",
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 2,
+                  gap: 4,
                 }}
               >
                 Design Lead
@@ -1063,7 +1110,27 @@ export default function PogoB2BCaseStudy() {
                   <path d="M2 8L8 2M8 2H4M8 2V6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
-              , Founder
+              ,{" "}
+              <a
+                href="https://www.linkedin.com/in/oskarmelking/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: "underline",
+                  textDecorationStyle: "dotted",
+                  textDecorationColor: "rgba(80,80,80,0.5)",
+                  textUnderlineOffset: 3,
+                  color: "inherit",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 4,
+                }}
+              >
+                Founder
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{ flexShrink: 0, opacity: 0.6 }}>
+                  <path d="M2 8L8 2M8 2H4M8 2V6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
             </p>
           </StaggerItem>
           {[
@@ -1071,8 +1138,8 @@ export default function PogoB2BCaseStudy() {
             { label: "Timeline", value: "Feb – April 2026" },
           ].map(({ label, value }, i) => (
             <StaggerItem key={label} index={i + 1}>
-              <p style={{ fontFamily: GTA, fontSize: 18, fontWeight: 400, color: "#111", marginBottom: 6 }}>{label}</p>
-              <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 400, color: "#444", lineHeight: 1.65, whiteSpace: "pre-line" }}>{value}</p>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 8 }}>{label}</p>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.65, whiteSpace: "pre-line" }}>{value}</p>
             </StaggerItem>
           ))}
         </div>
@@ -1111,6 +1178,7 @@ export default function PogoB2BCaseStudy() {
                   border: "1px solid rgba(255,255,255,0.45)",
                   borderRadius: 16,
                   padding: "42px 28px",
+                  zIndex: 11,
                 }}
               >
                 {[
@@ -1129,15 +1197,15 @@ export default function PogoB2BCaseStudy() {
               {/* Text below card */}
               <p style={{ ...ATTENTION_LINE, marginBottom: 12 }}>{title}</p>
               {examples && (
-                <div style={{ marginBottom: 14, display: "flex", flexDirection: "column", gap: 6 }}>
+                <div style={{ marginBottom: 16, display: "flex", flexDirection: "column", gap: 8 }}>
                   {examples.map(ex => (
                     <div key={ex} style={{ padding: "9px 14px", borderRadius: 10, border: "1px solid rgba(0,0,0,0.09)", background: "rgba(255,255,255,0.65)" }}>
-                      <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 300, color: "#444" }}>{ex}</p>
+                      <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#444" }}>{ex}</p>
                     </div>
                   ))}
                 </div>
               )}
-              <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 400, color: "#555", lineHeight: 1.65 }}>{body}</p>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", lineHeight: 1.65 }}>{body}</p>
             </div>
           ))}
         </div>
@@ -1147,22 +1215,22 @@ export default function PogoB2BCaseStudy() {
       <section data-label="Product context" className="px-6 py-[96px] max-w-[1240px] mx-auto">
         <FadeUp><SectionPill color="#C8C9FF">Product</SectionPill></FadeUp>
         <FadeUp delay={0.05}>
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 36 }}>
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 40 }}>
             The Product
           </h2>
         </FadeUp>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
           <FadeUp delay={0.08}>
-            <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7, marginBottom: 20 }}>
               Pogo is a B2B consumer insights platform. Enterprise CPG teams use it to run AI-moderated interviews and quant surveys with purchase-verified shoppers.
             </p>
-            <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.7 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7 }}>
               The moat is behavioral credibility, Pogo&apos;s respondents are verified through credit card transactions, receipts, and location data. No panel. No self-reported behavior. Real shoppers who actually bought the product.
             </p>
           </FadeUp>
           <FadeUp delay={0.12}>
-            <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7, marginBottom: 20 }}>
               You could watch someone hold up a product and say &ldquo;I&apos;d still buy it even if you raised the price by three dollars.&rdquo; No LLM can generate that.
             </p>
           </FadeUp>
@@ -1180,14 +1248,14 @@ export default function PogoB2BCaseStudy() {
               className="w-full block"
             />
           </div>
-          <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>
+          <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 32, lineHeight: 1.5 }}>
             Citation reels - the output that no chart could replicate. Real respondents, on camera, sourced from verified purchase behavior.
           </p>
         </FadeUp>
 
         {/* Transition callout */}
         <FadeUp delay={0.18}>
-          <p style={{ fontFamily: GTA, fontSize: 20, fontWeight: 400, color: "#1a1a3a", lineHeight: 1.65, marginTop: 40 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#1a1a3a", lineHeight: 1.65, marginTop: 40 }}>
             The challenge was that most clients didn&apos;t know what they could do with it.
           </p>
         </FadeUp>
@@ -1198,13 +1266,13 @@ export default function PogoB2BCaseStudy() {
         <FadeUp><SectionPill color="#C8C9FF">Challenge</SectionPill></FadeUp>
         <FadeUp delay={0.05}>
           <div style={{ marginBottom: 48 }}>
-            <p style={{ fontFamily: GTA, fontSize: 18, fontWeight: 300, color: "#444", lineHeight: 1.7 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7 }}>
               Pogo&apos;s AI could analyze studies, generate highlight reels, and surface cohort intelligence, but it was all locked inside individual pages. A VP at a major CPG brand wanting to ask &ldquo;what have we learned about pricing?&rdquo; had no single place to go. <span style={{ fontWeight: 400, color: "#111" }}>My job: design the interface that changed that.</span>
             </p>
           </div>
         </FadeUp>
         <FadeUp delay={0.05}>
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 42 }}>
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 40 }}>
             How might we let people use data they don&apos;t know exists, without knowing how to ask for it?
           </h2>
         </FadeUp>
@@ -1216,9 +1284,10 @@ export default function PogoB2BCaseStudy() {
           ].map(({ title, body }, i) => (
             <motion.div
               key={i}
+              className="h-full"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.28, ease: [0.87, 0, 0.13, 1] as [number, number, number, number], delay: i * 0.15 }}
+              transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] as [number, number, number, number], delay: i * 0.08 }}
             >
               <ChallengeCard title={title}>{body}</ChallengeCard>
             </motion.div>
@@ -1229,15 +1298,15 @@ export default function PogoB2BCaseStudy() {
       {/* ═══ WHAT I WAS SOLVING ═══ */}
       <section data-label="Challenge" className="px-6 py-[96px] max-w-[1240px] mx-auto">
         <FadeUp delay={0.05}>
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 36 }}>
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 40 }}>
             Before touching a single component, I needed to know what users actually came to do.
           </h2>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#555", marginBottom: 8, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 8, lineHeight: 1.6 }}>
             I pulled PostHog usage data and Otter transcripts from client sessions. The #1 use case wasn&apos;t open-ended exploration.
           </p>
-          <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 400, color: "#111", marginBottom: 30, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 32, lineHeight: 1.6 }}>
             It was video and highlight reel creation.
           </p>
         </FadeUp>
@@ -1246,15 +1315,15 @@ export default function PogoB2BCaseStudy() {
           {/* Card 01, hero, full width */}
           <div className="relative mb-6">
             <FadeUp>
-              <div className="rounded-2xl px-8 py-7 relative overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
-                <p style={{ fontFamily: GTA, fontSize: "clamp(18px,2.2vw,22px)", fontWeight: 600, color: "#111", marginBottom: 10, lineHeight: 1.2 }}>Video &amp; highlight reel creation</p>
-                <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", lineHeight: 1.65, maxWidth: 620 }}>
+              <div className="rounded-2xl px-8 py-8 relative overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
+                <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 12, lineHeight: 1.2 }}>Video &amp; highlight reel creation</p>
+                <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", lineHeight: 1.65, maxWidth: 620 }}>
                   The #1 use case, and deeply iterative. Clients don&apos;t run a report once. They refine the same reel a dozen times: different cohort, different angle, different quote.
                 </p>
               </div>
             </FadeUp>
             {/* Peeking GIF, bottom-right corner — still frame, plays on hover (outside FadeUp so it never fades out) */}
-            <HoverGif still="/images/pogob2b/card-peek-still.png" gif="/images/pogob2b/card-peek.gif" size={128} style={{ position: "absolute", bottom: -24, right: -32, zIndex: 20 }} />
+            <img src="/images/pogob2b/avatars.png" alt="" aria-hidden="true" style={{ position: "absolute", bottom: 10, right: 16, width: 200, height: "auto", display: "block", pointerEvents: "none", zIndex: 20 }} />
           </div>
 
           {/* Cards 02–05, 2×2 grid */}
@@ -1266,16 +1335,16 @@ export default function PogoB2BCaseStudy() {
               { n: "05", label: "Presentation & export prep", body: '"Can you export this to PowerPoint?" The output wasn\'t for the analyst. It was for the deck that went to their VP.' },
             ].map(({ n, label, body }, i) => (
               <FadeUp key={n} delay={0.04 * (i + 1)}>
-                <div className="rounded-2xl px-8 py-7 h-full relative overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
-                  <p style={{ fontFamily: GTA, fontSize: 20, fontWeight: 500, color: "#111", marginBottom: 8, lineHeight: 1.3 }}>{label}</p>
-                  <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 300, color: "#555", lineHeight: 1.65 }}>{body}</p>
+                <div className="rounded-2xl px-8 py-8 h-full relative overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
+                  <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 8, lineHeight: 1.3 }}>{label}</p>
+                  <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", lineHeight: 1.65 }}>{body}</p>
                 </div>
               </FadeUp>
             ))}
           </div>
         </div>
         <FadeUp>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 400, color: "#1a1a3a", lineHeight: 1.7 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#1a1a3a", lineHeight: 1.7 }}>
             Nobody in the data had asked for cross-study synthesis, cohort benchmarking, or complex segmentation, not because they didn&apos;t want it. Because they didn&apos;t know they could ask. The design problem wasn&apos;t a chat interface problem. It was a <strong>capability disclosure problem.</strong>
           </p>
         </FadeUp>
@@ -1290,23 +1359,23 @@ export default function PogoB2BCaseStudy() {
         {/* 01 */}
         <FadeUp className="mb-24">
           <StepLabel n="01" title="Synthesize competing stakeholder POVs" />
-          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 300, color: "#555", maxWidth: 600, marginBottom: 48, lineHeight: 1.65 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", maxWidth: 600, marginBottom: 48, lineHeight: 1.65 }}>
             Speaking to teammates helped me surface three camps and hypothesis.
           </p>
           <div className="mb-6">
             <StakeholderStack />
           </div>
           <div className="mb-10 py-1">
-            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 300, color: "#333", lineHeight: 1.7 }}>
-              These were <strong style={{ fontWeight: 500 }}>different modes</strong>, and they didn&apos;t belong on the same screen. The PM: <em>&ldquo;Two entry points for the same feature creates confusion about the default place to go.&rdquo;</em> We landed on structural separation: <em>Home</em> = your work with AI overlaid. <em>Chat</em> = where the agent runs.
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#333", lineHeight: 1.7 }}>
+              These were <strong style={{ fontWeight: 400 }}>different modes</strong>, and they didn&apos;t belong on the same screen. The PM: <em>&ldquo;Two entry points for the same feature creates confusion about the default place to go.&rdquo;</em> We landed on structural separation: <em>Home</em> = your work with AI overlaid. <em>Chat</em> = where the agent runs.
             </p>
           </div>
           {/* Differing hypothesis — Chat vs Home, two hypotheses each */}
           <div style={{ marginTop: 20 }}>
-            <p style={{ fontFamily: GTA, fontSize: 26, fontWeight: 400, color: "#555", lineHeight: 1.25, marginBottom: 12 }}>
-              Differing Hypothesis: <strong style={{ fontWeight: 600, color: "#111" }}>Presets VS Open Composer</strong>
+            <p style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#555", lineHeight: 1.25, marginBottom: 12 }}>
+              Differing Hypothesis: <strong style={{ fontWeight: 300, color: "#111" }}>Presets VS Open Composer</strong>
             </p>
-            <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", lineHeight: 1.6, marginBottom: 48 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", lineHeight: 1.6, marginBottom: 48 }}>
               Should users be able to query with the AI agent in the &lsquo;Home&rsquo; page, or in a dedicated &lsquo;Chat&rsquo; page?
             </p>
 
@@ -1327,7 +1396,7 @@ export default function PogoB2BCaseStudy() {
               },
             ].map((row) => (
               <div key={row.label} style={{ marginBottom: 48 }}>
-                <p style={{ fontFamily: GTA, fontSize: 18, fontWeight: 600, color: "#111", marginBottom: 14 }}>{row.label}</p>
+                <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 16 }}>{row.label}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {row.cols.map((c) => (
                     <figure key={c.src} style={{ margin: 0 }}>
@@ -1355,33 +1424,34 @@ export default function PogoB2BCaseStudy() {
       <section data-label="Explorations" className="px-6 py-[96px] max-w-[1240px] mx-auto">
         <FadeUp><SectionPill color="#C8C9FF">Explorations</SectionPill></FadeUp>
         <FadeUp delay={0.05}>
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginTop: 16, marginBottom: 40 }}>
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginTop: 16, marginBottom: 40 }}>
             What does this product need to be?
           </h2>
         </FadeUp>
-        <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#555", marginBottom: 76, lineHeight: 1.6 }}>
+        <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 80, lineHeight: 1.6 }}>
           Search page or workspace? Each direction encoded a different hypothesis about how CPG buyers think and what they come to do.
         </p>
 
         {/* Before */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>The starting point</p>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>The starting point</p>
           <div className="rounded-2xl overflow-hidden mb-3" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
-            <Image src="/images/pogob2b/home-before-redesign.png" alt="Pogo home before redesign" width={1200} height={700} className="w-full object-cover object-top" />
+            <BlurUp>
+              <Image src="/images/pogob2b/home-before-redesign.png" alt="Pogo home before redesign" width={1200} height={700} className="w-full object-cover object-top" />
+            </BlurUp>
           </div>
-          <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 300, color: "#555", lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", lineHeight: 1.6 }}>
             The existing home: a table of Studies and Cohorts. No AI entry point, no signal about what was new or what to do next.
           </p>
         </div>
 
         {/* Early wireframes */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Early wireframes</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Early wireframes</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
             Before Figma, I mapped what the agent needed to do. The question: search page or workspace? The answer was both, requiring two surfaces.
           </p>
           <Gallery items={[
-            { src: "/images/pogob2b/early-wireframe-global-chat.png", label: "Global chat research agent", sub: "First wireframe: capability tiles + query bar." },
             { src: "/images/pogob2b/early-chat-concept1-pg2.png", label: "Chat - blank composer", sub: "Intentionally minimal to test unprompted behavior." },
             { src: "/images/pogob2b/early-chat-concept2.png", label: "Chat - conversation-aware", sub: '"Welcome back" + proactive signals from new responses.' },
           ]} />
@@ -1389,9 +1459,9 @@ export default function PogoB2BCaseStudy() {
 
         {/* Chat conceptual explorations */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Chat - Concept directions</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
-            Before deep UX work, I ran four directions to get early team alignment, not to pick a winner, but to surface assumptions.
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Chat - Concept directions</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
+            Before deep UX work, I ran five directions to get early team alignment, not to pick a winner, but to surface assumptions.
           </p>
           <Gallery items={[
             { src: "/images/pogob2b/chat-concept1-pg1.png", label: "Concept 1 - Blank composer", sub: 'Clean. Reveals the blank-page problem.' },
@@ -1404,56 +1474,44 @@ export default function PogoB2BCaseStudy() {
 
         {/* Two dead ends */}
         <div className="mb-32">
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(22px,3vw,34px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 24 }}>
-            Two dead ends that clarified everything
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 24 }}>
+            Chat Entry Interaction Design Exploration
           </h2>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 32, lineHeight: 1.65, maxWidth: 620 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 32, lineHeight: 1.65, maxWidth: 620 }}>
             Before landing on the Home / Chat split, we explored two patterns for letting users specify what they wanted to do. Both failed, but for reasons that made the real solution obvious.
           </p>
 
           {/* Project-card style grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 items-start">
             {/* Left: slash commands */}
-            <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(255,255,255,0.9)", boxShadow: "0 2px 24px rgba(0,0,0,0.07)" }}>
-              {/* Preview area */}
-              <div className="p-4" style={{ background: "rgba(225,222,240,0.45)" }}>
-                <div className="rounded-xl overflow-hidden">
-                  <video src="/videos/pogob2b/slash-commands.mp4" autoPlay loop muted playsInline className="w-full block" />
-                </div>
+            <div className="flex flex-col">
+              <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)" }}>
+                <video src="/videos/pogob2b/slash-commands.mp4" autoPlay loop muted playsInline className="w-full block" />
               </div>
-              {/* Content */}
-              <div className="px-6 py-5 flex flex-col flex-1">
-                <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 600, color: "#111", marginBottom: 8, lineHeight: 1.25 }}>/ slash commands</p>
-                <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 300, color: "#555", lineHeight: 1.7 }}>
-                  Notion, Linear, Slack taught power users to love slash commands. CPG buyers are not power users. They don&apos;t know the syntax exists. They&apos;ve never typed &ldquo;/&rdquo; to do anything outside a dev tool.
-                </p>
-              </div>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginTop: 20, marginBottom: 8, lineHeight: 1.25 }}>/ slash commands</p>
+              <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", lineHeight: 1.7 }}>
+                Notion, Linear, Slack taught power users to love slash commands. CPG buyers are not power users. They don&apos;t know the syntax exists. They&apos;ve never typed &ldquo;/&rdquo; to do anything outside a dev tool.
+              </p>
             </div>
 
             {/* Right: plus for everything */}
-            <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(255,255,255,0.9)", boxShadow: "0 2px 24px rgba(0,0,0,0.07)" }}>
-              {/* Preview area */}
-              <div className="p-4" style={{ background: "rgba(225,222,240,0.45)" }}>
-                <div className="rounded-xl overflow-hidden">
-                  <video src="/videos/pogob2b/plus-everything.mp4" autoPlay loop muted playsInline className="w-full block" />
-                </div>
+            <div className="flex flex-col">
+              <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)" }}>
+                <video src="/videos/pogob2b/plus-everything.mp4" autoPlay loop muted playsInline className="w-full block" />
               </div>
-              {/* Content */}
-              <div className="px-6 py-5 flex flex-col flex-1">
-                <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 600, color: "#111", marginBottom: 8, lineHeight: 1.25 }}>&ldquo;+&rdquo; for everything</p>
-                <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 300, color: "#555", lineHeight: 1.7 }}>
-                  One icon carrying four completely different jobs. Attach document, build cohort, generate report, create survey, hidden behind a single &ldquo;+&rdquo;. We were asking users to guess that their most common actions lived there.
-                </p>
-              </div>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginTop: 20, marginBottom: 8, lineHeight: 1.25 }}>&ldquo;+&rdquo; for everything</p>
+              <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", lineHeight: 1.7 }}>
+                One icon carrying four completely different jobs. Attach document, build cohort, generate report, create survey, hidden behind a single &ldquo;+&rdquo;. We were asking users to guess that their most common actions lived there.
+              </p>
             </div>
           </div>
 
           {/* Outcome callout */}
           <div className="py-5">
-            <p style={{ fontFamily: GTA_MONO, fontSize: 10, fontWeight: 300, color: "#346AFF", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 20 }}>
+            <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 20 }}>
               What this told us
             </p>
-            <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 400, color: "#1a1a3a", lineHeight: 1.7 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#1a1a3a", lineHeight: 1.7 }}>
               Chat couldn&apos;t be the place where users <em>discover</em> features. It had to be the place where users <em>execute</em> tasks they already understood. Features that needed discovery needed a different home, which became the driving argument for separating Chat and Home into categorically different surfaces.
             </p>
           </div>
@@ -1461,40 +1519,23 @@ export default function PogoB2BCaseStudy() {
 
         {/* Capability disclosure */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Design principle: capability disclosure</p>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Capability Disclosure</p>
           <div className="mb-8 py-1">
-            <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#333", fontStyle: "italic", lineHeight: 1.6, maxWidth: 560 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#333", fontStyle: "italic", lineHeight: 1.6, maxWidth: 560 }}>
               &ldquo;If users don&apos;t know they can ask &lsquo;Find me strong signals from my buyers,&rsquo; they&apos;ll type something vague, and blame the AI when it doesn&apos;t help.&rdquo;
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-            <div>
-              <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>Suggested prompts</p>
-              <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
-                <Image src="/images/pogob2b/chat-suggested-prompts.png" alt="Suggested prompts" width={700} height={500} className="w-full object-cover object-top" />
-              </div>
-              <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>Real data language teaches capability without documentation.</p>
-            </div>
-            <div>
-              <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>Recent studies as prompts</p>
-              <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
-                <Image src="/images/pogob2b/home-variant-hp5-2.png" alt="Category-scoped input" width={700} height={500} className="w-full object-cover object-top" />
-              </div>
-              <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>Category pills narrow scope before typing. Teaches the data model through interaction.</p>
-            </div>
-          </div>
-
           <div className="mb-24">
-            <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>Scoped entry - context before query</p>
-            <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
-              <video src="/videos/pogob2b/scoped-entry-context.mp4" autoPlay loop muted playsInline className="w-full block" />
-            </div>
-            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>Showing context behind the action to help manage expectations from users.</p>
+            <Gallery items={[
+              { src: "/images/pogob2b/chat-suggested-prompts.png", label: "Suggested prompts", sub: "Real data language teaches capability without documentation." },
+              { src: "/images/pogob2b/home-variant-hp5-2.png", label: "Recent studies as prompts", sub: "Category pills narrow scope before typing. Teaches the data model through interaction." },
+              { src: "/videos/pogob2b/scoped-entry-context.mp4", label: "Context before query", sub: "Showing context behind the action to help manage expectations from users." },
+            ]} />
           </div>
 
           {/* Structured input 3-step */}
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 26, lineHeight: 1.3 }}>Progressive Context Collection reduces cognitive overload during entry point</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 24, lineHeight: 1.3 }}>Progressive Context Collection</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
             Clicking a preset shouldn&apos;t fire the agent blindly. A lightweight intercept asks for scope first.
           </p>
           <Gallery items={[
@@ -1506,38 +1547,38 @@ export default function PogoB2BCaseStudy() {
 
         {/* Quick actions */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Quick actions - feature explorations</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Quick actions - feature explorations</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
             6 approaches to card density, layout, and how much context to surface upfront.
           </p>
           <Gallery items={[
-            { src: "/images/pogob2b/chat-interaction.mov", label: "Interaction prototype - Option B1.2", sub: "Clicking preset cards populates the composer, structured starting point without locking users into a fixed flow." },
-            { src: "/images/pogob2b/qa-option-a.png", label: "Option A", sub: "Four equal-weight tiles. No hierarchy." },
-            { src: "/images/pogob2b/qa-option-b.png", label: "Option B", sub: "Hero card + smaller actions. Priority is signaled." },
-            { src: "/images/pogob2b/qa-option-c.png", label: "Option C", sub: "Question framing maps to buyer mental model." },
-            { src: "/videos/pogob2b/suggested-actions-expanded.mp4", label: "Option C1", sub: "Suggested Actions expanded as prompts" },
-            { src: "/images/pogob2b/qa-option-c1-sources.png", label: "C1 + sources", sub: "Agent context visible on load, before user asks." },
-            { src: "/images/pogob2b/qa-option-a1.png", label: "Option A1", sub: "Tighter grid with icon anchors." },
+            { src: "/images/pogob2b/chat-interaction.mov", label: "", sub: "Clicking preset cards populates the composer, structured starting point without locking users into a fixed flow." },
+            { src: "/images/pogob2b/qa-option-a.png", label: "", sub: "Six quick start cards" },
+            { src: "/images/pogob2b/qa-option-b.png", label: "", sub: "Hero card + smaller actions. Priority is signaled." },
+            { src: "/images/pogob2b/qa-option-c.png", label: "", sub: "Question framing maps to buyer mental model." },
+            { src: "/videos/pogob2b/suggested-actions-expanded.mp4", label: "", sub: "Suggested Actions expanded as prompts" },
+            { src: "/images/pogob2b/qa-option-c1-sources.png", label: "", sub: "Agent context visible on load, before user asks." },
+            { src: "/images/pogob2b/qa-option-a1.png", label: "", sub: "Tighter grid with icon anchors." },
           ]} />
         </div>
 
         {/* Chat UX patterns */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Chat UX - new chat &amp; history access</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Chat UX - new chat &amp; history access</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
             Where does a new chat begin, and how do users return to a previous one?
           </p>
           <div className="mb-12">
-            <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 500, color: "#111", marginBottom: 6 }}>Starting a new chat</p>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 500, color: "#111", marginBottom: 24 }}>Starting a new chat</p>
             <Gallery items={[
               { src: "/images/pogob2b/newchat-a1.png", label: "A1 - Centered", sub: "High visibility, takes canvas space." },
               { src: "/images/pogob2b/newchat-a2.png", label: "A2 - Hamburger", sub: "Low footprint, lower discoverability." },
               { src: "/images/pogob2b/newchat-a3.png", label: "A3 - Write icon", sub: "Familiar (Slack). Needs label for first-timers." },
-              { src: "/images/pogob2b/newchat-a4.png", label: "A4 - Nav bar", sub: "Most persistent. Matches where the eye starts." },
+              { src: "/images/pogob2b/newchat-a4.png", label: "A4 - Left Navigational Bar", sub: "Global position, most persistent across all pages" },
             ]} />
           </div>
           <div>
-            <p style={{ fontFamily: GTA, fontSize: 14, fontWeight: 500, color: "#111", marginBottom: 6 }}>Accessing history</p>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 500, color: "#111", marginBottom: 24 }}>Accessing history</p>
             <Gallery items={[
               { src: "/images/pogob2b/history-a1.png", label: "A1 - History icon", sub: "Clock icon. Low footprint." },
               { src: "/images/pogob2b/history-a1-hover.png", label: "A1 - Hover", sub: "Tooltip confirms action, reduces ambiguity." },
@@ -1549,34 +1590,34 @@ export default function PogoB2BCaseStudy() {
 
         {/* Home variants */}
         <div className="mb-32">
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Home page - layout proposals</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Home page - layout proposals</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 48, lineHeight: 1.6 }}>
             After aligning the decision to separate the use case to jump back into a cohort or study clients have built, I explored layouts for the home page.
           </p>
           <Gallery items={[
             { src: "/images/pogob2b/home-variant-hover.png", label: "Option A - Action-first", sub: "AI actions at top. Recent work below." },
-            { src: "/images/pogob2b/home-variant-31.png", label: "Option - Activity feed", sub: "Updates since last visit. Pogo as living workspace." },
             { src: "/images/pogob2b/home-variant-march.png", label: "Option C - Conversation-first", sub: "Leads with recent chats. Pogo as assistant." },
             { src: "/images/pogob2b/home-variant-mar20.png", label: "Option D - Asset overview", sub: "Studies, Cohorts, Chats, Reels in four zones." },
             { src: "/images/pogob2b/home-variant-b3.png", label: "Option B3 - Refined grid", sub: "Final iteration: tighter density, per-section actions." },
+            { src: "/images/pogob2b/home-variant-31.png", label: "Option - Activity feed", sub: "Updates since last visit. Pogo as living workspace." },
           ]} />
         </div>
 
         {/* Sources decision */}
         <div className="mb-32">
-          <h3 style={{ fontFamily: GTA, fontSize: "clamp(22px,3vw,34px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 32 }}>
+          <h3 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 32 }}>
             Trust and sources
           </h3>
-          <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 34 }}>Sources attribution - design decision</p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 16, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 32 }}>Sources Attribution</p>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 16, lineHeight: 1.6 }}>
             Enterprise buyers present AI output to VPs. Two architectures tested: thread-level vs. per-message sources.
           </p>
-          <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", marginBottom: 24, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", marginBottom: 24, lineHeight: 1.6 }}>
             Enterprise buyers don&apos;t keep insights. They present them. A CPG VP pasting an AI summary into a board deck needs to know which study backed that claim, not which studies were open in the thread.
           </p>
           <div className="grid grid-cols-1 gap-12 mb-8">
             <div>
-              <p style={{ fontFamily: GTA_MONO, fontSize: 20, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>2A - Thread-level</p>
+              <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 24 }}>2A - Thread-level</p>
               <Gallery items={[
                 { src: "/images/pogob2b/sources-2a.png", label: "Default", sub: "Source count in header only." },
                 { src: "/images/pogob2b/sources-2a-click.png", label: "On click", sub: "Drawer opens with all sources." },
@@ -1584,35 +1625,30 @@ export default function PogoB2BCaseStudy() {
               ]} />
             </div>
             <div>
-              <p style={{ fontFamily: GTA_MONO, fontSize: 20, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>2B - Per-message sources ✓</p>
+              <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 24 }}>2B - Per-message sources ✓</p>
               <Gallery items={[
                 { src: "/images/pogob2b/sources-2b.png", label: "Default", sub: "Sources button per response." },
                 { src: "/images/pogob2b/sources-2b-1.png", label: "Sources shown", sub: '"Sources 3" at bottom of each response.' },
                 { src: "/images/pogob2b/sources-2b-drawer.png", label: "Drawer", sub: "Color-coded by type." },
               ]} />
-              <ul className="space-y-1.5 mt-4">
-                {["+  Each claim traceable to its source", "+  Sources travel with the answer, citable", "+  Matches Perplexity's proven enterprise trust pattern"].map(t => (
-                  <li key={t} style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: t.startsWith("+") ? "#444" : "#AAA" }}>{t}</li>
-                ))}
-              </ul>
             </div>
           </div>
           <div className="rounded-2xl p-6" style={{ background: CARD_BG, border: "1px solid rgba(255,255,255,0.7)" }}>
-            <p style={{ fontFamily: GTA_MONO, fontSize: 11, fontWeight: 300, color: "#346AFF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>Decision → Option 2B (per-message)</p>
-            <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#333", lineHeight: 1.65 }}>
+            <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>Decision → Option 2B (per-message)</p>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#333", lineHeight: 1.65 }}>
               A CPG VP pasting an AI summary into a deck needs to know which studies that claim came from. Thread-level attribution breaks that chain. Per-message sources keep evidence attached to the claim. Visual weight is a fair trade for auditability.
             </p>
           </div>
 
           {/* An Auditable Workspace */}
           <div className="mt-40">
-            <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 40 }}>An Auditable Workspace</p>
+            <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 40 }}>An Auditable Workspace</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
               <FadeUp>
                 <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
                   <video src="/videos/pogob2b/auditable-workspace.mp4" autoPlay loop muted playsInline className="w-full block" />
                 </div>
-                <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 14, lineHeight: 1.6 }}>
+                <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 16, lineHeight: 1.6 }}>
                   Log of active tasks alongside study workspace. It displays individual Studies and Cohorts cited, technical sub-goals, and actual customer avatars all at once for maximum visibility.
                 </p>
               </FadeUp>
@@ -1620,15 +1656,15 @@ export default function PogoB2BCaseStudy() {
                 <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
                   <Image src="/images/pogob2b/auditable-workspace-2.png" alt="Auditable workspace — active sources mapped in context" width={1920} height={1155} className="w-full block" />
                 </div>
-                <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 14, lineHeight: 1.6 }}>
+                <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 16, lineHeight: 1.6 }}>
                   Active cohorts and studies in horizontal pill buttons. (Note: the background canvas is blurred here just to highlight this sidebar variant for the case study.)
                 </p>
               </FadeUp>
             </div>
             <FadeUp>
-              <div className="border-l-2 pl-5 mt-16 py-1" style={{ borderColor: "#346AFF" }}>
-                <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#333", lineHeight: 1.7, maxWidth: 680 }}>
-                  <strong style={{ fontWeight: 500, color: "#111" }}>The core insight:</strong> Enterprise CPG buyers present insights directly to leadership. If they cannot trace an answer back to its exact behavioral data source, they will not stake their credibility on it.
+              <div className="mt-16 py-1">
+                <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#333", lineHeight: 1.7, maxWidth: 680 }}>
+                  <strong style={{ fontWeight: 400, color: "#111" }}>The core insight:</strong> Enterprise CPG buyers present insights directly to leadership. If they cannot trace an answer back to its exact behavioral data source, they will not stake their credibility on it.
                 </p>
               </div>
             </FadeUp>
@@ -1638,9 +1674,9 @@ export default function PogoB2BCaseStudy() {
                 { label: "Source governance", body: "It transitions the tool from an ungrounded chat into a deterministic workspace, giving users the absolute clarity needed to verify evidence before exporting insights to executive decks." },
               ].map(({ label, body }) => (
                 <FadeUp key={label}>
-                  <div className="rounded-2xl px-7 py-6 h-full" style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
-                    <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 500, color: "#111", marginBottom: 10, lineHeight: 1.3 }}>{label}</p>
-                    <p style={{ fontFamily: GTA, fontSize: 15, fontWeight: 300, color: "#555", lineHeight: 1.7 }}>{body}</p>
+                  <div className="rounded-2xl px-8 py-6 h-full" style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 2px 16px rgba(0,0,0,0.05)" }}>
+                    <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#111", marginBottom: 12, lineHeight: 1.3 }}>{label}</p>
+                    <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", lineHeight: 1.7 }}>{body}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -1651,11 +1687,11 @@ export default function PogoB2BCaseStudy() {
         {/* Final designs */}
         <div className="mb-32">
           <div>
-            <p style={{ fontFamily: GTA_MONO, fontSize: 20, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>End-to-end - home → chat → insights</p>
+            <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 24 }}>End-to-end - home → chat → insights</p>
             <div className="rounded-2xl overflow-hidden" style={{ background: "#000" }}>
               <video src="/images/pogob2b/home-chat-demo.mov" autoPlay loop muted playsInline className="w-full" />
             </div>
-            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>Full flow: Home → Chat → AI Research Agent conversation with sources and artifact generation.</p>
+            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 32, lineHeight: 1.5 }}>Full flow: Home → Chat → AI Research Agent conversation with sources and artifact generation.</p>
           </div>
         </div>
       </section>
@@ -1667,27 +1703,27 @@ export default function PogoB2BCaseStudy() {
         <FadeUp><SectionPill color="#C8C9FF">Interaction</SectionPill></FadeUp>
 
         {/* Progressive capability disclosure */}
-        <div className="mt-28">
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginTop: 20, marginBottom: 28 }}>Progressive Capability Disclosure</h2>
+        <div className="mt-32">
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginTop: 20, marginBottom: 32 }}>Progressive Capability Disclosure</h2>
           {/* Composer in motion */}
           <FadeUp>
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
               <video src="/videos/pogob2b/composer-progressive-disclosure.mp4" autoPlay loop muted playsInline className="w-full block" />
             </div>
-            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>
+            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 32, lineHeight: 1.5 }}>
               The composer in motion: prompts rotate to model good questions, capability chips open scaffolded templates pre-filled with real studies, and the moment you start typing, the scaffolding clears out of the way.
             </p>
           </FadeUp>
           <FadeUp className="mt-16">
-            <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#555", lineHeight: 1.7, maxWidth: 720, marginBottom: 52 }}>
+            <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", lineHeight: 1.7, maxWidth: 720, marginBottom: 48 }}>
               A blank composer assumes you already know the questions worth asking. The usage data said most buyers didn&apos;t. So the composer had to <strong style={{ fontWeight: 400, color: "#111" }}>teach intent while accepting it</strong>, revealing capability one layer at a time as the user leaned in, never as a menu to read first.
             </p>
           </FadeUp>
 
           {/* Closing principle */}
           <FadeUp>
-            <div className="border-l-2 pl-5 mt-16 py-1" style={{ borderColor: "#346AFF" }}>
-              <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#333", lineHeight: 1.7, maxWidth: 640 }}>
+            <div className="mt-16 py-1">
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#333", lineHeight: 1.7, maxWidth: 640 }}>
                 Each layer only appears when the user reaches for it. A first-time buyer is taught what to ask; a returning one types straight past it. The same surface serves discovery and execution, which is what let chat replace navigation as the way in.
               </p>
             </div>
@@ -1695,10 +1731,10 @@ export default function PogoB2BCaseStudy() {
         </div>
 
         {/* The interface nods back — acknowledgment cues */}
-        <div className="mt-28">
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginTop: 20, marginBottom: 34 }}>The interface nods back</h2>
+        <div className="mt-32">
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginTop: 20, marginBottom: 32 }}>The interface nods back</h2>
           <FadeUp>
-            <p style={{ ...ATTENTION_LINE, fontSize: "clamp(20px,2.4vw,27px)", maxWidth: 820, marginBottom: 52 }}>
+            <p style={{ ...ATTENTION_LINE, fontSize: "clamp(28px,5vw,40px)", maxWidth: 820, marginBottom: 48 }}>
               When you talk to a person, you don&apos;t narrate what you&apos;re thinking. They blink, they nod, and you know you&apos;ve been understood. I wanted the composer to do the same, to acknowledge intent the instant it forms.
             </p>
           </FadeUp>
@@ -1706,28 +1742,28 @@ export default function PogoB2BCaseStudy() {
             <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)" }}>
               <video src="/videos/pogob2b/composer-acknowledges-intent.mp4" autoPlay loop muted playsInline className="w-full block" />
             </div>
-            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 28, lineHeight: 1.5 }}>
-              Send fills the moment there&apos;s a keystroke, chips settle as state changes, and typing <span style={{ fontFamily: GTA_MONO, fontSize: 12 }}>@</span> surfaces the exact sources you can reach for. Small, constant acknowledgments that the app is reading along.
+            <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 32, lineHeight: 1.5 }}>
+              Send fills the moment there&apos;s a keystroke, chips settle as state changes, and typing <span style={{ fontFamily: GTA_MONO, fontSize: 16 }}>@</span> surfaces the exact sources you can reach for. Small, constant acknowledgments that the app is reading along.
             </p>
           </FadeUp>
           <FadeUp className="mt-20">
-            <h3 style={{ fontFamily: GTA, fontSize: "clamp(20px,2.4vw,26px)", fontWeight: 500, color: "#111", lineHeight: 1.3, marginBottom: 28, maxWidth: 760 }}>
+            <h3 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.3, marginBottom: 32, maxWidth: 760 }}>
               Interaction design cues that show the app is listening
             </h3>
-            <div className="flex flex-col" style={{ gap: 22, maxWidth: 720 }}>
-              <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.7 }}>
-                Type a verb tied to an AI workflow&mdash;&ldquo;compare,&rdquo; &ldquo;summarize&rdquo;&mdash;and it shimmers. Small, but it tells you the app caught it.
+            <div className="flex flex-col" style={{ gap: 24, maxWidth: 720 }}>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7 }}>
+                Type a verb tied to an AI workflow, &ldquo;compare,&rdquo; &ldquo;summarize&rdquo; and it shimmers. Small, but it tells you the app caught it.
               </p>
-              <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.7 }}>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7 }}>
                 Type <span style={{ fontFamily: GTA_MONO }}>@</span> and your sources show up as chips, right where you&apos;re typing. You don&apos;t go find them&hellip; they just settle into place.
               </p>
-              <p style={{ fontFamily: GTA, fontSize: 17, fontWeight: 300, color: "#444", lineHeight: 1.7 }}>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7 }}>
                 Start typing anything, and the suggested prompts drop away. That&apos;s the app switching modes, from &ldquo;here&apos;s what you might ask&rdquo; to &ldquo;I see what you&apos;re already asking.&rdquo; The shift is the point: it stops recommending and starts recognizing.
               </p>
             </div>
           </FadeUp>
           <FadeUp delay={0.08}>
-            <blockquote style={{ fontFamily: GTA, fontSize: "clamp(22px,2.6vw,30px)", fontWeight: 400, color: "#1a1a3a", lineHeight: 1.45, margin: 0, marginTop: 56, maxWidth: 640 }}>
+            <blockquote style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#1a1a3a", lineHeight: 1.45, margin: 0, marginTop: 64, maxWidth: 640 }}>
               &ldquo;It tells me something is going on.&rdquo;
             </blockquote>
           </FadeUp>
@@ -1739,7 +1775,7 @@ export default function PogoB2BCaseStudy() {
       {/* ═══ KEY DECISIONS ═══ */}
       <section data-label="Decisions" className="px-6 py-[96px] max-w-[1240px] mx-auto">
         <SectionPill color="#C8C9FF">Decisions</SectionPill>
-        <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginBottom: 42 }}>
+        <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 40 }}>
           Key Decisions
         </h2>
         <div className="flex flex-col" style={{ gap: 80 }}>
@@ -1780,17 +1816,17 @@ export default function PogoB2BCaseStudy() {
             },
           ].map(({ n, title, body, src, caption, dual }, i) => {
             const eyebrow = (
-              <p style={{ ...ATTENTION_LINE, marginBottom: 22 }}>
+              <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 24 }}>
                 Decision {n}
               </p>
             );
             const heading = (
-              <p style={{ fontFamily: GTA, fontSize: "clamp(20px,2.4vw,26px)", fontWeight: 600, color: "#111", marginBottom: 14, lineHeight: 1.25 }}>
+              <p style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", marginBottom: 16, lineHeight: 1.25 }}>
                 {title}
               </p>
             );
             const para = (
-              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 300, color: "#555", lineHeight: 1.75 }}>
+              <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#555", lineHeight: 1.75 }}>
                 {body}
               </p>
             );
@@ -1798,7 +1834,7 @@ export default function PogoB2BCaseStudy() {
             // Dual-image decision: text on top, two images side by side
             if (dual) {
               return (
-                <FadeUp key={title}>
+                <FadeUp key={title} className="mb-40">
                   <div>
                     {eyebrow}
                     {heading}
@@ -1807,13 +1843,15 @@ export default function PogoB2BCaseStudy() {
                       {dual.map((d) => (
                         <div key={d.src}>
                           <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)", boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}>
+                            <BlurUp>
                             {/\.(mp4|mov|webm)$/i.test(d.src) ? (
                               <video src={d.src} autoPlay loop muted playsInline className="w-full block" />
                             ) : (
                               <Image src={d.src} alt={d.caption} width={1000} height={640} className="w-full object-cover object-top" />
                             )}
+                            </BlurUp>
                           </div>
-                          <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 14, lineHeight: 1.5 }}>
+                          <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#555", marginTop: 16, lineHeight: 1.5 }}>
                             {d.caption}
                           </p>
                         </div>
@@ -1826,7 +1864,7 @@ export default function PogoB2BCaseStudy() {
 
             const imageRight = i % 2 === 0;
             return (
-              <FadeUp key={title}>
+              <FadeUp key={title} className="mb-40">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                   {/* Text */}
                   <div className={imageRight ? "md:order-1" : "md:order-2"}>
@@ -1837,9 +1875,11 @@ export default function PogoB2BCaseStudy() {
                   {/* Image */}
                   <div className={imageRight ? "md:order-2" : "md:order-1"}>
                     <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.5)", boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}>
-                      <Image src={src} alt={title} width={1000} height={640} className="w-full object-cover object-top" />
+                      <BlurUp>
+                        <Image src={src} alt={title} width={1000} height={640} className="w-full object-cover object-top" />
+                      </BlurUp>
                     </div>
-                    <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#888", marginTop: 14, lineHeight: 1.5 }}>
+                    <p style={{ fontFamily: GTA, fontSize: 13, fontWeight: 300, color: "#888", marginTop: 16, lineHeight: 1.5 }}>
                       {caption}
                     </p>
                   </div>
@@ -1855,13 +1895,18 @@ export default function PogoB2BCaseStudy() {
       {/* ═══ WHAT I SHIPPED ═══ */}
       <section data-label="Final prod" className="px-6 py-[96px] max-w-[1240px] mx-auto">
         <SectionPill color="#C8C9FF">Final Design</SectionPill>
+        <FadeUp delay={0.05}>
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 40 }}>
+            Final Design
+          </h2>
+        </FadeUp>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
           {[
             { label: "Home", src: "/images/pogob2b/final-home.png", caption: "Studies, Cohorts, Highlight Reels, Chats, surfaced at a glance." },
             { label: "Chat", src: "/images/pogob2b/final-chat.png", caption: '"What do your customers think?", presets map to real buyer tasks.' },
           ].map(({ label, src, caption }) => (
             <div key={label}>
-              <p style={{ fontFamily: GTA_MONO, fontSize: 20, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 22 }}>{label}</p>
+              <p style={{ fontFamily: GTA_MONO, fontSize: 16, fontWeight: 400, color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 20, marginBottom: 24 }}>{label}</p>
               <div className="rounded-2xl overflow-hidden mb-4" style={{ border: "1px solid rgba(255,255,255,0.8)" }}>
                 <Image src={src} alt={label} width={700} height={700} className="w-full object-cover object-top" />
               </div>
@@ -1870,17 +1915,17 @@ export default function PogoB2BCaseStudy() {
           ))}
         </div>
         <FadeUp delay={0.05}>
-          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500, color: "#111", lineHeight: 1.2, marginTop: 24, marginBottom: 36 }}>
+          <h2 style={{ fontFamily: GTA, fontSize: "clamp(28px,5vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.2, marginTop: 24, marginBottom: 40 }}>
             You shouldn&apos;t have to know the answer to find it.
           </h2>
         </FadeUp>
         <FadeUp delay={0.08}>
-          <p style={{ fontFamily: GTA, fontSize: 18, fontWeight: 300, color: "#444", lineHeight: 1.7, maxWidth: 760, marginBottom: 16 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7, maxWidth: 760, marginBottom: 16 }}>
             <span style={{ fontWeight: 400, color: "#111" }}>How it was done previously:</span> Want an insight? Open Studies, pick the right one, open the report, dig through the cohort, find the chart&hellip; Five steps and you only knew which five because you guessed where the answer lived.
           </p>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <p style={{ fontFamily: GTA, fontSize: 18, fontWeight: 300, color: "#444", lineHeight: 1.7, maxWidth: 760, marginBottom: 36 }}>
+          <p style={{ fontFamily: GTA, fontSize: 16, fontWeight: 400, color: "#444", lineHeight: 1.7, maxWidth: 760, marginBottom: 40 }}>
             The research agent UX flips it. <span style={{ fontWeight: 400, color: "#111" }}>Ask first. Get your answer.</span> Then go to where it came from, if you want to verify or dive deeper.
           </p>
         </FadeUp>
