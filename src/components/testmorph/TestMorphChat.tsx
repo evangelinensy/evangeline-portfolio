@@ -31,7 +31,7 @@ interface TestMorphChatProps {
 export function TestMorphChat({ placeholder = "Ask AI", selectedText, onClearSelectedText, loaderVariant = "dots", systemPrompt }: TestMorphChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedLLM, setSelectedLLM] = useState<LLMProvider>("gemini");
+  const [selectedLLM, setSelectedLLM] = useState<LLMProvider>("groq");
   const [isExpanded, setIsExpanded] = useState(false);
   const conversationRef = useRef<HTMLDivElement>(null);
 

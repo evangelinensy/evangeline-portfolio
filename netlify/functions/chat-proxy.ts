@@ -353,7 +353,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
     // Build fallback chain: selected provider first, then the rest in a sensible order.
     const fallbackOrder = ["gemini", "groq", "cohere", "huggingface", "cerebras"];
-    const primary = providers[provider] ? provider : "gemini";
+    const primary = providers[provider] ? provider : "groq";
     const chain = [primary, ...fallbackOrder.filter((p) => p !== primary)];
 
     const isRecoverable = (err: unknown): boolean => {
