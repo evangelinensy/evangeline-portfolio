@@ -117,7 +117,7 @@ export default function WebAgentCaseStudy() {
             </button>
 
             {/* CNN Article Preview */}
-            <div className="relative h-[420px]">
+            <div className="relative h-[560px]">
               {/* Fake CNN Header */}
               <div className="bg-[#cc0000] text-white px-6 py-2">
                 <div className="flex items-center gap-4">
@@ -180,7 +180,7 @@ export default function WebAgentCaseStudy() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg max-w-none">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Problem</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Problem Statement</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
               We see 100,000 words daily and believe what we read by default because doubting is hard work.
             </p>
@@ -214,7 +214,7 @@ export default function WebAgentCaseStudy() {
               You type a short intent like &quot;fact check this article.&quot; The bar thinks for a beat, then responds with a single sentence:
             </p>
 
-            <div className="bg-slate-900 text-white rounded-xl p-6 my-8 font-mono text-sm">
+            <div className="bg-gray-100 text-gray-900 border border-gray-200 rounded-xl p-6 my-8 font-mono text-sm">
               <p>&quot;Most of the concrete claims in this CNN piece align with CDC and WHO data. Some stats are outdated.&quot;</p>
             </div>
 
@@ -309,7 +309,7 @@ export default function WebAgentCaseStudy() {
                 </div>
               </div>
               {/* Fake Flight Search Results */}
-              <div className="p-6 pb-4 h-[300px] overflow-y-auto space-y-3">
+              <div className="p-6 pb-4 h-[500px] overflow-y-auto space-y-3">
                 {/* Search Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -461,7 +461,7 @@ export default function WebAgentCaseStudy() {
             {/* Finance Demo with Fake Bank UI */}
             <div className="relative rounded-2xl shadow-lg overflow-hidden border border-gray-200" style={{ backgroundColor: '#062655' }}>
               {/* Fake Bank Transaction List - scrollable container */}
-              <div className="p-6 pb-4 h-[300px] overflow-y-auto">
+              <div className="p-6 pb-4 h-[500px] overflow-y-auto">
                 <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
                   {/* Header */}
                   <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between" style={{ backgroundColor: '#EAEDF2' }}>
