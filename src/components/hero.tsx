@@ -256,18 +256,6 @@ export function Hero() {
       href: 'https://www.figma.com/proto/wDch1TapZLSfORyZcWQRQL/Intro?page-id=0%3A1&node-id=200-19297&p=f&viewport=1262%2C-431%2C0.3&t=pptRayJlvKyHmxfC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=200%3A19297&show-proto-sidebar=1',
       external: true,
     },
-    // Sanrio
-    {
-      id: 'disc-pd-6',
-      title: 'Sanrio',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-6', '/images/disc-sanrio.png', event, 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1', true),
-      discSrc: '/images/disc-sanrio.png',
-      sleeveTitle: 'Sanrio',
-      sleeveSubtitle: 'Web3 Campaigns',
-      sleeveBottomCaption: undefined,
-      href: 'https://www.figma.com/proto/gVzjYcVdLj3WnCyCGxvkaz/Evangeline-%7C-Case-Study?page-id=0%3A1&node-id=7-13425&viewport=-259%2C102%2C0.07&t=5MxKE8EKM36byCqp-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=7%3A13425&show-proto-sidebar=1',
-      external: true,
-    },
     // About Me - HIDDEN (kept in codebase but not displayed)
     // {
     //   id: 'disc-pd-5',
