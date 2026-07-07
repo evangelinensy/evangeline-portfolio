@@ -108,13 +108,13 @@ export function Hero() {
     // Animation timeline - synchronized with 2.5s disc animation
     timeoutsRef.current.push(window.setTimeout(() => setTvState('moving'), 300));
 
-    // Open URL in new tab shortly after animation starts
+    // External URLs open in a new tab; internal case-study links navigate in the same tab.
     if (url) {
       timeoutsRef.current.push(window.setTimeout(() => {
         if (external) {
           window.open(url, '_blank', 'noopener,noreferrer');
         } else {
-          window.open(url, '_blank');
+          window.location.href = url;
         }
       }, 900));
     }
@@ -188,7 +188,7 @@ export function Hero() {
     {
       id: 'disc-pd-ai-insights',
       title: 'AI Customer Insights',
-      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, '/case-studies/pogoaiagent', false, true, 'AI Customer Insights'),
+      onClick: (event?: React.MouseEvent) => handleDiscClick('disc-pd-ai-insights', '/images/disc-pogosubstack1.png', event, '/case-studies/pogoaiagent', false),
       discSrc: '/images/disc-pogosubstack1.png',
       sleeveTitle: 'AI Customer Insights',
       sleeveSubtitle: '',
